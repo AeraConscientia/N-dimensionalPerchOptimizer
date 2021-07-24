@@ -1,0 +1,10 @@
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.exe.config
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.exe
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.pdb
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csprojAssemblyReference.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.FormMain.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.Properties.Resources.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csproj.GenerateResource.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csproj.CoreCompileInputs.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.exe
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.pdb
