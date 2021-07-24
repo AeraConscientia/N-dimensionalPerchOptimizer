@@ -140,7 +140,7 @@ namespace N_dimensionalPerchOptimizer
         }
 
         /// <summary>Движения каждого окуня в каждой стае, создание котлов</summary>
-        public void MoveEPerchEFlock() //TODO: N-dim
+        public void MoveEPerchEFlock()
         {
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
@@ -148,25 +148,19 @@ namespace N_dimensionalPerchOptimizer
             {
                 for (int j = 0; j < NumPerchInFlock; j++)
                 {
-                    double x = 0;
-                    double y = 0;
                     int moveCount = (int)Math.Floor(sigma * NStep);
 
                     List<Perch> move = new List<Perch>();
                     for (int k = 0; k < moveCount; ++k)
                     {
-                        x = flock[i, j].coords[0] + k * ((flock[i, 0].coords[0] - flock[i, j].coords[0]) / (NStep));
-                        y = flock[i, j].coords[1] + k * ((flock[i, 0].coords[1] - flock[i, j].coords[1]) / (NStep));
-
-                        if (x < D[0, 0] || x > D[0, 1] || y < D[1, 0] || y > D[1, 1]) // если окуни вышли на границы, оставляем их прежние позиции
-                        {
-                            x = flock[i, j].coords[0];
-                            y = flock[i, j].coords[1];
-                        }
                         Perch perch = new Perch(N_dim);
-                        perch.coords[0] = x;
-                        perch.coords[1] = y;
-
+                        for (int l = 0; l < N_dim; l++)
+                        {
+                            double tmp =  flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                            if (tmp < U1 || tmp > U2)
+                                tmp = flock[i, j].coords[l];
+                            perch.coords[l] = tmp;
+                        }
                         move.Add(perch);
                     }
                     //Sort(move);
@@ -178,31 +172,25 @@ namespace N_dimensionalPerchOptimizer
             SortFlocks();
         }
 
-        private void BestFlockSwim()//TODO: N-dim
+        private void BestFlockSwim()
         {
             sigma = rand.NextDouble() * 0.5 + 1; // sigma [1,  1.5]
             int i = 0;
             for (int j = 0; j < NumPerchInFlock; j++)
             {
-                double x = 0;
-                double y = 0;
                 int moveCount = (int)Math.Floor(sigma * NStep);
 
                 List<Perch> move = new List<Perch>();
                 for (int k = 0; k < moveCount; ++k)
                 {
-                    x = flock[i, j].coords[0] + k * ((flock[i, 0].coords[0] - flock[i, j].coords[0]) / (NStep));
-                    y = flock[i, j].coords[1] + k * ((flock[i, 0].coords[1] - flock[i, j].coords[1]) / (NStep));
-
-                    if (x < D[0, 0] || x > D[0, 1] || y < D[1, 0] || y > D[1, 1]) // если окуни вышли за границы, оставляем их прежние позиции
-                    {
-                        x = flock[i, j].coords[0];
-                        y = flock[i, j].coords[1];
-                    }
-
                     Perch perch = new Perch(N_dim);
-                    perch.coords[0] = x;
-                    perch.coords[1] = y;
+                    for (int l = 0; l < N_dim; l++) // если координаты не выйдут за область определения - меняем. Иначе - оставляем.
+                    {
+                        double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                        if (tmp < U1 || tmp > U2)
+                            tmp = flock[i, j].coords[l];
+                        perch.coords[l] = tmp;
+                    }
                     perch.fitness = function(perch, f);
                     move.Add(perch);
                 }
@@ -214,30 +202,25 @@ namespace N_dimensionalPerchOptimizer
         }
 
         /// <summary>Движение средних окуней</summary>
-        private void AverFlockSwim()//TODO: N-dim
+        private void AverFlockSwim()
         {
             sigma = rand.NextDouble() / 20 + 0.6; // sigma [0.6,  0.8]
 
             for (int l = 1; l < NumFlocks - 1; l++) // если не изменяет память, передвижение лидеров средних стай
             {
-                double x = 0;
-                double y = 0;
                 int moveCount = (int)Math.Floor(sigma * NStep);
 
                 List<Perch> move = new List<Perch>();
                 for (int k = 0; k < moveCount; ++k)
                 {
-                    x = flock[l, 0].coords[0] + k * ((flock[0, 0].coords[0] - flock[l, 0].coords[0]) / (NStep));
-                    y = flock[l, 0].coords[1] + k * ((flock[0, 0].coords[1] - flock[l, 0].coords[1]) / (NStep));
-
-                    if (x < D[0, 0] || x > D[0, 1] || y < D[1, 0] || y > D[1, 1]) // если лидеры вышли за границу, оставляем их прежние позиции
-                    {
-                        x = flock[l, 0].coords[0];
-                        y = flock[l, 0].coords[1];
-                    }
                     Perch perch = new Perch(N_dim);
-                    perch.coords[0] = x;
-                    perch.coords[1] = y;
+
+                    for (int m = 0; m < N_dim; m++)
+                    {
+                        double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
+                        if (tmp < U1 || tmp > U2)
+                            tmp = flock[l, 0].coords[m];
+                    }
                     perch.fitness = function(perch, f);
                     move.Add(perch);
                 }
@@ -249,25 +232,20 @@ namespace N_dimensionalPerchOptimizer
 
                 for (int j = 0; j < NumPerchInFlock; j++)
                 {
-                    double x1 = 0;
-                    double y1 = 0;
                     int moveCount1 = (int)Math.Floor(sigma * NStep);
 
                     List<Perch> move1 = new List<Perch>();
                     for (int k = 0; k < moveCount1; ++k)
                     {
-                        x1 = flock[l, j].coords[0] + k * ((flock[l, 0].coords[0] - flock[l, j].coords[0]) / (NStep));
-                        y1 = flock[l, j].coords[1] + k * ((flock[l, 0].coords[1] - flock[l, j].coords[1]) / (NStep));
-
-                        if (x1 < D[0, 0] || x1 > D[0, 1] || y1 < D[1, 0] || y1 > D[1, 1]) // если не-лидеры средних стай вышли за гранмцы, оставляем их прежние позиции
-                        {
-                            x1 = flock[l, j].coords[0];
-                            y1 = flock[l, j].coords[1];
-                        }
                         Perch perch = new Perch(N_dim);
-                        perch.coords[0] = x1;
-                        perch.coords[1] = y1;
-                        perch.fitness = function(perch, f);
+                        for (int p = 0; p < N_dim; p++)
+                        {
+                           double tmp  = flock[l, j].coords[p] + k * ((flock[l, 0].coords[p] - flock[l, j].coords[p]) / (NStep));
+                           if (tmp < U1 || tmp > U2)
+                                tmp = flock[l, j].coords[p];
+                           perch.coords[p] = tmp;
+                        }
+                        perch.fitness = function(perch, f);                       
                         move1.Add(perch);
                     }
                     //Sort(move1);
@@ -285,22 +263,25 @@ namespace N_dimensionalPerchOptimizer
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
-            double xMin = Math.Min((flock[NumFlocks - 1, 0].coords[0] - D[0, 0]), (D[0, 1] - flock[NumFlocks - 1, 0].coords[0]));
-            double yMin = Math.Min((flock[NumFlocks - 1, 0].coords[1] - D[1, 0]), (D[1, 1] - flock[NumFlocks - 1, 0].coords[1]));
+            List<double> Min = new List<double>(N_dim);
+
+            for (int j = 0; j < N_dim; j++)
+                Min[j] = Math.Min((flock[NumFlocks - 1, 0].coords[j] - U1), (U2 - flock[NumFlocks - 1, 0].coords[j]));
 
             for (int j = 1; j < NumPerchInFlock; j++)
             {
-                double x = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[0] - xMin);
-                double y = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[1] - yMin);
-                while (x > D[0, 1] || x < D[0, 0] || y > D[1, 1] || y < D[1, 0]) // TODO: Добавлены ограничения на x,y
+                Perch perch = new Perch(N_dim);
+
+                for (int k = 0; k < N_dim; k++)
                 {
-                    x = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[0] - xMin);
-                    y = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[1] - yMin);
+                    double tmp;
+                    do
+                    {
+                        tmp = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[k] - Min[k]);
+                    } while (tmp < U1 || tmp > U2);
+                    perch.coords[k] = tmp;
                 }
 
-                Perch perch = new Perch(N_dim);
-                perch.coords[0] = x;
-                perch.coords[1] = y;
                 perch.fitness = function(perch, f);
                 flock[NumFlocks - 1, j] = perch;
             }
@@ -310,24 +291,19 @@ namespace N_dimensionalPerchOptimizer
 
             for (int j = 0; j < NumPerchInFlock; j++) // всех окуней из худших двигаем к лидеру худшей стаи
             {
-                double x = 0;
-                double y = 0;
                 int moveCount = (int)Math.Floor(sigma * NStep);
 
                 List<Perch> move = new List<Perch>();
                 for (int k = 0; k < moveCount; ++k)
                 {
-                    x = flock[i, j].coords[0] + k * ((flock[i, 0].coords[0] - flock[i, j].coords[0]) / (NStep));
-                    y = flock[i, j].coords[1] + k * ((flock[i, 0].coords[1] - flock[i, j].coords[1]) / (NStep));
-                    if (x < D[0, 0] || x > D[0, 1] || y < D[1, 0] || y > D[1, 1]) // если окуни вышли за границы, оставляем их прежние позиции
-                    {
-                        x = flock[i, j].coords[0];
-                        y = flock[i, j].coords[1];
-                    }
-
                     Perch perch = new Perch(N_dim);
-                    perch.coords[0] = x;
-                    perch.coords[1] = y;
+                    for (int p = 0; p < N_dim; p++)
+                    {
+                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
+                        if (tmp < U1 || tmp > U2)
+                            tmp = flock[i, j].coords[p];
+                        perch.coords[p] = tmp;
+                    }
                     perch.fitness = function(perch, f);
                     move.Add(perch);
                 }
@@ -341,14 +317,9 @@ namespace N_dimensionalPerchOptimizer
         /// <summary>Новые координаты лидера худшей стаи</summary>
         public void PoorLeaderSwim()
         {
-            //double a = LeviX();             double b = LeviY(); // TODO: убрать?
             List<double> koefLevy = Levy();
             for (int i = 0; i < N_dim; i++)
-            {
                 flock[NumFlocks - 1, 0].coords[i] = flock[NumFlocks - 1, 0].coords[i] + (alfa / currentIteration) * koefLevy[i];
-            }
-            //flock[NumFlocks - 1, 0].coords[0] = flock[NumFlocks - 1, 0].coords[0] + (alfa / currentIteration) * a;
-            //flock[NumFlocks - 1, 0].coords[1] = flock[NumFlocks - 1, 0].coords[1] + (alfa / currentIteration) * b;
         }
 
         /// <summary>Создание N-мерных коэф Леви</summary>
@@ -376,44 +347,19 @@ namespace N_dimensionalPerchOptimizer
             return koefLevy;
         }
 
-        /// <summary>Распределение Леви, координата х,  для худшей стаи</summary>
-        //public double LeviX() // TODO: Убрать? Вроде переписала
-        //{
-        //    R1 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((D[0, 1] - D[0, 0]) * 100)) / 100f; // (0, b1-a1)
-        //    thetta1 = R1 * 2 * Math.PI;
-        //    L1 = Math.Pow(R1 + 0.0001f, -1 / lambda);
-        //
-        //    x = L1 * Math.Sin(thetta1);
-        //    return x;
-        //}
-        //
-        ///// <summary>Распределение Леви, координата y,  для худшей стаи</summary>
-        //public double LeviY() // TODO: Убрать? Вроде переписала
-        //{
-        //    R2 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((D[1, 1] - D[1, 0]) * 100)) / 100f; // (0, b2-a2)
-        //    thetta2 = R2 * 2 * Math.PI;
-        //    L2 = Math.Pow(R2 + 0.0001f, -1 / lambda);   //!
-        //
-        //    y = L2 * Math.Cos(thetta2);
-        //    return y;
-        //}
-
         //TODO: N-dim
 
         /// <summary>Начальное формирование популяции </summary>
-        public void FormingPopulation() //TODO: убрать U
+        public void FormingPopulation()
         {
             for (int i = 0; i < population; i++)
             {
-                x = 0;
-                y = 0;
-
-                x = D[0, 0] + rand.NextDouble() * (D[0, 1] - D[0, 0]);
-                y = D[1, 0] + rand.NextDouble() * (D[1, 1] - D[1, 0]);
-
                 Perch perch = new Perch(N_dim);
-                perch.coords[0] = x;
-                perch.coords[1] = y;
+                for (int j = 0; j < N_dim; j++)
+                {
+                    double tmp = U1 + rand.NextDouble() * (U2 - U1);
+                    perch.coords[j] = tmp;
+                }
                 perch.fitness = function(perch, f);
 
                 // TODO: добавить iter += 1
@@ -435,7 +381,7 @@ namespace N_dimensionalPerchOptimizer
             }
         }
 
-        public Perch StartAlg(int MaxCount, int f, // //TODO: убрать D
+        public Perch StartAlg(int MaxCount, int f,
             int NumFlocks, int NumPerchInFlock,
             int NStep,
             double lambda, double alfa,
@@ -543,7 +489,7 @@ namespace N_dimensionalPerchOptimizer
             return fitness;
         }
 
-        public void Recommutation() //TODO: N-dim
+        public void Recommutation()
         {
             int p, q, r;
 
@@ -572,11 +518,12 @@ namespace N_dimensionalPerchOptimizer
                 double min = 1000;
                 for (int i = 0; i < deltapr - 1; i++)
                 {
-                    double x = Xq_pool.coords[0] + i * (Xq_pool.coords[0] - Xq_pool.coords[0]) / deltapr;
-                    double y = Xq_pool.coords[1] + i * (Xq_pool.coords[1] - Xq_pool.coords[1]) / deltapr;
                     Perch perch = new Perch(N_dim);
-                    perch.coords[0] = x;
-                    perch.coords[1] = y;
+                    for (int j = 0; j < N_dim; j++)
+                    {
+                        double tmp = Xq_pool.coords[j] + i * (Xq_pool.coords[j] - Xq_pool.coords[j]) / deltapr; // TODO: а это что за бред?
+                        perch.coords[j] = tmp;
+                    }
                     double res = function(perch, f);
                     if (res < min)
                     {
@@ -590,13 +537,12 @@ namespace N_dimensionalPerchOptimizer
                 Perch inPool = new Perch(N_dim);
                 for (int i = 0; i < deltapr - 1; i++)
                 {
-                    double x = perchResult.coords[0] + i * (Xr_pool.coords[0] - perchResult.coords[0]) / deltapr;
-                    double y = perchResult.coords[1] + i * (Xr_pool.coords[1] - perchResult.coords[1]) / deltapr;
-
                     Perch perch = new Perch(N_dim);
-
-                    perch.coords[0] = x;
-                    perch.coords[1] = y;
+                    for (int j = 0; j < N_dim; j++)
+                    {
+                        double tmp = perchResult.coords[j] + i * (Xr_pool.coords[j] - perchResult.coords[j]) / deltapr;
+                        perch.coords[j] = tmp;
+                    }
 
                     double res = function(perch, f);
                     if (res < min)
