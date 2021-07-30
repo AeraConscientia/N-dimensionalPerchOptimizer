@@ -36,7 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxU = new System.Windows.Forms.TextBox();
+            this.textBoxU1 = new System.Windows.Forms.TextBox();
+            this.textBoxU2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.labelX22 = new System.Windows.Forms.Label();
@@ -67,8 +68,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonStartAlg = new System.Windows.Forms.Button();
+            this.buttonGraphs = new System.Windows.Forms.Button();
             this.buttonProtocol = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -85,7 +86,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBoxU);
+            this.groupBox1.Controls.Add(this.textBoxU1);
+            this.groupBox1.Controls.Add(this.textBoxU2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.numericUpDownN);
@@ -101,24 +103,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Постановка задачи";
             // 
-            // textBoxU
+            // textBoxU1
             // 
-            this.textBoxU.Location = new System.Drawing.Point(394, 25);
-            this.textBoxU.Name = "textBoxU";
-            this.textBoxU.Size = new System.Drawing.Size(104, 20);
-            this.textBoxU.TabIndex = 48;
-            this.textBoxU.Text = "5";
-            this.textBoxU.TextChanged += new System.EventHandler(this.textBoxU_TextChanged);
+            this.textBoxU1.Location = new System.Drawing.Point(349, 25);
+            this.textBoxU1.Name = "textBoxU1";
+            this.textBoxU1.Size = new System.Drawing.Size(49, 20);
+            this.textBoxU1.TabIndex = 49;
+            this.textBoxU1.Text = "-5";
+            // 
+            // textBoxU2
+            // 
+            this.textBoxU2.Location = new System.Drawing.Point(448, 25);
+            this.textBoxU2.Name = "textBoxU2";
+            this.textBoxU2.Size = new System.Drawing.Size(49, 20);
+            this.textBoxU2.TabIndex = 48;
+            this.textBoxU2.Text = "5";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(352, 25);
+            this.label2.Location = new System.Drawing.Point(399, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 19);
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label2.Size = new System.Drawing.Size(51, 19);
             this.label2.TabIndex = 47;
-            this.label2.Text = "|u| = ";
+            this.label2.Text = "< u < ";
             // 
             // groupBox5
             // 
@@ -455,8 +465,8 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.buttonStartAlg);
+            this.groupBox4.Controls.Add(this.buttonGraphs);
             this.groupBox4.Controls.Add(this.buttonProtocol);
             this.groupBox4.Controls.Add(this.buttonRefresh);
             this.groupBox4.Location = new System.Drawing.Point(944, 34);
@@ -465,27 +475,27 @@
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             // 
-            // button1
+            // buttonStartAlg
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 53);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Расчет";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonStartAlg.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.buttonStartAlg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStartAlg.Location = new System.Drawing.Point(6, 19);
+            this.buttonStartAlg.Name = "buttonStartAlg";
+            this.buttonStartAlg.Size = new System.Drawing.Size(148, 53);
+            this.buttonStartAlg.TabIndex = 36;
+            this.buttonStartAlg.Text = "Расчет";
+            this.buttonStartAlg.UseVisualStyleBackColor = false;
+            this.buttonStartAlg.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // buttonGraphs
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(6, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 35);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Графики";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonGraphs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonGraphs.Location = new System.Drawing.Point(6, 91);
+            this.buttonGraphs.Name = "buttonGraphs";
+            this.buttonGraphs.Size = new System.Drawing.Size(148, 35);
+            this.buttonGraphs.TabIndex = 37;
+            this.buttonGraphs.Text = "Графики";
+            this.buttonGraphs.UseVisualStyleBackColor = true;
             // 
             // buttonProtocol
             // 
@@ -564,8 +574,8 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonStartAlg;
+        private System.Windows.Forms.Button buttonGraphs;
         private System.Windows.Forms.Button buttonProtocol;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.NumericUpDown numericUpDownN;
@@ -578,7 +588,8 @@
         private System.Windows.Forms.Label labelX33;
         private System.Windows.Forms.Label labelX11;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxU;
+        private System.Windows.Forms.TextBox textBoxU2;
+        private System.Windows.Forms.TextBox textBoxU1;
     }
 }
 

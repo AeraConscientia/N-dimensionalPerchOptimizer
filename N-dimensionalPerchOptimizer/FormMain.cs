@@ -21,7 +21,11 @@ namespace N_dimensionalPerchOptimizer
         public int N_dim = 0;
 
         /// <summary>Ограничение управления</summary>
-        public double U = 0;
+        public double U1 = 0;
+        public double U2 = 0;
+
+        /// <summary>Номер выбранной задачи</summary>
+        public int ExampleNum = 0;
 
         private int MaxIteration = 0;
         private Perch resultBest;
@@ -65,7 +69,8 @@ namespace N_dimensionalPerchOptimizer
             textBoxX2.Visible = false;
             textBoxX3.Visible = false;
 
-            U = Convert.ToDouble(textBoxU);
+            U1 = Convert.ToDouble(textBoxU1.Text);
+            U2 = Convert.ToDouble(textBoxU2.Text);
             N_dim = Convert.ToInt32(numericUpDownN.Value);
 
     }
@@ -105,6 +110,7 @@ namespace N_dimensionalPerchOptimizer
         {
             if (comboBoxExample.SelectedIndex == 0)
             {
+                ExampleNum = 0;
                 pictureBoxExample.Image = Properties.Resources.Ex1;
                 labelX11.Visible = false;
                 labelX2.Visible  = false;
@@ -118,6 +124,7 @@ namespace N_dimensionalPerchOptimizer
 
             if (comboBoxExample.SelectedIndex == 1)
             {
+                ExampleNum = 1;
                 labelX11.Visible = true;
                 labelX2.Visible  = true;
                 labelX3.Visible  = true;
@@ -129,6 +136,7 @@ namespace N_dimensionalPerchOptimizer
             }
             if (comboBoxExample.SelectedIndex == 2)
             {
+                ExampleNum = 2;
                 pictureBoxExample.Image = Properties.Resources.Ex3;
                 labelX11.Visible = false;
                 labelX2.Visible = false;
@@ -142,7 +150,8 @@ namespace N_dimensionalPerchOptimizer
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            U1 = Convert.ToDouble(textBoxU1.Text);
+            U2 = Convert.ToDouble(textBoxU2.Text);
         }
 
         /// <summary>Запись протокола и его вызов</summary>
@@ -164,11 +173,6 @@ namespace N_dimensionalPerchOptimizer
         {
             FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
-        }
-
-        private void textBoxU_TextChanged(object sender, EventArgs e)
-        {
-            U = Convert.ToDouble(textBoxU);
         }
 
         private void numericUpDownN_ValueChanged(object sender, EventArgs e)

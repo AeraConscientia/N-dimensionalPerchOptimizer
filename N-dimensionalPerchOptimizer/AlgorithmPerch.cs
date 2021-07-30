@@ -8,10 +8,9 @@ namespace N_dimensionalPerchOptimizer
 {
     public class AlgorithmPerch
     {
-        public double R, R1, R2;
-        public double thetta, thetta1, thetta2;
-        public double L, L1, L2;
-        public double x, y;
+        public double R1, R2;
+        public double thetta1, thetta2;
+        public double L1, L2;
 
         private Random rand = new Random();
         public Perch perch;
@@ -20,6 +19,13 @@ namespace N_dimensionalPerchOptimizer
 
         public int N_dim = 0;
         public double U1, U2;
+        /// <summary>Номер выбранной задачи</summary>
+        public int ExampleNum = 0;
+
+        /// <summary>Начальные состояния системы</summary>
+        public double Xn1, Xn2, Xn3;
+
+        public List<double> Xn;
 
         /// <summary>Размер популяции окуней </summary>
         public int population;
@@ -45,9 +51,6 @@ namespace N_dimensionalPerchOptimizer
 
         /// <summary>Номер выбранной функции</summary>
         public int f;
-
-        /// <summary>Область определения, нужно убрать</summary>
-        public double[,] D;
 
         /// <summary>Максимальное число итераций</summary>
         public int MaxCount { get; set; }
@@ -245,7 +248,13 @@ namespace N_dimensionalPerchOptimizer
                                 tmp = flock[l, j].coords[p];
                            perch.coords[p] = tmp;
                         }
-                        perch.fitness = function(perch, f);                       
+                        if (ExampleNum == 0) // а правильно ли так делать?
+                        {
+                            Xn = Raz1(perch);
+                            perch.fitness = I1(perch, Xn[N_dim]);
+                        }
+                        else   
+                            perch.fitness = function(perch, f);                       
                         move1.Add(perch);
                     }
                     //Sort(move1);
@@ -282,7 +291,13 @@ namespace N_dimensionalPerchOptimizer
                     perch.coords[k] = tmp;
                 }
 
-                perch.fitness = function(perch, f);
+                if (ExampleNum == 0) // а правильно ли так делать?
+                {
+                    Xn = Raz1(perch);
+                    perch.fitness = I1(perch, Xn[N_dim]);
+                }
+                else
+                    perch.fitness = function(perch, f);
                 flock[NumFlocks - 1, j] = perch;
             }
 
@@ -304,7 +319,13 @@ namespace N_dimensionalPerchOptimizer
                             tmp = flock[i, j].coords[p];
                         perch.coords[p] = tmp;
                     }
-                    perch.fitness = function(perch, f);
+                    if (ExampleNum == 0) // а правильно ли так делать?
+                    {
+                        Xn = Raz1(perch);
+                        perch.fitness = I1(perch, Xn[Xn.Count - 1]);
+                    }
+                    else
+                        perch.fitness = function(perch, f);
                     move.Add(perch);
                 }
                 //Sort(move);
@@ -356,11 +377,15 @@ namespace N_dimensionalPerchOptimizer
             {
                 Perch perch = new Perch(N_dim);
                 for (int j = 0; j < N_dim; j++)
+                    perch.coords[j] = U1 + rand.NextDouble() * (U2 - U1);
+
+                if (ExampleNum == 0) // а правильно ли так делать?
                 {
-                    double tmp = U1 + rand.NextDouble() * (U2 - U1);
-                    perch.coords[j] = tmp;
+                    Xn = Raz1(perch);
+                    perch.fitness = I1(perch, Xn[N_dim]);
                 }
-                perch.fitness = function(perch, f);
+                else
+                    perch.fitness = function(perch, f);
 
                 // TODO: добавить iter += 1
                 individuals.Add(perch);
@@ -457,22 +482,37 @@ namespace N_dimensionalPerchOptimizer
 
         /// <summary>разностное уравнение</summary>
         /// <returns></returns>
-        private float DiffEquation()
+        private double F1(List<double> u, double xn)
         {
-            float funct = 0;
-            if( f == 0)
-            {
-                //funct = x(t) + u(t)
-            }
-            else if (f == 1)
-            {
-                //funct = 
-            }
-            else if (f == 2)
-            {
+            double res = 0;
+            for (int i = 0; i < u.Count - 1; i++)
+                res += (1 / (i + 1)) * u[i] * u[i];
+            return res + 2 * xn;
+        }
 
+        private double I1(Perch perch, double xn)
+        {
+            double res = 0;
+            for (int i = 0; i < N_dim - 1; i++)
+                res += (1 / (i + 1)) * perch.coords[i] * perch.coords[i];
+            return res + 2 * xn;
+        }
+
+        private List<double> Raz1(Perch perch)
+        {
+            List<double> Xn = new List<double>(N_dim);
+            Xn[0] = Xn1;
+            for (int i = 1; i < N_dim; i++) // а точно до N_dim?
+            {
+                Xn[i] = Xn[i - 1] + perch.coords[i - 1];
             }
-            return 0;
+            return Xn;
+        }
+
+
+        private double F2(List<double> x1, List<double> x2, List<double> x3, List<double> u1, List<double> u2, List<double> u3) 
+        {
+            return -1; //TODO:!
         }
 
         public double AverageFitness()
