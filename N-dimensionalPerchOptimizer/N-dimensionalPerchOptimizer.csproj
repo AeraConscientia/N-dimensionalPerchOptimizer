@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlgorithmPerch.cs" />
+    <Compile Include="AlgorithmTask1.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
