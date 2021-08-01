@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxU1 = new System.Windows.Forms.TextBox();
             this.textBoxU2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,7 +52,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBoxExample = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxExample = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -72,7 +70,9 @@
             this.buttonGraphs = new System.Windows.Forms.Button();
             this.buttonProtocol = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExample)).BeginInit();
@@ -82,30 +82,13 @@
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBoxU1);
-            this.groupBox1.Controls.Add(this.textBoxU2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.numericUpDownN);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.pictureBoxExample);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBoxExample);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(32, 34);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(505, 337);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Постановка задачи";
             // 
             // textBoxU1
             // 
-            this.textBoxU1.Location = new System.Drawing.Point(349, 25);
+            this.textBoxU1.Location = new System.Drawing.Point(9, 223);
             this.textBoxU1.Name = "textBoxU1";
             this.textBoxU1.Size = new System.Drawing.Size(49, 20);
             this.textBoxU1.TabIndex = 49;
@@ -113,7 +96,7 @@
             // 
             // textBoxU2
             // 
-            this.textBoxU2.Location = new System.Drawing.Point(448, 25);
+            this.textBoxU2.Location = new System.Drawing.Point(108, 223);
             this.textBoxU2.Name = "textBoxU2";
             this.textBoxU2.Size = new System.Drawing.Size(49, 20);
             this.textBoxU2.TabIndex = 48;
@@ -123,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(399, 23);
+            this.label2.Location = new System.Drawing.Point(59, 221);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label2.Size = new System.Drawing.Size(51, 19);
@@ -141,7 +124,7 @@
             this.groupBox5.Controls.Add(this.labelX2);
             this.groupBox5.Controls.Add(this.labelX1);
             this.groupBox5.Controls.Add(this.textBoxX2);
-            this.groupBox5.Location = new System.Drawing.Point(7, 274);
+            this.groupBox5.Location = new System.Drawing.Point(9, 265);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(318, 57);
             this.groupBox5.TabIndex = 2;
@@ -232,7 +215,7 @@
             // 
             // numericUpDownN
             // 
-            this.numericUpDownN.Location = new System.Drawing.Point(423, 296);
+            this.numericUpDownN.Location = new System.Drawing.Point(418, 251);
             this.numericUpDownN.Maximum = new decimal(new int[] {
             30,
             0,
@@ -247,17 +230,16 @@
             this.numericUpDownN.Size = new System.Drawing.Size(71, 20);
             this.numericUpDownN.TabIndex = 46;
             this.numericUpDownN.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
-            this.numericUpDownN.ValueChanged += new System.EventHandler(this.numericUpDownN_ValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(354, 273);
+            this.label5.Location = new System.Drawing.Point(367, 227);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 13);
             this.label5.TabIndex = 45;
@@ -266,7 +248,8 @@
             // pictureBoxExample
             // 
             this.pictureBoxExample.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBoxExample.Location = new System.Drawing.Point(7, 51);
+            this.pictureBoxExample.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.Ex1;
+            this.pictureBoxExample.Location = new System.Drawing.Point(6, 6);
             this.pictureBoxExample.Name = "pictureBoxExample";
             this.pictureBoxExample.Size = new System.Drawing.Size(491, 211);
             this.pictureBoxExample.TabIndex = 2;
@@ -276,30 +259,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 27);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Решаемая задача";
             // 
-            // comboBoxExample
-            // 
-            this.comboBoxExample.FormattingEnabled = true;
-            this.comboBoxExample.Items.AddRange(new object[] {
-            "Пример 1",
-            "Пример 2",
-            "Пример 3"});
-            this.comboBoxExample.Location = new System.Drawing.Point(112, 24);
-            this.comboBoxExample.Name = "comboBoxExample";
-            this.comboBoxExample.Size = new System.Drawing.Size(198, 21);
-            this.comboBoxExample.TabIndex = 0;
-            this.comboBoxExample.SelectedIndexChanged += new System.EventHandler(this.comboBoxExample_SelectedIndexChanged);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(393, 297);
+            this.label4.Location = new System.Drawing.Point(381, 251);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 16);
             this.label4.TabIndex = 42;
@@ -310,9 +280,9 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.dataGridView4);
             this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(552, 34);
+            this.groupBox2.Location = new System.Drawing.Point(555, 57);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(376, 337);
+            this.groupBox2.Size = new System.Drawing.Size(376, 352);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры алгоритма";
@@ -426,9 +396,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tabControl1);
-            this.groupBox3.Location = new System.Drawing.Point(32, 377);
+            this.groupBox3.Location = new System.Drawing.Point(12, 415);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1074, 229);
+            this.groupBox3.Size = new System.Drawing.Size(1097, 229);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Результат расчета";
@@ -440,7 +410,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 16);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1065, 207);
+            this.tabControl1.Size = new System.Drawing.Size(1084, 207);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -448,7 +418,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1057, 181);
+            this.tabPage1.Size = new System.Drawing.Size(1076, 181);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "u*";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -458,7 +428,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1057, 181);
+            this.tabPage2.Size = new System.Drawing.Size(1076, 181);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "x*";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -469,9 +439,9 @@
             this.groupBox4.Controls.Add(this.buttonGraphs);
             this.groupBox4.Controls.Add(this.buttonProtocol);
             this.groupBox4.Controls.Add(this.buttonRefresh);
-            this.groupBox4.Location = new System.Drawing.Point(944, 34);
+            this.groupBox4.Location = new System.Drawing.Point(947, 63);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(162, 337);
+            this.groupBox4.Size = new System.Drawing.Size(162, 346);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             // 
@@ -522,20 +492,57 @@
             this.buttonRefresh.UseVisualStyleBackColor = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(21, 35);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(511, 374);
+            this.tabControl2.TabIndex = 2;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBoxU1);
+            this.tabPage3.Controls.Add(this.textBoxU2);
+            this.tabPage3.Controls.Add(this.pictureBoxExample);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.groupBox5);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.numericUpDownN);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(503, 348);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "Пример 1.1";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(503, 348);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 637);
+            this.ClientSize = new System.Drawing.Size(1121, 644);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "Применения метода стаи окуней";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN)).EndInit();
@@ -547,17 +554,18 @@
             this.groupBox3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxExample;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBoxExample;
         private System.Windows.Forms.Label labelX1;
@@ -590,6 +598,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxU2;
         private System.Windows.Forms.TextBox textBoxU1;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 

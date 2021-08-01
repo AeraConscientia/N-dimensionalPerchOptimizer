@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -14,24 +7,11 @@ namespace N_dimensionalPerchOptimizer
 {
     public partial class FormMain : Form
     {
-
-        private AlgorithmPerch algPerch;
-
         /// <summary>Размерность задачи</summary>
         public int N_dim = 0;
 
-        /// <summary>Ограничение управления</summary>
-        public double U1 = 0;
-        public double U2 = 0;
-
-        /// <summary>Номер выбранной задачи</summary>
-        public int ExampleNum = 0;
-
         private int MaxIteration = 0;
         private Perch resultBest;
-        private double[,] obl = new double[2, 2];
-
-        List<Vector> exactPoints = new List<Vector>();
 
         /// <summary>Количество стай</summary>
         public int NumFlocks = 0;
@@ -55,25 +35,11 @@ namespace N_dimensionalPerchOptimizer
         //private int population = 0;
         public int population = 0;
 
-        
-
         public FormMain()
         {
             InitializeComponent();
             InitDataGridView();
-            labelX11.Visible = false;
-            labelX2.Visible  = false;
-            labelX3.Visible  = false;
-            labelX22.Visible = false;
-            labelX33.Visible = false;
-            textBoxX2.Visible = false;
-            textBoxX3.Visible = false;
-
-            U1 = Convert.ToDouble(textBoxU1.Text);
-            U2 = Convert.ToDouble(textBoxU2.Text);
-            N_dim = Convert.ToInt32(numericUpDownN.Value);
-
-    }
+        }
 
         /// <summary>Загрузка параметров аглоритма</summary>
         private void InitDataGridView()
@@ -106,52 +72,39 @@ namespace N_dimensionalPerchOptimizer
             dataGridView4.Rows[1].Cells[1].Value = (0.6).ToString();
         }
 
-        private void comboBoxExample_SelectedIndexChanged(object sender, EventArgs e)
+        private void LoadParams()
         {
-            if (comboBoxExample.SelectedIndex == 0)
-            {
-                ExampleNum = 0;
-                pictureBoxExample.Image = Properties.Resources.Ex1;
-                labelX11.Visible = false;
-                labelX2.Visible  = false;
-                labelX3.Visible  = false;
-                labelX22.Visible = false;
-                labelX33.Visible = false;
-                textBoxX2.Visible = false;
-                textBoxX3.Visible = false;
+            // Параметры окуней
+            NumFlocks       = Convert.ToInt32(dataGridView2.Rows[2].Cells[1].Value);
+            NumPerchInFlock = Convert.ToInt32(dataGridView2.Rows[3].Cells[1].Value);
+            NStep           = Convert.ToInt32(dataGridView2.Rows[0].Cells[1].Value);
+            MaxIteration    = Convert.ToInt32(dataGridView2.Rows[1].Cells[1].Value);
+            PRmax           = Convert.ToInt32(dataGridView2.Rows[4].Cells[1].Value);
+            deltapr         = Convert.ToInt32(dataGridView2.Rows[5].Cells[1].Value);
 
-            }
+            // Для Леви
+            lambda  = Convert.ToDouble(dataGridView4.Rows[0].Cells[1].Value);
+            alfa    = Convert.ToDouble(dataGridView4.Rows[1].Cells[1].Value);
 
-            if (comboBoxExample.SelectedIndex == 1)
-            {
-                ExampleNum = 1;
-                labelX11.Visible = true;
-                labelX2.Visible  = true;
-                labelX3.Visible  = true;
-                labelX22.Visible = true;
-                labelX33.Visible = true;
-                textBoxX2.Visible = true;
-                textBoxX3.Visible = true;
-                //pictureBoxExample.Image = Properties.Resources.Ex2;
-            }
-            if (comboBoxExample.SelectedIndex == 2)
-            {
-                ExampleNum = 2;
-                pictureBoxExample.Image = Properties.Resources.Ex3;
-                labelX11.Visible = false;
-                labelX2.Visible = false;
-                labelX3.Visible = false;
-                labelX22.Visible = false;
-                labelX33.Visible = false;
-                textBoxX2.Visible = false;
-                textBoxX3.Visible = false;
-            }
+            N_dim = Convert.ToInt32(numericUpDownN.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            U1 = Convert.ToDouble(textBoxU1.Text);
-            U2 = Convert.ToDouble(textBoxU2.Text);
+            LoadParams();
+            AlgorithmPerch algPerch;
+            switch (tabControl2.SelectedIndex) 
+            {
+                case 0:
+                    double U1 = Convert.ToDouble(textBoxU1.Text);
+                    double U2 = Convert.ToDouble(textBoxU2.Text);
+                    double x0 = Convert.ToDouble(textBoxX1.Text);
+                    algPerch = new AlgorithmTask1(U1, U2, x0);
+                    break;
+                default:
+                    return;
+            }
+            resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
         }
 
         /// <summary>Запись протокола и его вызов</summary>
@@ -173,11 +126,6 @@ namespace N_dimensionalPerchOptimizer
         {
             FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
-        }
-
-        private void numericUpDownN_ValueChanged(object sender, EventArgs e)
-        {
-            N_dim = Convert.ToInt32(numericUpDownN.Value);
         }
     }
 }
