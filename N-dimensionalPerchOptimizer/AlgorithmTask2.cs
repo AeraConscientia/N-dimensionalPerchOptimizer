@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace N_dimensionalPerchOptimizer
 {
-    public class AlgorithmTask1 : AlgorithmPerch
+    public class AlgorithmTask2 : AlgorithmPerch
     {
-        public AlgorithmTask1(double U1, double U2, double x0) 
+        public AlgorithmTask2(double U11, double U12, double U21, double U22, double U31, double U32, double x0)
         {
             this.x0 = new List<double>(1) { x0 };   //Список одного элемента
             U = new List<Tuple<double, double>>();
-            U.Add(new Tuple<double, double>(U1, U2));
+            U.Add(new Tuple<double, double>(U11, U12));
+            U.Add(new Tuple<double, double>(U21, U22));
+            U.Add(new Tuple<double, double>(U31, U32));
         }
-        public override void FormingPopulation() 
+        public override void FormingPopulation()
         {
             for (int i = 0; i < population; i++)
             {
@@ -27,7 +29,7 @@ namespace N_dimensionalPerchOptimizer
             }
         }
 
-        public override List<double> Levy() 
+        public override List<double> Levy()
         {
             List<double> koefLevy = new List<double>(N_dim);
             for (int i = 0; i < N_dim; i++)
@@ -65,20 +67,9 @@ namespace N_dimensionalPerchOptimizer
 
             res += 2 * x[x.Count - 1];
             perch.fitness = res;
-            if (flag == true)
-            {
-                Result result = Result.GetInstance();
-                result.X = x;
-                result.fitness = perch.fitness;
-                result.U = new List<double>(N_dim);
-                for (int i = 0; i < N_dim; i++)
-                {
-                    result.U.Add(perch.coords[i]);
-                }
-            }
         }
 
-        public override void MoveEPerchEFlock() 
+        public override void MoveEPerchEFlock()
         {
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
@@ -109,7 +100,7 @@ namespace N_dimensionalPerchOptimizer
             SortFlocks();
         }
 
-        protected override void BestFlockSwim() 
+        protected override void BestFlockSwim()
         {
             sigma = rand.NextDouble() * 0.5 + 1; // sigma [1,  1.5]
             int i = 0;
@@ -138,7 +129,7 @@ namespace N_dimensionalPerchOptimizer
             Sort(flock, i);
         }
 
-        protected override void AverFlockSwim() 
+        protected override void AverFlockSwim()
         {
             sigma = rand.NextDouble() / 20 + 0.6; // sigma [0.6,  0.8]
 
@@ -190,7 +181,7 @@ namespace N_dimensionalPerchOptimizer
             SortFlocks();
         }
 
-        protected override void PoorFlockSwim() 
+        protected override void PoorFlockSwim()
         {
             PoorLeaderSwim();
 

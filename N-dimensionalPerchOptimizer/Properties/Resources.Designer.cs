@@ -63,9 +63,9 @@ namespace N_dimensionalPerchOptimizer.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Ex1 {
+        internal static System.Drawing.Bitmap Ex1_Large {
             get {
-                object obj = ResourceManager.GetObject("Ex1", resourceCulture);
+                object obj = ResourceManager.GetObject("Ex1_Large", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace N_dimensionalPerchOptimizer.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Ex3 {
+        internal static System.Drawing.Bitmap Ex2_Large {
             get {
-                object obj = ResourceManager.GetObject("Ex3", resourceCulture);
+                object obj = ResourceManager.GetObject("Ex2_Large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ex3_Large {
+            get {
+                object obj = ResourceManager.GetObject("Ex3_Large", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

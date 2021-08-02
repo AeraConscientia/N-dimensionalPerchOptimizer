@@ -27,6 +27,7 @@ namespace N_dimensionalPerchOptimizer
         public double Xn1, Xn2, Xn3;
 
         public List<double> Xn;
+        public List<double> X;
 
         /// <summary>Размер популяции окуней </summary>
         public int population;
@@ -150,7 +151,7 @@ namespace N_dimensionalPerchOptimizer
 
         protected abstract void PoorFlockSwim();
 
-        public abstract void I(Perch perch);
+        public abstract void I(Perch perch, bool flag = false);
         /// <summary>Новые координаты лидера худшей стаи</summary>
         public void PoorLeaderSwim()
         {
@@ -201,6 +202,7 @@ namespace N_dimensionalPerchOptimizer
             }
             Recommutation();
             perch = Pool[0];
+            I(perch, true);
             return perch;
         }
 
