@@ -79,7 +79,7 @@ namespace N_dimensionalPerchOptimizer
         public AlgorithmPerch() { }
 
         /// <summary>Сортировка ВСЕХ окуней</summary>
-        protected void Sort(List<Perch> list)
+        protected void Sort(List<Perch> list) // не зашел
         {
 
             for (int i = 0; i < list.Count; i++)
@@ -94,7 +94,7 @@ namespace N_dimensionalPerchOptimizer
 
 
         /// <summary>Сортировка всех окуней в своей стае</summary>
-        protected void Sort(Perch[,] perches, int flockIndex)
+        protected void Sort(Perch[,] perches, int flockIndex) // *
         {
             for (int i = 0; i < NumPerchInFlock; i++)
                 for (int j = 0; j < NumPerchInFlock - i - 1; j++)
@@ -106,7 +106,7 @@ namespace N_dimensionalPerchOptimizer
                     }
         }
 
-        protected void SortFlocks()
+        protected void SortFlocks() // *
         {
             for (int i = 0; i < NumFlocks; i++)
             {
@@ -127,7 +127,7 @@ namespace N_dimensionalPerchOptimizer
         }
 
         /// <summary>Разбивка окуней на стаи</summary>
-        public void MakeFlocks()
+        public void MakeFlocks() // *
         {
             individuals = individuals.OrderBy(s => s.fitness).ToList();
             flock = new Perch[NumFlocks, NumPerchInFlock];
@@ -153,7 +153,7 @@ namespace N_dimensionalPerchOptimizer
 
         public abstract void I(Perch perch, bool flag = false);
         /// <summary>Новые координаты лидера худшей стаи</summary>
-        public void PoorLeaderSwim()
+        public void PoorLeaderSwim() // *
         {
             List<double> koefLevy = Levy();
             for (int i = 0; i < N_dim; i++)
@@ -206,7 +206,7 @@ namespace N_dimensionalPerchOptimizer
             return perch;
         }
 
-        public void FlocksSwim()
+        public void FlocksSwim() // +
         {
             BestFlockSwim();
             PoorFlockSwim();
@@ -220,7 +220,7 @@ namespace N_dimensionalPerchOptimizer
             Pool.Add(flock[0, 0]);
         }
 
-        public void Recommutation()
+        public void Recommutation() // *
         {
             int p, q, r;
 

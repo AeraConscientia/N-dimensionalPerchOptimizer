@@ -127,12 +127,15 @@ namespace N_dimensionalPerchOptimizer
             switch (tabControl2.SelectedIndex)
             {
                 case 0:
-                    X = new object[N_dim];
+                    X = new object[N_dim+1];
                     U = new object[N_dim];
                     for (int i = 0; i < N_dim; i++)
                     {
-                        X[i] = result.X[i];
                         U[i] = result.U[i];
+                    }
+                    for (int i = 0; i < N_dim+1; i++)
+                    {
+                        X[i] = result.X[i];
                     }
                     break;
                 //case 1:
