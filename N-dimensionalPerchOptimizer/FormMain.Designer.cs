@@ -55,8 +55,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControlXans = new System.Windows.Forms.TabControl();
-            this.tabPageU = new System.Windows.Forms.TabPage();
-            this.tabPageX = new System.Windows.Forms.TabPage();
             this.buttonStartAlg = new System.Windows.Forms.Button();
             this.buttonGraphs = new System.Windows.Forms.Button();
             this.buttonProtocol = new System.Windows.Forms.Button();
@@ -94,24 +92,23 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBoxU1_3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxU2_3 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.textBoxX0_3 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.numericUpDownN3 = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
-            this.dataGridViewXans = new System.Windows.Forms.DataGridView();
-            this.dataGridViewUans = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.labelMinI = new System.Windows.Forms.Label();
+            this.tabControlU_separate = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewU_separate = new System.Windows.Forms.DataGridView();
+            this.dataGridViewX_separate = new System.Windows.Forms.DataGridView();
+            this.tabPageX = new System.Windows.Forms.TabPage();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExample)).BeginInit();
@@ -120,8 +117,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tabControlXans.SuspendLayout();
-            this.tabPageU.SuspendLayout();
-            this.tabPageX.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,8 +130,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXans)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUans)).BeginInit();
+            this.tabControlU_separate.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewU_separate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX_separate)).BeginInit();
+            this.tabPageX.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxU1
@@ -374,51 +372,29 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.tabControlU_separate);
             this.groupBox3.Controls.Add(this.tabControlXans);
             this.groupBox3.Location = new System.Drawing.Point(12, 415);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1189, 229);
+            this.groupBox3.Size = new System.Drawing.Size(1189, 275);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Результат расчета";
             // 
             // tabControlXans
             // 
-            this.tabControlXans.Controls.Add(this.tabPageU);
             this.tabControlXans.Controls.Add(this.tabPageX);
-            this.tabControlXans.Location = new System.Drawing.Point(5, 16);
+            this.tabControlXans.Location = new System.Drawing.Point(5, 20);
             this.tabControlXans.Name = "tabControlXans";
             this.tabControlXans.SelectedIndex = 0;
-            this.tabControlXans.Size = new System.Drawing.Size(1178, 207);
+            this.tabControlXans.Size = new System.Drawing.Size(1178, 116);
             this.tabControlXans.TabIndex = 0;
-            // 
-            // tabPageU
-            // 
-            this.tabPageU.Controls.Add(this.dataGridViewUans);
-            this.tabPageU.Location = new System.Drawing.Point(4, 22);
-            this.tabPageU.Name = "tabPageU";
-            this.tabPageU.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageU.Size = new System.Drawing.Size(1170, 181);
-            this.tabPageU.TabIndex = 0;
-            this.tabPageU.Text = "u*";
-            this.tabPageU.UseVisualStyleBackColor = true;
-            // 
-            // tabPageX
-            // 
-            this.tabPageX.Controls.Add(this.dataGridViewXans);
-            this.tabPageX.Location = new System.Drawing.Point(4, 22);
-            this.tabPageX.Name = "tabPageX";
-            this.tabPageX.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageX.Size = new System.Drawing.Size(1170, 181);
-            this.tabPageX.TabIndex = 1;
-            this.tabPageX.Text = "x*";
-            this.tabPageX.UseVisualStyleBackColor = true;
             // 
             // buttonStartAlg
             // 
             this.buttonStartAlg.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.buttonStartAlg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStartAlg.Location = new System.Drawing.Point(753, 659);
+            this.buttonStartAlg.Location = new System.Drawing.Point(753, 696);
             this.buttonStartAlg.Name = "buttonStartAlg";
             this.buttonStartAlg.Size = new System.Drawing.Size(139, 35);
             this.buttonStartAlg.TabIndex = 36;
@@ -429,7 +405,7 @@
             // buttonGraphs
             // 
             this.buttonGraphs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonGraphs.Location = new System.Drawing.Point(929, 659);
+            this.buttonGraphs.Location = new System.Drawing.Point(929, 696);
             this.buttonGraphs.Name = "buttonGraphs";
             this.buttonGraphs.Size = new System.Drawing.Size(90, 35);
             this.buttonGraphs.TabIndex = 37;
@@ -439,7 +415,7 @@
             // buttonProtocol
             // 
             this.buttonProtocol.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonProtocol.Location = new System.Drawing.Point(1053, 659);
+            this.buttonProtocol.Location = new System.Drawing.Point(1053, 696);
             this.buttonProtocol.Name = "buttonProtocol";
             this.buttonProtocol.Size = new System.Drawing.Size(104, 35);
             this.buttonProtocol.TabIndex = 38;
@@ -454,7 +430,7 @@
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRefresh.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.refresh;
-            this.buttonRefresh.Location = new System.Drawing.Point(1163, 659);
+            this.buttonRefresh.Location = new System.Drawing.Point(1163, 696);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(38, 35);
             this.buttonRefresh.TabIndex = 39;
@@ -835,9 +811,9 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.textBox6);
+            this.groupBox7.Controls.Add(this.textBoxU1_3);
             this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Controls.Add(this.textBox7);
+            this.groupBox7.Controls.Add(this.textBoxU2_3);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox7.Location = new System.Drawing.Point(6, 298);
             this.groupBox7.Name = "groupBox7";
@@ -846,14 +822,14 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Ограничения на управление";
             // 
-            // textBox6
+            // textBoxU1_3
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox6.Location = new System.Drawing.Point(12, 28);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(44, 21);
-            this.textBox6.TabIndex = 49;
-            this.textBox6.Text = "-5";
+            this.textBoxU1_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxU1_3.Location = new System.Drawing.Point(12, 28);
+            this.textBoxU1_3.Name = "textBoxU1_3";
+            this.textBoxU1_3.Size = new System.Drawing.Size(44, 21);
+            this.textBoxU1_3.TabIndex = 49;
+            this.textBoxU1_3.Text = "-1";
             // 
             // label14
             // 
@@ -866,14 +842,14 @@
             this.label14.TabIndex = 47;
             this.label14.Text = "< u < ";
             // 
-            // textBox7
+            // textBoxU2_3
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox7.Location = new System.Drawing.Point(107, 28);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(44, 21);
-            this.textBox7.TabIndex = 48;
-            this.textBox7.Text = "5";
+            this.textBoxU2_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxU2_3.Location = new System.Drawing.Point(107, 28);
+            this.textBoxU2_3.Name = "textBoxU2_3";
+            this.textBoxU2_3.Size = new System.Drawing.Size(44, 21);
+            this.textBoxU2_3.TabIndex = 48;
+            this.textBoxU2_3.Text = "1";
             // 
             // pictureBox2
             // 
@@ -898,12 +874,8 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Controls.Add(this.textBox8);
-            this.groupBox8.Controls.Add(this.textBox9);
-            this.groupBox8.Controls.Add(this.label19);
+            this.groupBox8.Controls.Add(this.textBoxX0_3);
             this.groupBox8.Controls.Add(this.label20);
-            this.groupBox8.Controls.Add(this.textBox10);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox8.Location = new System.Drawing.Point(6, 236);
             this.groupBox8.Name = "groupBox8";
@@ -912,41 +884,13 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Начальное положение";
             // 
-            // label16
+            // textBoxX0_3
             // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(296, 26);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 19);
-            this.label16.TabIndex = 50;
-            this.label16.Text = "x(2) =";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(352, 24);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(47, 23);
-            this.textBox8.TabIndex = 49;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(65, 24);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(47, 23);
-            this.textBox9.TabIndex = 40;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(158, 26);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 19);
-            this.label19.TabIndex = 48;
-            this.label19.Text = "x(1) =";
+            this.textBoxX0_3.Location = new System.Drawing.Point(65, 24);
+            this.textBoxX0_3.Name = "textBoxX0_3";
+            this.textBoxX0_3.Size = new System.Drawing.Size(47, 23);
+            this.textBoxX0_3.TabIndex = 40;
+            this.textBoxX0_3.Text = "15";
             // 
             // label20
             // 
@@ -958,13 +902,6 @@
             this.label20.Size = new System.Drawing.Size(50, 19);
             this.label20.TabIndex = 41;
             this.label20.Text = "x(0) =";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(213, 24);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(47, 23);
-            this.textBox10.TabIndex = 47;
             // 
             // numericUpDownN3
             // 
@@ -983,7 +920,7 @@
             this.numericUpDownN3.Size = new System.Drawing.Size(71, 20);
             this.numericUpDownN3.TabIndex = 55;
             this.numericUpDownN3.Value = new decimal(new int[] {
-            2,
+            3,
             0,
             0,
             0});
@@ -998,27 +935,11 @@
             this.label21.TabIndex = 54;
             this.label21.Text = "Число шагов разбиения";
             // 
-            // dataGridViewXans
-            // 
-            this.dataGridViewXans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewXans.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewXans.Name = "dataGridViewXans";
-            this.dataGridViewXans.Size = new System.Drawing.Size(1170, 181);
-            this.dataGridViewXans.TabIndex = 0;
-            // 
-            // dataGridViewUans
-            // 
-            this.dataGridViewUans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUans.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewUans.Name = "dataGridViewUans";
-            this.dataGridViewUans.Size = new System.Drawing.Size(1170, 185);
-            this.dataGridViewUans.TabIndex = 0;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(18, 671);
+            this.label11.Location = new System.Drawing.Point(18, 708);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(73, 21);
             this.label11.TabIndex = 40;
@@ -1028,17 +949,66 @@
             // 
             this.labelMinI.AutoSize = true;
             this.labelMinI.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelMinI.Location = new System.Drawing.Point(85, 669);
+            this.labelMinI.Location = new System.Drawing.Point(85, 706);
             this.labelMinI.Name = "labelMinI";
             this.labelMinI.Size = new System.Drawing.Size(31, 23);
             this.labelMinI.TabIndex = 41;
             this.labelMinI.Text = "---";
             // 
+            // tabControlU_separate
+            // 
+            this.tabControlU_separate.Controls.Add(this.tabPage1);
+            this.tabControlU_separate.Location = new System.Drawing.Point(6, 145);
+            this.tabControlU_separate.Name = "tabControlU_separate";
+            this.tabControlU_separate.SelectedIndex = 0;
+            this.tabControlU_separate.Size = new System.Drawing.Size(1177, 118);
+            this.tabControlU_separate.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewU_separate);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1169, 92);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "U";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewU_separate
+            // 
+            this.dataGridViewU_separate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewU_separate.ColumnHeadersVisible = false;
+            this.dataGridViewU_separate.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewU_separate.Name = "dataGridViewU_separate";
+            this.dataGridViewU_separate.Size = new System.Drawing.Size(1169, 94);
+            this.dataGridViewU_separate.TabIndex = 1;
+            // 
+            // dataGridViewX_separate
+            // 
+            this.dataGridViewX_separate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewX_separate.ColumnHeadersVisible = false;
+            this.dataGridViewX_separate.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewX_separate.Name = "dataGridViewX_separate";
+            this.dataGridViewX_separate.Size = new System.Drawing.Size(1170, 94);
+            this.dataGridViewX_separate.TabIndex = 0;
+            // 
+            // tabPageX
+            // 
+            this.tabPageX.Controls.Add(this.dataGridViewX_separate);
+            this.tabPageX.Location = new System.Drawing.Point(4, 22);
+            this.tabPageX.Name = "tabPageX";
+            this.tabPageX.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageX.Size = new System.Drawing.Size(1170, 90);
+            this.tabPageX.TabIndex = 1;
+            this.tabPageX.Text = "x*";
+            this.tabPageX.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 706);
+            this.ClientSize = new System.Drawing.Size(1219, 736);
             this.Controls.Add(this.labelMinI);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.buttonProtocol);
@@ -1061,8 +1031,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.tabControlXans.ResumeLayout(false);
-            this.tabPageU.ResumeLayout(false);
-            this.tabPageX.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -1084,8 +1052,11 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXans)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUans)).EndInit();
+            this.tabControlU_separate.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewU_separate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX_separate)).EndInit();
+            this.tabPageX.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1103,8 +1074,6 @@
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TabControl tabControlXans;
-        private System.Windows.Forms.TabPage tabPageU;
-        private System.Windows.Forms.TabPage tabPageX;
         private System.Windows.Forms.Button buttonStartAlg;
         private System.Windows.Forms.Button buttonGraphs;
         private System.Windows.Forms.Button buttonProtocol;
@@ -1142,18 +1111,14 @@
         private System.Windows.Forms.NumericUpDown numericUpDownN2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBoxU1_3;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxU2_3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBoxX0_3;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.NumericUpDown numericUpDownN3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBoxU31;
@@ -1165,10 +1130,13 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DataGridView dataGridViewUans;
-        private System.Windows.Forms.DataGridView dataGridViewXans;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label labelMinI;
+        private System.Windows.Forms.TabControl tabControlU_separate;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridViewU_separate;
+        private System.Windows.Forms.TabPage tabPageX;
+        private System.Windows.Forms.DataGridView dataGridViewX_separate;
     }
 }
 

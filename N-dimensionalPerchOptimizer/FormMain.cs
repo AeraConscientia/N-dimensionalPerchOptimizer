@@ -85,8 +85,6 @@ namespace N_dimensionalPerchOptimizer
             // Для Леви
             lambda  = Convert.ToDouble(dataGridView4.Rows[0].Cells[1].Value);
             alfa    = Convert.ToDouble(dataGridView4.Rows[1].Cells[1].Value);
-
-            N_dim = Convert.ToInt32(numericUpDownN1.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,27 +95,41 @@ namespace N_dimensionalPerchOptimizer
             object[] X;
             object[] U;
 
+
             switch (tabControl2.SelectedIndex) 
             {
                 case 0:
+                    N_dim = Convert.ToInt32(numericUpDownN1.Value);
                     double U1 = Convert.ToDouble(textBoxU1.Text);
                     double U2 = Convert.ToDouble(textBoxU2.Text);
                     double x0 = Convert.ToDouble(textBoxX1.Text);
                     algPerch = new AlgorithmTask1(U1, U2, x0);
 
                     break;
-                //case 1:
-                //    double U11 = Convert.ToDouble(textBoxU11.Text);
-                //    double U12 = Convert.ToDouble(textBoxU12.Text);
-                //    double U21 = Convert.ToDouble(textBoxU21.Text);
-                //    double U22 = Convert.ToDouble(textBoxU22.Text);
-                //    double U31 = Convert.ToDouble(textBoxU31.Text);
-                //    double U32 = Convert.ToDouble(textBoxU32.Text);
-                //    double x00 = Convert.ToDouble(textBoxX11.Text);
-                //    double x11 = Convert.ToDouble(textBoxX22.Text);
-                //    double x22 = Convert.ToDouble(textBoxX33.Text);
-                //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
-                //    break;
+                case 1: // тут заглушка
+                    N_dim = Convert.ToInt32(numericUpDownN2.Value);
+                    double U1_2 = Convert.ToDouble(textBoxU1_3.Text);
+                    double U2_2 = Convert.ToDouble(textBoxU2_3.Text);
+                    double x0_2 = Convert.ToDouble(textBoxX0_3.Text);
+                    algPerch = new AlgorithmTask1(U1_2, U2_2, x0_2);
+                    //    double U11 = Convert.ToDouble(textBoxU11.Text);
+                    //    double U12 = Convert.ToDouble(textBoxU12.Text);
+                    //    double U21 = Convert.ToDouble(textBoxU21.Text);
+                    //    double U22 = Convert.ToDouble(textBoxU22.Text);
+                    //    double U31 = Convert.ToDouble(textBoxU31.Text);
+                    //    double U32 = Convert.ToDouble(textBoxU32.Text);
+                    //    double x00 = Convert.ToDouble(textBoxX11.Text);
+                    //    double x11 = Convert.ToDouble(textBoxX22.Text);
+                    //    double x22 = Convert.ToDouble(textBoxX33.Text);
+                    //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
+                    break;
+                case 2:
+                    N_dim = Convert.ToInt32(numericUpDownN3.Value);
+                    double U1_3 = Convert.ToDouble(textBoxU1_3.Text);
+                    double U2_3 = Convert.ToDouble(textBoxU2_3.Text);
+                    double x0_3 = Convert.ToDouble(textBoxX0_3.Text);
+                    algPerch = new AlgorithmTask3(U1_3, U2_3, x0_3);
+                    break;
                 default:
                     return;
             }
@@ -138,28 +150,43 @@ namespace N_dimensionalPerchOptimizer
                         X[i] = result.X[i];
                     }
                     break;
-                //case 1:
-                //    double U11 = Convert.ToDouble(textBoxU11.Text);
-                //    double U12 = Convert.ToDouble(textBoxU12.Text);
-                //    double U21 = Convert.ToDouble(textBoxU21.Text);
-                //    double U22 = Convert.ToDouble(textBoxU22.Text);
-                //    double U31 = Convert.ToDouble(textBoxU31.Text);
-                //    double U32 = Convert.ToDouble(textBoxU32.Text);
-                //    double x00 = Convert.ToDouble(textBoxX11.Text);
-                //    double x11 = Convert.ToDouble(textBoxX22.Text);
-                //    double x22 = Convert.ToDouble(textBoxX33.Text);
-                //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
-                //    break;
+                case 1:
+                    //    double U11 = Convert.ToDouble(textBoxU11.Text);
+                    //    double U12 = Convert.ToDouble(textBoxU12.Text);
+                    //    double U21 = Convert.ToDouble(textBoxU21.Text);
+                    //    double U22 = Convert.ToDouble(textBoxU22.Text);
+                    //    double U31 = Convert.ToDouble(textBoxU31.Text);
+                    //    double U32 = Convert.ToDouble(textBoxU32.Text);
+                    //    double x00 = Convert.ToDouble(textBoxX11.Text);
+                    //    double x11 = Convert.ToDouble(textBoxX22.Text);
+                    //    double x22 = Convert.ToDouble(textBoxX33.Text);
+                    //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
+                    X = new object[N_dim + 1];
+                    U = new object[N_dim];
+                    break;
+                case 2:
+                    X = new object[N_dim + 1];
+                    U = new object[N_dim];
+                    for (int i = 0; i < N_dim; i++)
+                    {
+                        U[i] = result.U[i];
+                    }
+                    for (int i = 0; i < N_dim + 1; i++)
+                    {
+                        X[i] = result.X[i];
+                    }
+                    break;
                 default:
                     return;
             }
-            dataGridViewXans.RowCount = 1;
-            dataGridViewXans.ColumnCount = N_dim + 1;
-            dataGridViewXans.Rows[0].SetValues(X);
 
-            dataGridViewUans.RowCount = 1;
-            dataGridViewUans.ColumnCount = N_dim;
-            dataGridViewUans.Rows[0].SetValues(U);
+            dataGridViewX_separate.RowCount = 1;
+            dataGridViewX_separate.ColumnCount = N_dim + 1;
+            dataGridViewX_separate.Rows[0].SetValues(X);
+
+            dataGridViewU_separate.RowCount = 1;
+            dataGridViewU_separate.ColumnCount = N_dim;
+            dataGridViewU_separate.Rows[0].SetValues(U);
 
             labelMinI.Text = result.fitness.ToString();
         }

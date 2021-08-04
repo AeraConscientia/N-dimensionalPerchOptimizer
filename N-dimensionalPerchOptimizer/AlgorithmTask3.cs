@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace N_dimensionalPerchOptimizer
 {
-    public class AlgorithmTask2 : AlgorithmPerch
+    public class AlgorithmTask3 : AlgorithmPerch
     {
-        public AlgorithmTask2(double U11, double U12, double U21, double U22, double U31, double U32, double x0, double x1, double x2)
+        public AlgorithmTask3(double U1, double U2, double x0)
         {
-            this.x0 = new List<double>(3) { x0, x1, x2 };   //Список одного элемента
+            this.x0 = new List<double>(1) { x0 };   //Список одного элемента
             U = new List<Tuple<double, double>>();
-            U.Add(new Tuple<double, double>(U11, U12));
-            U.Add(new Tuple<double, double>(U21, U22));
-            U.Add(new Tuple<double, double>(U31, U32));
+            U.Add(new Tuple<double, double>(U1, U2));
         }
         public override void FormingPopulation() // +
         {
@@ -56,23 +54,16 @@ namespace N_dimensionalPerchOptimizer
         public override void I(Perch perch, bool flag = false)
         {
             List<double> x = new List<double>();
+            x.Add(x0[0]);
 
-            List<double> x1 = new List<double>();
-            List<double> x2 = new List<double>();
-            List<double> x3 = new List<double>();
-            x1.Add(x0[0]); x2.Add(x0[1]); x3.Add(x0[2]);
-
-            for (int i = 1; i < N_dim + 1; i++)
-            {
-                //x1.Add(x1[x1.Count - 1] / (1f + 0.01* perch.coords[i] * (3 + )) );
-            }
-                //x.Add(x[x.Count - 1] + perch.coords[i - 1]);
+            x.Add(Math.Pow(x[0],(perch.coords[0])));
+            x.Add((1f + perch.coords[1])*x[1]);
+            x.Add(x[2] + perch.coords[2]);
 
             double res = 0;
-            for (int t = 0; t < N_dim; t++)
-                res += (1f / (t + 1)) * perch.coords[t] * perch.coords[t];
-
-            res += 2 * x[x.Count - 1];
+            res = (x[0]*x[0] + x[1]*x[1] + (2 * x[2]*x[2] + x[3]*x[3]) *Math.Exp(x[1]*x[1]))
+                * 
+                Math.Pow((50f + perch.coords[0]*perch.coords[0] + (perch.coords[1]* perch.coords[1] + perch.coords[2]* perch.coords[2]) *Math.Exp(perch.coords[0]* perch.coords[0])), 1/2);
             perch.fitness = res;
             if (flag == true)
             {
