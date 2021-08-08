@@ -61,9 +61,9 @@ namespace N_dimensionalPerchOptimizer
             x.Add(x[2] + perch.coords[2]);
 
             double res = 0;
-            res = (x[0]*x[0] + x[1]*x[1] + (2 * x[2]*x[2] + x[3]*x[3]) *Math.Exp(x[1]*x[1]))
-                * 
-                Math.Pow((50f + perch.coords[0]*perch.coords[0] + (perch.coords[1]* perch.coords[1] + perch.coords[2]* perch.coords[2]) *Math.Exp(perch.coords[0]* perch.coords[0])), 1/2);
+            res = (x[0] * x[0] + x[1] * x[1] + (2f * x[2] * x[2] + x[3] * x[3]) * Math.Exp(x[1] * x[1]))
+                *
+                Math.Sqrt((50f + perch.coords[0] * perch.coords[0] + (perch.coords[1] * perch.coords[1] + perch.coords[2] * perch.coords[2]) * Math.Exp(perch.coords[0] * perch.coords[0])));//, 0.5f);
             perch.fitness = res;
             if (flag == true)
             {

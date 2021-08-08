@@ -211,5 +211,11 @@ namespace N_dimensionalPerchOptimizer
             FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
         }
+
+        private void buttonGraphs_Click(object sender, EventArgs e)
+        {
+            Graphics graphics = new Graphics();
+            graphics.Show();
+        }
     }
 }
