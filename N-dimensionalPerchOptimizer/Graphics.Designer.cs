@@ -39,11 +39,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.chartX_1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.chartU_1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,6 +95,7 @@
             this.chartX_1.Size = new System.Drawing.Size(560, 300);
             this.chartX_1.TabIndex = 0;
             this.chartX_1.Text = "chart1";
+            this.chartX_1.Click += new System.EventHandler(this.chartX_1_Click);
             // 
             // tabPage2
             // 
@@ -105,6 +106,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "X2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(572, 310);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "X3";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabControl2
             // 
@@ -128,16 +138,6 @@
             this.tabPage3.Text = "U1";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(564, 301);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "U2";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // chartU_1
             // 
             chartArea2.AxisX.Minimum = 0D;
@@ -159,14 +159,15 @@
             this.chartU_1.TabIndex = 1;
             this.chartU_1.Text = "chart1";
             // 
-            // tabPage5
+            // tabPage4
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(572, 310);
-            this.tabPage5.TabIndex = 2;
-            this.tabPage5.Text = "X3";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(564, 301);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "U2";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
@@ -188,6 +189,7 @@
             this.Name = "Graphics";
             this.Text = "Графики оптимального управления и траектории";
             this.Load += new System.EventHandler(this.Graphics_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Graphics_Paint);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartX_1)).EndInit();

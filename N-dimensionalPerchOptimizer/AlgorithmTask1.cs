@@ -204,19 +204,30 @@ namespace N_dimensionalPerchOptimizer
 
             for (int j = 1; j < NumPerchInFlock; j++)
             {
+                List<Tuple<double, double>> coords = new List<Tuple<double, double>>(N_dim);
+                List<double> res = new List<double>(N_dim);
+
+                for (int p = 0; p < N_dim; p++)
+                {
+                    double x1 = flock[NumFlocks - 1, 0].coords[p] - Min[p];
+                    double x2 = flock[NumFlocks - 1, 0].coords[p] + Min[p];
+                    coords.Add(new Tuple<double, double>(x1, x2));
+                }
+
                 Perch perch = new Perch(N_dim);
                 for (int k = 0; k < N_dim; k++)
                 {
-                    double tmp;
-                    do
-                    {
-                        tmp = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[k] - Min[k]);
-                    } while (tmp < U[0].Item1 || tmp > U[0].Item2);
-                    perch.coords[k] = tmp;
+                    res.Add(coords[k].Item1 + rand.NextDouble() * (coords[k].Item2 - coords[k].Item1));
+                    //double tmp;
+                    //do
+                    //{
+                    //    tmp = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[k] - Min[k]);
+                    //} while (tmp < U[0].Item1 || tmp > U[0].Item2);
+                    perch.coords[k] = res[k]; //*
                 }
 
                 I(perch);
-                flock[NumFlocks - 1, j] = perch;
+                flock[NumFlocks - 1, j] = perch; //*
             }
 
             int i = 1;

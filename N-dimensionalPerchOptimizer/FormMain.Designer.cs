@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.textBoxU1 = new System.Windows.Forms.TextBox();
             this.textBoxU2 = new System.Windows.Forms.TextBox();
@@ -183,7 +183,7 @@
             // 
             this.numericUpDownN1.Location = new System.Drawing.Point(649, 262);
             this.numericUpDownN1.Maximum = new decimal(new int[] {
-            30,
+            300,
             0,
             0,
             0});
@@ -254,14 +254,14 @@
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridView4.Location = new System.Drawing.Point(11, 288);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -271,8 +271,8 @@
             // 
             // Column6
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle37;
             this.Column6.Frozen = true;
             this.Column6.HeaderText = "Характеристика";
             this.Column6.Name = "Column6";
@@ -283,8 +283,8 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle38;
             this.Column7.HeaderText = "Значения";
             this.Column7.Name = "Column7";
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -300,15 +300,15 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.NullValue = null;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle42.NullValue = null;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridView2.Location = new System.Drawing.Point(11, 51);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -319,8 +319,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle40;
             this.Column4.Frozen = true;
             this.Column4.HeaderText = "Характеристика";
             this.Column4.Name = "Column4";
@@ -331,10 +331,10 @@
             // 
             // Column5
             // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle23.Format = "N0";
-            dataGridViewCellStyle23.NullValue = null;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle41.Format = "N0";
+            dataGridViewCellStyle41.NullValue = null;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle41;
             this.Column5.HeaderText = "Значения";
             this.Column5.Name = "Column5";
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -523,7 +523,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.x1;
-            this.pictureBox7.Location = new System.Drawing.Point(34, 28);
+            this.pictureBox7.Location = new System.Drawing.Point(34, 27);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(51, 17);
             this.pictureBox7.TabIndex = 57;
@@ -551,7 +551,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(403, 32);
+            this.pictureBox6.Location = new System.Drawing.Point(403, 30);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(43, 17);
             this.pictureBox6.TabIndex = 59;
@@ -569,7 +569,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(224, 32);
+            this.pictureBox5.Location = new System.Drawing.Point(224, 31);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(43, 17);
             this.pictureBox5.TabIndex = 58;
@@ -587,7 +587,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(58, 32);
+            this.pictureBox4.Location = new System.Drawing.Point(58, 31);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(43, 17);
             this.pictureBox4.TabIndex = 57;
@@ -878,7 +878,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.x2;
-            this.pictureBox8.Location = new System.Drawing.Point(202, 25);
+            this.pictureBox8.Location = new System.Drawing.Point(199, 25);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(51, 17);
             this.pictureBox8.TabIndex = 58;
@@ -887,7 +887,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.x3;
-            this.pictureBox9.Location = new System.Drawing.Point(375, 25);
+            this.pictureBox9.Location = new System.Drawing.Point(374, 26);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(51, 17);
             this.pictureBox9.TabIndex = 59;

@@ -11,6 +11,8 @@ namespace N_dimensionalPerchOptimizer
         private Result(){ }
 
         public List<double> X;
+        public List<double> X2;
+        public List<double> X3;
         public List<double> U;
         public double fitness;
 

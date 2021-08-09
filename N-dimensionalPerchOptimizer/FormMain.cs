@@ -10,6 +10,8 @@ namespace N_dimensionalPerchOptimizer
         /// <summary>Размерность задачи</summary>
         public int N_dim = 0;
 
+        Graphics graphics;
+
         private int MaxIteration = 0;
         private Perch resultBest;
 
@@ -106,22 +108,18 @@ namespace N_dimensionalPerchOptimizer
                     algPerch = new AlgorithmTask1(U1, U2, x0);
 
                     break;
-                case 1: // тут заглушка
-                    N_dim = Convert.ToInt32(numericUpDownN2.Value);
-                    double U1_2 = Convert.ToDouble(textBoxU1_3.Text);
-                    double U2_2 = Convert.ToDouble(textBoxU2_3.Text);
-                    double x0_2 = Convert.ToDouble(textBoxX0_3.Text);
-                    algPerch = new AlgorithmTask1(U1_2, U2_2, x0_2);
-                    //    double U11 = Convert.ToDouble(textBoxU11.Text);
-                    //    double U12 = Convert.ToDouble(textBoxU12.Text);
-                    //    double U21 = Convert.ToDouble(textBoxU21.Text);
-                    //    double U22 = Convert.ToDouble(textBoxU22.Text);
-                    //    double U31 = Convert.ToDouble(textBoxU31.Text);
-                    //    double U32 = Convert.ToDouble(textBoxU32.Text);
-                    //    double x00 = Convert.ToDouble(textBoxX11.Text);
-                    //    double x11 = Convert.ToDouble(textBoxX22.Text);
-                    //    double x22 = Convert.ToDouble(textBoxX33.Text);
-                    //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
+                case 1: // тут не заглушка
+                    N_dim = 3 * Convert.ToInt32(numericUpDownN2.Value);
+                    double U11 = Convert.ToDouble(textBoxU11.Text);
+                    double U12 = Convert.ToDouble(textBoxU12.Text);
+                    double U21 = Convert.ToDouble(textBoxU21.Text);
+                    double U22 = Convert.ToDouble(textBoxU22.Text);
+                    double U31 = Convert.ToDouble(textBoxU31.Text);
+                    double U32 = Convert.ToDouble(textBoxU32.Text);
+                    double x00 = Convert.ToDouble(textBoxX11.Text);
+                    double x11 = Convert.ToDouble(textBoxX22.Text);
+                    double x22 = Convert.ToDouble(textBoxX33.Text);
+                    algPerch = new AlgorithmTask2(U11, U12, U21, U22, U31, U32, x00, x11, x22);
                     break;
                 case 2:
                     N_dim = Convert.ToInt32(numericUpDownN3.Value);
@@ -151,18 +149,16 @@ namespace N_dimensionalPerchOptimizer
                     }
                     break;
                 case 1:
-                    //    double U11 = Convert.ToDouble(textBoxU11.Text);
-                    //    double U12 = Convert.ToDouble(textBoxU12.Text);
-                    //    double U21 = Convert.ToDouble(textBoxU21.Text);
-                    //    double U22 = Convert.ToDouble(textBoxU22.Text);
-                    //    double U31 = Convert.ToDouble(textBoxU31.Text);
-                    //    double U32 = Convert.ToDouble(textBoxU32.Text);
-                    //    double x00 = Convert.ToDouble(textBoxX11.Text);
-                    //    double x11 = Convert.ToDouble(textBoxX22.Text);
-                    //    double x22 = Convert.ToDouble(textBoxX33.Text);
-                    //    //algPerch = new AlgorithmTask1(U11, U12, U21, U22, U31, U32, x00, x11, x22);
-                    X = new object[N_dim + 1];
+                    X = new object[N_dim + 3];
                     U = new object[N_dim];
+                    for (int i = 0; i < N_dim; i++)
+                    {
+                        U[i] = result.U[i];
+                    }
+                    for (int i = 0; i < N_dim + 1; i++)
+                    {
+                        X[i] = result.X[i];
+                    }
                     break;
                 case 2:
                     X = new object[N_dim + 1];
@@ -189,6 +185,15 @@ namespace N_dimensionalPerchOptimizer
             dataGridViewU_separate.Rows[0].SetValues(U);
 
             labelMinI.Text = result.fitness.ToString();
+
+            
+            if (graphics == null)
+                graphics = new Graphics();
+            //else
+            graphics.UpdateGraph();
+            //graphics.Show();
+            //button1_Click += new EventHandler(graphics.UpdateGraph());
+            //graphics.Show();
         }
 
         /// <summary>Запись протокола и его вызов</summary>
