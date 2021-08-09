@@ -62,7 +62,7 @@ namespace N_dimensionalPerchOptimizer
             List<double> x3 = new List<double>();
             x1.Add(x0[0]); x2.Add(x0[1]); x3.Add(x0[2]);
 
-            for (int i = 1; i < N_dim/3 + 1; i++)
+            for (int i = 1; i < N_dim/3; i++)
             {
                 x1.Add(x1[x1.Count - 1] / (1f + 0.01* perch.coords[i] * (3 + perch.coords[N_dim / 3 + i])) );
                 x2.Add((x2[x2.Count - 1] + perch.coords[i] * x1[x1.Count - 1]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));

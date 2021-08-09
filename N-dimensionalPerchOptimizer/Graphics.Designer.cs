@@ -95,7 +95,6 @@
             this.chartX_1.Size = new System.Drawing.Size(560, 300);
             this.chartX_1.TabIndex = 0;
             this.chartX_1.Text = "chart1";
-            this.chartX_1.Click += new System.EventHandler(this.chartX_1_Click);
             // 
             // tabPage2
             // 
@@ -188,8 +187,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Graphics";
             this.Text = "Графики оптимального управления и траектории";
-            this.Load += new System.EventHandler(this.Graphics_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Graphics_Paint);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartX_1)).EndInit();

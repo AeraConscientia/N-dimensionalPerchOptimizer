@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace N_dimensionalPerchOptimizer
 {
@@ -10,7 +11,7 @@ namespace N_dimensionalPerchOptimizer
         /// <summary>Размерность задачи</summary>
         public int N_dim = 0;
 
-        Graphics graphics;
+        Graphics graphics = null;
 
         private int MaxIteration = 0;
         private Perch resultBest;
@@ -95,7 +96,9 @@ namespace N_dimensionalPerchOptimizer
             AlgorithmPerch algPerch;
 
             object[] X;
-            object[] U;
+            object[] X2;
+            object[] X3;
+            object[] U, U_2, U_3;
 
 
             switch (tabControl2.SelectedIndex) 
@@ -147,18 +150,47 @@ namespace N_dimensionalPerchOptimizer
                     {
                         X[i] = result.X[i];
                     }
+                    dataGridViewX_separate.RowCount = 1;
+                    dataGridViewX_separate.ColumnCount = N_dim + 1;
+                    dataGridViewX_separate.Rows[0].SetValues(X);
+
+                    dataGridViewU_separate.RowCount = 1;
+                    dataGridViewU_separate.ColumnCount = N_dim;
+                    dataGridViewU_separate.Rows[0].SetValues(U);
                     break;
                 case 1:
                     X = new object[N_dim + 3];
+                    X2 = new object[N_dim + 3];
+                    X3 = new object[N_dim + 3];
                     U = new object[N_dim];
+                    U_2 = new object[N_dim];
+                    U_3 = new object[N_dim];
                     for (int i = 0; i < N_dim; i++)
                     {
                         U[i] = result.U[i];
                     }
+
+                    //U.CopyTo(U2, N_dim);
+                    //U.CopyTo(U3, 2 * N_dim);
+                    Array.Copy(U,    N_dim/3, U_2, 2*N_dim/3, N_dim/3);
+                    Array.Copy(U, 2* N_dim/3, U_3, 3*N_dim/3, N_dim/3);
                     for (int i = 0; i < N_dim + 1; i++)
                     {
                         X[i] = result.X[i];
+                        X2[i] = result.X2[i];
+                        X3[i] = result.X3[i];
                     }
+                    dataGridViewX_separate.RowCount = 3;
+                    dataGridViewX_separate.ColumnCount = N_dim + 3;
+                    dataGridViewX_separate.Rows[0].SetValues(X);
+                    dataGridViewX_separate.Rows[1].SetValues(X2);
+                    dataGridViewX_separate.Rows[2].SetValues(X3);
+
+                    dataGridViewU_separate.RowCount = 3;
+                    dataGridViewU_separate.ColumnCount = N_dim;
+                    dataGridViewU_separate.Rows[0].SetValues(U);
+                    dataGridViewU_separate.Rows[1].SetValues(U_2);
+                    dataGridViewU_separate.Rows[2].SetValues(U_3);
                     break;
                 case 2:
                     X = new object[N_dim + 1];
@@ -171,29 +203,27 @@ namespace N_dimensionalPerchOptimizer
                     {
                         X[i] = result.X[i];
                     }
+                    dataGridViewX_separate.RowCount = 1;
+                    dataGridViewX_separate.ColumnCount = N_dim + 1;
+                    dataGridViewX_separate.Rows[0].SetValues(X);
+
+                    dataGridViewU_separate.RowCount = 1;
+                    dataGridViewU_separate.ColumnCount = N_dim;
+                    dataGridViewU_separate.Rows[0].SetValues(U);
                     break;
                 default:
                     return;
             }
 
-            dataGridViewX_separate.RowCount = 1;
-            dataGridViewX_separate.ColumnCount = N_dim + 1;
-            dataGridViewX_separate.Rows[0].SetValues(X);
-
-            dataGridViewU_separate.RowCount = 1;
-            dataGridViewU_separate.ColumnCount = N_dim;
-            dataGridViewU_separate.Rows[0].SetValues(U);
+            
 
             labelMinI.Text = result.fitness.ToString();
 
             
             if (graphics == null)
                 graphics = new Graphics();
-            //else
             graphics.UpdateGraph();
-            //graphics.Show();
-            //button1_Click += new EventHandler(graphics.UpdateGraph());
-            //graphics.Show();
+            graphics.Show();
         }
 
         /// <summary>Запись протокола и его вызов</summary>
@@ -219,7 +249,8 @@ namespace N_dimensionalPerchOptimizer
 
         private void buttonGraphs_Click(object sender, EventArgs e)
         {
-            Graphics graphics = new Graphics();
+            if (graphics == null)
+                graphics = new Graphics();
             graphics.Show();
         }
     }
