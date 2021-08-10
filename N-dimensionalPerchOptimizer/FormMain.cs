@@ -101,7 +101,7 @@ namespace N_dimensionalPerchOptimizer
             object[] U, U_2, U_3;
 
 
-            switch (tabControl2.SelectedIndex) 
+            switch (tabControl2.SelectedIndex) // Считывание параметров для задачи
             {
                 case 0:
                     N_dim = Convert.ToInt32(numericUpDownN1.Value);
@@ -137,7 +137,7 @@ namespace N_dimensionalPerchOptimizer
             resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
 
             Result result = Result.GetInstance();
-            switch (tabControl2.SelectedIndex)
+            switch (tabControl2.SelectedIndex) // занесение в таблицу результатов
             {
                 case 0:
                     X = new object[N_dim+1];
@@ -156,25 +156,26 @@ namespace N_dimensionalPerchOptimizer
 
                     dataGridViewU_separate.RowCount = 1;
                     dataGridViewU_separate.ColumnCount = N_dim;
+                    
                     dataGridViewU_separate.Rows[0].SetValues(U);
+
+                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     break;
                 case 1:
                     X = new object[N_dim + 3];
                     X2 = new object[N_dim + 3];
                     X3 = new object[N_dim + 3];
                     U = new object[N_dim];
-                    U_2 = new object[N_dim];
-                    U_3 = new object[N_dim];
+                    U_2 = new object[N_dim / 3];
+                    U_3 = new object[N_dim / 3];
                     for (int i = 0; i < N_dim; i++)
                     {
                         U[i] = result.U[i];
                     }
-
-                    //U.CopyTo(U2, N_dim);
-                    //U.CopyTo(U3, 2 * N_dim);
-                    Array.Copy(U,    N_dim/3, U_2, 2*N_dim/3, N_dim/3);
-                    Array.Copy(U, 2* N_dim/3, U_3, 3*N_dim/3, N_dim/3);
-                    for (int i = 0; i < N_dim + 1; i++)
+                    Array.Copy(U,    N_dim/3, U_2, 0, N_dim/3);
+                    Array.Copy(U, 2* N_dim/3, U_3, 0, N_dim/3);
+                    for (int i = 0; i < N_dim/3; i++)
                     {
                         X[i] = result.X[i];
                         X2[i] = result.X2[i];
@@ -182,6 +183,7 @@ namespace N_dimensionalPerchOptimizer
                     }
                     dataGridViewX_separate.RowCount = 3;
                     dataGridViewX_separate.ColumnCount = N_dim + 3;
+
                     dataGridViewX_separate.Rows[0].SetValues(X);
                     dataGridViewX_separate.Rows[1].SetValues(X2);
                     dataGridViewX_separate.Rows[2].SetValues(X3);
@@ -191,6 +193,13 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewU_separate.Rows[0].SetValues(U);
                     dataGridViewU_separate.Rows[1].SetValues(U_2);
                     dataGridViewU_separate.Rows[2].SetValues(U_3);
+
+                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    dataGridViewX_separate.Rows[1].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
+                    dataGridViewX_separate.Rows[2].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[2].DefaultCellStyle.Format = "n5";
                     break;
                 case 2:
                     X = new object[N_dim + 1];
@@ -210,19 +219,47 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewU_separate.RowCount = 1;
                     dataGridViewU_separate.ColumnCount = N_dim;
                     dataGridViewU_separate.Rows[0].SetValues(U);
+
+                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     break;
                 default:
                     return;
             }
 
-            
-
             labelMinI.Text = result.fitness.ToString();
 
-            
+
             if (graphics == null)
-                graphics = new Graphics();
-            graphics.UpdateGraph();
+                switch (tabControl2.SelectedIndex)
+                {
+                    case 0:
+                        graphics = new Graphics(1);
+                        break;
+                    case 1:
+                        graphics = new Graphics(3);
+                        break;
+                    case 2:
+                        graphics = new Graphics(1);
+                        break;
+                    default:
+                        break;
+                }
+            switch (tabControl2.SelectedIndex)
+                {
+                    case 0:
+                        graphics.UpdateGraph(1);
+                        break;
+                    case 1:
+                        graphics.UpdateGraph(3);
+                        break;
+                    case 2:
+                        graphics.UpdateGraph(1);
+                        break;
+                    default:
+                        break;
+                }
+
             graphics.Show();
         }
 
@@ -231,8 +268,40 @@ namespace N_dimensionalPerchOptimizer
         {
             FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
             StreamWriter r = new StreamWriter(fs);
+
+//            r.Write(
+//    @"
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//<>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <><   ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><>
+//►◄►                                                                                   ◄►◄
+//<><                      Протокол применения метода стаи окуней                       ><>
+//►◄►         к задаче поиска оптимального управления и траектории дискретных систем    ◄►◄
+//<><                                                                                   ><>
+//►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄►   ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄
+//
+//                ");
+            r.Write(
+                @"
+| <><    <><    <><    <><    <><    <><    <><      ><>    ><>    ><>    ><>    ><>    ><>    ><> |
+|                                                                                                  |
+| <><                          Протокол применения метода стаи окуней                          ><> |
+|              к задаче поиска оптимального управления и траектории дискретных систем              |
+| <><                                                                                          ><> |
+|__________________________________________________________________________________________________|
+
+1. Постановка задачи
+
+2. Параметры метода стаи окуней
+
+3. Результаты работы
+
+Оптимальное управление u*
+
+Оптимальная траектория x*
+
+                ");
             r.Write(String.Format(@"|{0, 5} |  -----------------------+------------|", 0));
-            r.Write("\r\n");
+            //r.Write("\r\n");
 
             r.Close();
 
@@ -250,7 +319,20 @@ namespace N_dimensionalPerchOptimizer
         private void buttonGraphs_Click(object sender, EventArgs e)
         {
             if (graphics == null)
-                graphics = new Graphics();
+                switch (tabControl2.SelectedIndex)
+                {
+                    case 0:
+                        graphics = new Graphics(1);
+                        break;
+                    case 1:
+                        graphics = new Graphics(3);
+                        break;
+                    case 2:
+                        graphics = new Graphics(1);
+                        break;
+                    default:
+                        break;
+                }
             graphics.Show();
         }
     }

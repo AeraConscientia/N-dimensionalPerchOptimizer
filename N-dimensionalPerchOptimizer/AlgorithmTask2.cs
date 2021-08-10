@@ -55,7 +55,7 @@ namespace N_dimensionalPerchOptimizer
 
         public override void I(Perch perch, bool flag = false)
         {
-            List<double> x = new List<double>(); // убрать х
+            //List<double> x = new List<double>(); // убрать х
 
             List<double> x1 = new List<double>();
             List<double> x2 = new List<double>();
@@ -70,12 +70,19 @@ namespace N_dimensionalPerchOptimizer
             }
                 //x.Add(x[x.Count - 1] + perch.coords[i - 1]);
 
-            double res = 0;
-            for (int t = 0; t < N_dim; t++)
-                res += (1f / (t + 1)) * perch.coords[t] * perch.coords[t]; // !
+            double res1 = 0;
+            double res2 = 0;
+            for (int t = 0; t < N_dim/3; t++) // N_dim или N_dim-1 ?
+            {
+                res1 += x1[t] * x1[t] + x2[t] * x2[t] + 2 * perch.coords[2 * N_dim/3 + t] * perch.coords[2 * N_dim/3 + t];
+                res2 += x3[t] * x3[t] + 2 * perch.coords[t] * perch.coords[t] + 2 * perch.coords[N_dim/3 + t] * perch.coords[N_dim/3 + t];
+            }
+                
 
-            res += 2 * x[x.Count - 1]; // !
-            perch.fitness = res;
+            res1 *=  res2;
+            res1 = Math.Sqrt(res1);
+            res1 += x1[N_dim/3 - 1] * x1[N_dim/ 3 - 1] + x2[N_dim/ 3 - 1] * x2[N_dim/ 3 - 1] + x3[N_dim/ 3 - 1] * x3[N_dim/ 3 - 1];
+            perch.fitness = res1;
             if (flag == true)
             {
                 Result result = Result.GetInstance();
