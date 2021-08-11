@@ -330,7 +330,7 @@ namespace N_dimensionalPerchOptimizer
                 List<Tuple<double, double>> coords = new List<Tuple<double, double>>(N_dim);
                 List<double> res = new List<double>(N_dim);
 
-                for (int p = 0; p < N_dim; p++) // TODO: переписать для системы!
+                for (int p = 0; p < N_dim; p++)
                 {
                     double x1 = flock[NumFlocks - 1, 0].coords[p] - Min[p];
                     double x2 = flock[NumFlocks - 1, 0].coords[p] + Min[p];

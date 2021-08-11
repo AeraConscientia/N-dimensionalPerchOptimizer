@@ -127,7 +127,7 @@ namespace N_dimensionalPerchOptimizer
                         double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
                         if (tmp < U[0].Item1 || tmp > U[0].Item2)
                             tmp = flock[i, j].coords[l];
-                        perch.coords[l] = tmp;
+                        perch.coords[l] = tmp; 
                     }
                     I(perch);
                     move.Add(perch);
@@ -156,6 +156,7 @@ namespace N_dimensionalPerchOptimizer
                         double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
                         if (tmp < U[0].Item1 || tmp > U[0].Item2)
                             tmp = flock[l, 0].coords[m];
+                        perch.coords[m] = tmp; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }
                     I(perch);
                     move.Add(perch);

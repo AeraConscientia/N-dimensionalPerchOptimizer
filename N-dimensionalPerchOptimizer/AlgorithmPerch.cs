@@ -246,7 +246,7 @@ namespace N_dimensionalPerchOptimizer
                 Xq_pool = Pool[q];
                 Xr_pool = Pool[r];
 
-                double min = 1000;
+                double min = Double.MaxValue; // попався
                 for (int i = 0; i < deltapr - 1; i++)
                 {
                     Perch perch = new Perch(N_dim);
@@ -264,7 +264,7 @@ namespace N_dimensionalPerchOptimizer
                     }
                 }
 
-                min = 1000;
+                min = Double.MaxValue; // попався
                 Perch inPool = new Perch(N_dim);
                 for (int i = 0; i < deltapr - 1; i++)
                 {

@@ -19,7 +19,7 @@ namespace N_dimensionalPerchOptimizer
 
             switch (dim)
             {
-                case 1:
+                case 1: // случай, когда рисуются только два графика (1,3 примеры)
                     chartX_1.Series[0].Points.Clear();
                     chartU_1.Series[0].Points.Clear();
 
@@ -29,7 +29,7 @@ namespace N_dimensionalPerchOptimizer
                     for (int i = 0; i < result.U.Count; i++)
                         chartU_1.Series[0].Points.AddXY(i, result.U[i]);
                     break;
-                case 3:
+                case 3: // случай, когда рисуются шесть графиков (2 пример)
                     chartX_1.Series[0].Points.Clear(); chartX_2.Series[0].Points.Clear(); chartX_3.Series[0].Points.Clear();
                     chartU_1.Series[0].Points.Clear(); chartU_2.Series[0].Points.Clear(); chartU_3.Series[0].Points.Clear();
 

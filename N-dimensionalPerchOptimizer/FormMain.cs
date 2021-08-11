@@ -140,6 +140,7 @@ namespace N_dimensionalPerchOptimizer
             switch (tabControl2.SelectedIndex) // занесение в таблицу результатов
             {
                 case 0:
+                case 2:
                     X = new object[N_dim+1];
                     U = new object[N_dim];
                     for (int i = 0; i < N_dim; i++)
@@ -158,21 +159,21 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewU_separate.ColumnCount = N_dim;
                     
                     dataGridViewU_separate.Rows[0].SetValues(U);
-
-                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
-                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     break;
                 case 1:
                     X = new object[N_dim + 3];
                     X2 = new object[N_dim + 3];
                     X3 = new object[N_dim + 3];
+                    
                     U = new object[N_dim];
+                    object[] U_0 = new object[N_dim / 3];
                     U_2 = new object[N_dim / 3];
                     U_3 = new object[N_dim / 3];
                     for (int i = 0; i < N_dim; i++)
                     {
                         U[i] = result.U[i];
                     }
+                    Array.Copy(U, 0, U_0, 0, N_dim / 3);
                     Array.Copy(U,    N_dim/3, U_2, 0, N_dim/3);
                     Array.Copy(U, 2* N_dim/3, U_3, 0, N_dim/3);
                     for (int i = 0; i < N_dim/3; i++)
@@ -190,42 +191,20 @@ namespace N_dimensionalPerchOptimizer
 
                     dataGridViewU_separate.RowCount = 3;
                     dataGridViewU_separate.ColumnCount = N_dim;
-                    dataGridViewU_separate.Rows[0].SetValues(U);
+                    dataGridViewU_separate.Rows[0].SetValues(U_0);
                     dataGridViewU_separate.Rows[1].SetValues(U_2);
                     dataGridViewU_separate.Rows[2].SetValues(U_3);
 
-                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
-                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     dataGridViewX_separate.Rows[1].DefaultCellStyle.Format = "n5";
-                    dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewX_separate.Rows[2].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[2].DefaultCellStyle.Format = "n5";
-                    break;
-                case 2:
-                    X = new object[N_dim + 1];
-                    U = new object[N_dim];
-                    for (int i = 0; i < N_dim; i++)
-                    {
-                        U[i] = result.U[i];
-                    }
-                    for (int i = 0; i < N_dim + 1; i++)
-                    {
-                        X[i] = result.X[i];
-                    }
-                    dataGridViewX_separate.RowCount = 1;
-                    dataGridViewX_separate.ColumnCount = N_dim + 1;
-                    dataGridViewX_separate.Rows[0].SetValues(X);
-
-                    dataGridViewU_separate.RowCount = 1;
-                    dataGridViewU_separate.ColumnCount = N_dim;
-                    dataGridViewU_separate.Rows[0].SetValues(U);
-
-                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
-                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     break;
                 default:
                     return;
             }
+            dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
+            dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
 
             labelMinI.Text = result.fitness.ToString();
 
@@ -234,13 +213,11 @@ namespace N_dimensionalPerchOptimizer
                 switch (tabControl2.SelectedIndex)
                 {
                     case 0:
+                    case 2:
                         graphics = new Graphics(1);
                         break;
                     case 1:
                         graphics = new Graphics(3);
-                        break;
-                    case 2:
-                        graphics = new Graphics(1);
                         break;
                     default:
                         break;
@@ -248,13 +225,11 @@ namespace N_dimensionalPerchOptimizer
             switch (tabControl2.SelectedIndex)
                 {
                     case 0:
+                    case 2:
                         graphics.UpdateGraph(1);
                         break;
                     case 1:
                         graphics.UpdateGraph(3);
-                        break;
-                    case 2:
-                        graphics.UpdateGraph(1);
                         break;
                     default:
                         break;
@@ -268,18 +243,6 @@ namespace N_dimensionalPerchOptimizer
         {
             FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
             StreamWriter r = new StreamWriter(fs);
-
-//            r.Write(
-//    @"
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//<>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <><   ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><>
-//►◄►                                                                                   ◄►◄
-//<><                      Протокол применения метода стаи окуней                       ><>
-//►◄►         к задаче поиска оптимального управления и траектории дискретных систем    ◄►◄
-//<><                                                                                   ><>
-//►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄► ><> ►◄►   ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄ <>< ◄►◄
-//
-//                ");
             r.Write(
                 @"
 | <><    <><    <><    <><    <><    <><    <><      ><>    ><>    ><>    ><>    ><>    ><>    ><> |
@@ -322,13 +285,11 @@ namespace N_dimensionalPerchOptimizer
                 switch (tabControl2.SelectedIndex)
                 {
                     case 0:
+                    case 2:
                         graphics = new Graphics(1);
                         break;
                     case 1:
                         graphics = new Graphics(3);
-                        break;
-                    case 2:
-                        graphics = new Graphics(1);
                         break;
                     default:
                         break;
