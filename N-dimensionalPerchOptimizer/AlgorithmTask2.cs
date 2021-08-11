@@ -21,8 +21,14 @@ namespace N_dimensionalPerchOptimizer
             for (int i = 0; i < population; i++)
             {
                 Perch perch = new Perch(N_dim);
-                for (int j = 0; j < N_dim; j++)
+                for (int j = 0; j < N_dim/3; j++)
                     perch.coords[j] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
+
+                for (int j = N_dim/3; j < 2 * N_dim/3; j++)
+                    perch.coords[j] = U[1].Item1 + rand.NextDouble() * (U[1].Item2 - U[1].Item1);
+
+                for (int j = 2 * N_dim/3; j < N_dim; j++)
+                    perch.coords[j] = U[2].Item1 + rand.NextDouble() * (U[2].Item2 - U[2].Item1);
 
                 I(perch);
                 individuals.Add(perch);
@@ -32,7 +38,7 @@ namespace N_dimensionalPerchOptimizer
         public override List<double> Levy() // *
         {
             List<double> koefLevy = new List<double>(N_dim);
-            for (int i = 0; i < N_dim; i++)
+            for (int i = 0; i < N_dim/3; i++)
             {
                 if (i % 2 == 0)
                 {
@@ -49,8 +55,43 @@ namespace N_dimensionalPerchOptimizer
                     koefLevy.Add(L2 * Math.Cos(thetta2));
                 }
             }
-            return koefLevy;
 
+            for (int i = N_dim/3; i < 2*N_dim/3; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    R1 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[1].Item2 - U[1].Item1) * 100)) / 100f; // (0, b1-a1)
+                    thetta1 = R1 * 2 * Math.PI;
+                    L1 = Math.Pow(R1 + 0.0001f, -1 / lambda);
+                    koefLevy.Add(L1 * Math.Sin(thetta1));
+                }
+                else
+                {
+                    R2 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[1].Item2 - U[1].Item1) * 100)) / 100f; // (0, b2-a2)
+                    thetta2 = R2 * 2 * Math.PI;
+                    L2 = Math.Pow(R2 + 0.0001f, -1 / lambda);
+                    koefLevy.Add(L2 * Math.Cos(thetta2));
+                }
+            }
+
+            for (int i = 2*N_dim / 3; i < N_dim; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    R1 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[2].Item2 - U[2].Item1) * 100)) / 100f; // (0, b1-a1)
+                    thetta1 = R1 * 2 * Math.PI;
+                    L1 = Math.Pow(R1 + 0.0001f, -1 / lambda);
+                    koefLevy.Add(L1 * Math.Sin(thetta1));
+                }
+                else
+                {
+                    R2 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[2].Item2 - U[2].Item1) * 100)) / 100f; // (0, b2-a2)
+                    thetta2 = R2 * 2 * Math.PI;
+                    L2 = Math.Pow(R2 + 0.0001f, -1 / lambda);
+                    koefLevy.Add(L2 * Math.Cos(thetta2));
+                }
+            }
+            return koefLevy;
         }
 
         public override void I(Perch perch, bool flag = false)
@@ -64,9 +105,9 @@ namespace N_dimensionalPerchOptimizer
 
             for (int i = 1; i < N_dim/3; i++)
             {
-                x1.Add(x1[x1.Count - 1] / (1f + 0.01* perch.coords[i] * (3 + perch.coords[N_dim / 3 + i])) );
-                x2.Add((x2[x2.Count - 1] + perch.coords[i] * x1[x1.Count - 1]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));
-                x3.Add(x3[x3.Count - 1] / (1f + 0.01 * perch.coords[N_dim / 3 + i] * (1 + perch.coords[2 * N_dim / 3 + i])));
+                x1.Add((double)x1[x1.Count - 1] / (1f + 0.01* perch.coords[i] * (3 + perch.coords[N_dim / 3 + i])) );
+                x2.Add(((double)x2[x2.Count - 1] + perch.coords[i] * x1[x1.Count - 1]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));
+                x3.Add((double)x3[x3.Count - 1] / (1f + 0.01 * perch.coords[N_dim / 3 + i] * (1 + perch.coords[2 * N_dim / 3 + i])));
             }
                 //x.Add(x[x.Count - 1] + perch.coords[i - 1]);
 
@@ -113,10 +154,24 @@ namespace N_dimensionalPerchOptimizer
                     for (int k = 0; k < moveCount; ++k)
                     {
                         Perch perch = new Perch(N_dim);
-                        for (int l = 0; l < N_dim; l++)
+                        for (int l = 0; l < N_dim / 3; l++)
                         {
                             double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
                             if (tmp < U[0].Item1 || tmp > U[0].Item2)
+                                tmp = flock[i, j].coords[l];
+                            perch.coords[l] = tmp;
+                        }
+                        for (int l = N_dim/3; l < 2*N_dim/3; l++)
+                        {
+                            double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                            if (tmp < U[1].Item1 || tmp > U[1].Item2)
+                                tmp = flock[i, j].coords[l];
+                            perch.coords[l] = tmp;
+                        }
+                        for (int l = 2*N_dim/3; l < N_dim; l++)
+                        {
+                            double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                            if (tmp < U[2].Item1 || tmp > U[2].Item2)
                                 tmp = flock[i, j].coords[l];
                             perch.coords[l] = tmp;
                         }
@@ -143,10 +198,24 @@ namespace N_dimensionalPerchOptimizer
                 for (int k = 0; k < moveCount; ++k)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int l = 0; l < N_dim; l++) // если координаты не выйдут за область определения - меняем. Иначе - оставляем.
+                    for (int l = 0; l < N_dim/3; l++) // если координаты не выйдут за область определения - меняем. Иначе - оставляем.
                     {
                         double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
                         if (tmp < U[0].Item1 || tmp > U[0].Item2)
+                            tmp = flock[i, j].coords[l];
+                        perch.coords[l] = tmp;
+                    }
+                    for (int l = N_dim/3; l < 2*N_dim/3; l++) // если координаты не выйдут за область определения - меняем. Иначе - оставляем.
+                    {
+                        double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                        if (tmp < U[1].Item1 || tmp > U[1].Item2)
+                            tmp = flock[i, j].coords[l];
+                        perch.coords[l] = tmp;
+                    }
+                    for (int l = 2*N_dim/3; l < N_dim; l++) // если координаты не выйдут за область определения - меняем. Иначе - оставляем.
+                    {
+                        double tmp = flock[i, j].coords[l] + k * ((flock[i, 0].coords[l] - flock[i, j].coords[l]) / (NStep));
+                        if (tmp < U[2].Item1 || tmp > U[2].Item2)
                             tmp = flock[i, j].coords[l];
                         perch.coords[l] = tmp;
                     }
@@ -172,11 +241,26 @@ namespace N_dimensionalPerchOptimizer
                 for (int k = 0; k < moveCount; ++k)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int m = 0; m < N_dim; m++)
+                    for (int m = 0; m < N_dim/3; m++)
                     {
                         double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
                         if (tmp < U[0].Item1 || tmp > U[0].Item2)
                             tmp = flock[l, 0].coords[m];
+                        perch.coords[m] = tmp;
+                    }
+                    for (int m = N_dim/3; m < 2*N_dim/3; m++)
+                    {
+                        double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
+                        if (tmp < U[1].Item1 || tmp > U[1].Item2)
+                            tmp = flock[l, 0].coords[m];
+                        perch.coords[m] = tmp;
+                    }
+                    for (int m = 2*N_dim/3; m < N_dim; m++)
+                    {
+                        double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
+                        if (tmp < U[2].Item1 || tmp > U[2].Item2)
+                            tmp = flock[l, 0].coords[m];
+                        perch.coords[m] = tmp;
                     }
                     I(perch);
                     move.Add(perch);
@@ -194,10 +278,24 @@ namespace N_dimensionalPerchOptimizer
                     for (int k = 0; k < moveCount1; ++k)
                     {
                         Perch perch = new Perch(N_dim);
-                        for (int p = 0; p < N_dim; p++)
+                        for (int p = 0; p < N_dim/3; p++)
                         {
                             double tmp = flock[l, j].coords[p] + k * ((flock[l, 0].coords[p] - flock[l, j].coords[p]) / (NStep));
                             if (tmp < U[0].Item1 || tmp > U[0].Item2)
+                                tmp = flock[l, j].coords[p];
+                            perch.coords[p] = tmp;
+                        }
+                        for (int p = N_dim/3; p < 2*N_dim/3; p++)
+                        {
+                            double tmp = flock[l, j].coords[p] + k * ((flock[l, 0].coords[p] - flock[l, j].coords[p]) / (NStep));
+                            if (tmp < U[1].Item1 || tmp > U[1].Item2)
+                                tmp = flock[l, j].coords[p];
+                            perch.coords[p] = tmp;
+                        }
+                        for (int p = 2*N_dim/3; p < N_dim; p++)
+                        {
+                            double tmp = flock[l, j].coords[p] + k * ((flock[l, 0].coords[p] - flock[l, j].coords[p]) / (NStep));
+                            if (tmp < U[2].Item1 || tmp > U[2].Item2)
                                 tmp = flock[l, j].coords[p];
                             perch.coords[p] = tmp;
                         }
@@ -220,15 +318,19 @@ namespace N_dimensionalPerchOptimizer
 
             List<double> Min = new List<double>(N_dim);
 
-            for (int j = 0; j < N_dim; j++)
+            for (int j = 0; j < N_dim/3; j++)
                 Min.Add(Math.Min((flock[NumFlocks - 1, 0].coords[j] - U[0].Item1), (U[0].Item2 - flock[NumFlocks - 1, 0].coords[j])));
+            for (int j = N_dim/3; j < 2*N_dim/3; j++)
+                Min.Add(Math.Min((flock[NumFlocks - 1, 0].coords[j] - U[1].Item1), (U[1].Item2 - flock[NumFlocks - 1, 0].coords[j])));
+            for (int j = 2*N_dim/3; j < N_dim; j++)
+                Min.Add(Math.Min((flock[NumFlocks - 1, 0].coords[j] - U[2].Item1), (U[2].Item2 - flock[NumFlocks - 1, 0].coords[j])));
 
             for (int j = 1; j < NumPerchInFlock; j++)
             {
                 List<Tuple<double, double>> coords = new List<Tuple<double, double>>(N_dim);
                 List<double> res = new List<double>(N_dim);
 
-                for (int p = 0; p < N_dim; p++)
+                for (int p = 0; p < N_dim; p++) // TODO: переписать для системы!
                 {
                     double x1 = flock[NumFlocks - 1, 0].coords[p] - Min[p];
                     double x2 = flock[NumFlocks - 1, 0].coords[p] + Min[p];
@@ -256,10 +358,24 @@ namespace N_dimensionalPerchOptimizer
                 for (int k = 0; k < moveCount; ++k)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int p = 0; p < N_dim; p++)
+                    for (int p = 0; p < N_dim/3; p++)
                     {
                         double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
                         if (tmp < U[0].Item1 || tmp > U[0].Item2)
+                            tmp = flock[i, j].coords[p];
+                        perch.coords[p] = tmp;
+                    }
+                    for (int p = N_dim/3; p < 2*N_dim/3; p++)
+                    {
+                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
+                        if (tmp < U[1].Item1 || tmp > U[1].Item2)
+                            tmp = flock[i, j].coords[p];
+                        perch.coords[p] = tmp;
+                    }
+                    for (int p = 2*N_dim/3; p < N_dim; p++)
+                    {
+                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
+                        if (tmp < U[2].Item1 || tmp > U[2].Item2)
                             tmp = flock[i, j].coords[p];
                         perch.coords[p] = tmp;
                     }
