@@ -50,7 +50,7 @@ namespace N_dimensionalPerchOptimizer
                         U_3.Add(result.U[i + 2 * N_dim / 3]);
                     }
 
-                    for (int i = 0; i < U_2.Count; i++)
+                    for (int i = 0; i < result.U.Count / 3; i++)
                     {
                         chartU_1.Series[0].Points.AddXY(i, result.U[i]);
                         chartU_2.Series[0].Points.AddXY(i, U_2[i]);
