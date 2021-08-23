@@ -176,21 +176,23 @@ namespace N_dimensionalPerchOptimizer
                     Array.Copy(U, 0, U_0, 0, N_dim / 3);
                     Array.Copy(U,    N_dim/3, U_2, 0, N_dim/3);
                     Array.Copy(U, 2* N_dim/3, U_3, 0, N_dim/3);
-                    for (int i = 0; i < N_dim/3; i++)
+                    for (int i = 0; i < N_dim/3 + 1; i++)
                     {
                         X[i] = result.X[i];
                         X2[i] = result.X2[i];
                         X3[i] = result.X3[i];
                     }
+                    dataGridViewX_separate.Rows.Clear();
                     dataGridViewX_separate.RowCount = 3;
-                    dataGridViewX_separate.ColumnCount = N_dim + 3;
+                    dataGridViewX_separate.ColumnCount = N_dim/3 + 1;
 
                     dataGridViewX_separate.Rows[0].SetValues(X);
                     dataGridViewX_separate.Rows[1].SetValues(X2);
                     dataGridViewX_separate.Rows[2].SetValues(X3);
 
+                    dataGridViewU_separate.Rows.Clear();
                     dataGridViewU_separate.RowCount = 3;
-                    dataGridViewU_separate.ColumnCount = N_dim;
+                    dataGridViewU_separate.ColumnCount = N_dim / 3;
                     dataGridViewU_separate.Rows[0].SetValues(U_0);
                     dataGridViewU_separate.Rows[1].SetValues(U_2);
                     dataGridViewU_separate.Rows[2].SetValues(U_3);
@@ -222,6 +224,19 @@ namespace N_dimensionalPerchOptimizer
                     default:
                         break;
                 }
+            if (graphics.IsDisposed)
+                switch (tabControl2.SelectedIndex)
+                {
+                    case 0:
+                    case 2:
+                        graphics = new Graphics(1);
+                        break;
+                    case 1:
+                        graphics = new Graphics(3);
+                        break;
+                    default:
+                        break;
+                }
             switch (tabControl2.SelectedIndex)
                 {
                     case 0:
@@ -234,7 +249,7 @@ namespace N_dimensionalPerchOptimizer
                     default:
                         break;
                 }
-
+            
             graphics.Show();
         }
 
@@ -277,24 +292,6 @@ namespace N_dimensionalPerchOptimizer
         {
             FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
-        }
-
-        private void buttonGraphs_Click(object sender, EventArgs e)
-        {
-            if (graphics == null)
-                switch (tabControl2.SelectedIndex)
-                {
-                    case 0:
-                    case 2:
-                        graphics = new Graphics(1);
-                        break;
-                    case 1:
-                        graphics = new Graphics(3);
-                        break;
-                    default:
-                        break;
-                }
-            graphics.Show();
         }
     }
 }
