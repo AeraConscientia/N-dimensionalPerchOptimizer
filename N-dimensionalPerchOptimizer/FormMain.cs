@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 using System.Collections.Generic;
 
 namespace N_dimensionalPerchOptimizer
@@ -42,6 +43,21 @@ namespace N_dimensionalPerchOptimizer
         {
             InitializeComponent();
             InitDataGridView();
+            FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
+            fs.Close();
+            fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write); // деваааачки, какие костыли, я не могу T_T
+            StreamWriter r = new StreamWriter(fs);
+            r.Write(
+                @"
+| <><    <><    <><    <><    <><    <><    <><      ><>    ><>    ><>    ><>    ><>    ><>    ><> |
+|                                                                                                  |
+| <><                          Протокол применения метода стаи окуней                          ><> |
+|              к задаче поиска оптимального управления и траектории дискретных систем              |
+| <><                                                                                          ><> |
+|__________________________________________________________________________________________________|
+");
+            r.Close();
+            fs.Close();
         }
 
         /// <summary>Загрузка параметров аглоритма</summary>
@@ -92,6 +108,8 @@ namespace N_dimensionalPerchOptimizer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             LoadParams();
             AlgorithmPerch algPerch;
 
@@ -137,6 +155,68 @@ namespace N_dimensionalPerchOptimizer
             resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
 
             Result result = Result.GetInstance();
+            
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+
+            FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
+            StreamWriter r = new StreamWriter(fs);
+            switch (tabControl2.SelectedIndex) // первая часть записей протокола
+            {
+                case 0:
+                    r.Write(String.Format(
+                @"
+1. ПОСТАНОВКА ЗАДАЧИ
+    Решаемая задача: Пример 1.
+    Количество точек разбиения (шагов): {0, 5}
+    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1.Text), Convert.ToDouble(textBoxU2.Text), Convert.ToDouble(textBoxX1.Text)));
+                    break;
+                case 1:
+                    r.Write(String.Format(
+                                    @"
+1. ПОСТАНОВКА ЗАДАЧИ
+    Решаемая задача: Пример 2.
+    Количество точек разбиения (шагов): {0, 5}
+                                        {1, 5:f1} <= u1 <= {2, 5:f1}
+    Ограничения на управление:          {3, 5:f1} <= u2 <= {4, 5:f1}
+                                        {5, 5:f1} <= u3 <= {6, 5:f1}
+
+    Начальные условия:                  x1 ={7, 5:f1}
+                                        x2 ={8, 5:f1}
+                                        x3 ={9, 5:f1}", 
+                                    N_dim, 
+                                    Convert.ToDouble(textBoxU11.Text), Convert.ToDouble(textBoxU12.Text),
+                                    Convert.ToDouble(textBoxU21.Text), Convert.ToDouble(textBoxU22.Text),
+                                    Convert.ToDouble(textBoxU31.Text), Convert.ToDouble(textBoxU32.Text), 
+                                    Convert.ToDouble(textBoxX11.Text), Convert.ToDouble(textBoxX22.Text), Convert.ToDouble(textBoxX33.Text)));
+                    break;
+                case 2:
+                    r.Write(String.Format(
+                @"
+1. ПОСТАНОВКА ЗАДАЧИ
+    Решаемая задача: Пример 1.
+    Количество точек разбиения (шагов): {0, 5}
+    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_3.Text), Convert.ToDouble(textBoxU2_3.Text), Convert.ToDouble(textBoxX0_3.Text)));
+                    break;
+            }
+            r.Write(String.Format(@"
+2. ПАРАМЕТРЫ МЕТОДА СТАИ ОКУНЕЙ
+    Количество шагов до окончания
+                        движения:       {0,5}
+    Максимальное количество итераций:   {1,5}
+    Количество стай:                    {2,5}
+    Колиество окуней в стае:            {3,5}
+    Число перекоммутаций:               {4,5}
+    Число шагов в перекоммутации:       {5,5}
+    Параметр распределения Леви:        {6,5:f1}
+    Величина шага:                      {7,5:f1}", NStep, MaxIteration, NumFlocks, NumPerchInFlock, PRmax, deltapr, lambda, alfa));
+
+
             switch (tabControl2.SelectedIndex) // занесение в таблицу результатов
             {
                 case 0:
@@ -159,6 +239,15 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewU_separate.ColumnCount = N_dim;
                     
                     dataGridViewU_separate.Rows[0].SetValues(U);
+
+                    r.Write(String.Format(@"
+3. РЕЗУЛЬТАТЫ РАБОТЫ"));
+                    r.Write(String.Format(@"
+    Оптимальное управление u*:"));
+                    for (int i = 0; i < N_dim; i++)     r.Write(String.Format(@" {0, 10:f5}", U[i]));    r.Write(String.Format("\r\n"));
+                    r.Write(String.Format(@"
+    Оптимальная траектория x*:"));
+                    for (int i = 0; i < N_dim+1; i++)   r.Write(String.Format(@" {0, 10:f5}", X[i]));    r.Write(String.Format("\r\n"));
                     break;
                 case 1:
                     X = new object[N_dim + 3];
@@ -201,6 +290,18 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewX_separate.Rows[2].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[2].DefaultCellStyle.Format = "n5";
+                    r.Write(String.Format(@"
+3. РЕЗЛЬУТАТЫ РАБОТЫ"));
+                    r.Write(String.Format(@"
+    Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_0[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_2[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_3[i])); r.Write(String.Format("\r\n"));
+                    r.Write(String.Format(@"
+    Оптимальная траектория x*:")); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i]));   r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i]));  r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X3[i]));  r.Write(String.Format("\r\n"));
                     break;
                 default:
                     return;
@@ -210,6 +311,15 @@ namespace N_dimensionalPerchOptimizer
 
             labelMinI.Text = result.fitness.ToString();
 
+            r.Write(String.Format(@"
+    Значение функционала: {0, 5:f1}", labelMinI.Text)); r.Write(String.Format("\r\n"));
+            r.Write(String.Format(@"
+Время расчета (ч:м:с): {0}", elapsedTime));
+            r.Write(@"
+------------------------------------------------------------------------
+");
+            r.Close();
+            fs.Close();
 
             if (graphics == null)
                 switch (tabControl2.SelectedIndex)
@@ -251,12 +361,19 @@ namespace N_dimensionalPerchOptimizer
                 }
             
             graphics.Show();
+
         }
 
-        /// <summary>Запись протокола и его вызов</summary>
+        /// <summary>Вызов протокола</summary>
         private void buttonProtocol_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
+            Process.Start("protocol.txt");
+        }
+
+        /// <summary>Очистка протокола</summary>
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             StreamWriter r = new StreamWriter(fs);
             r.Write(
                 @"
@@ -266,31 +383,8 @@ namespace N_dimensionalPerchOptimizer
 |              к задаче поиска оптимального управления и траектории дискретных систем              |
 | <><                                                                                          ><> |
 |__________________________________________________________________________________________________|
-
-1. Постановка задачи
-
-2. Параметры метода стаи окуней
-
-3. Результаты работы
-
-Оптимальное управление u*
-
-Оптимальная траектория x*
-
-                ");
-            r.Write(String.Format(@"|{0, 5} |  -----------------------+------------|", 0));
-            //r.Write("\r\n");
-
+");
             r.Close();
-
-            fs.Close();
-            Process.Start("protocol.txt");
-        }
-
-        /// <summary>Очистка протокола</summary>
-        private void buttonRefresh_Click(object sender, EventArgs e)
-        {
-            FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
         }
     }
