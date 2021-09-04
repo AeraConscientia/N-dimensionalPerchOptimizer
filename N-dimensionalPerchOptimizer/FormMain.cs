@@ -123,35 +123,78 @@ namespace N_dimensionalPerchOptimizer
             {
                 case 0:
                     N_dim = Convert.ToInt32(numericUpDownN1.Value);
-                    double U1 = Convert.ToDouble(textBoxU1.Text);
-                    double U2 = Convert.ToDouble(textBoxU2.Text);
-                    double x0 = Convert.ToDouble(textBoxX1.Text);
-                    algPerch = new AlgorithmTask1(U1, U2, x0);
+                    double U1_1 = Convert.ToDouble(textBoxU1_1.Text);       double U2_1 = Convert.ToDouble(textBoxU2_1.Text);
+
+                    double x0_1 = Convert.ToDouble(textBoxX0_1.Text);
+
+                    algPerch = new AlgorithmTask1(U1_1, U2_1, x0_1);
 
                     break;
-                case 1: // тут не заглушка
+                case 1:
                     N_dim = 3 * Convert.ToInt32(numericUpDownN2.Value);
-                    double U11 = Convert.ToDouble(textBoxU11.Text);
-                    double U12 = Convert.ToDouble(textBoxU12.Text);
-                    double U21 = Convert.ToDouble(textBoxU21.Text);
-                    double U22 = Convert.ToDouble(textBoxU22.Text);
-                    double U31 = Convert.ToDouble(textBoxU31.Text);
-                    double U32 = Convert.ToDouble(textBoxU32.Text);
+                    double U11 = Convert.ToDouble(textBoxU11.Text);     double U12 = Convert.ToDouble(textBoxU12.Text);
+                    double U21 = Convert.ToDouble(textBoxU21.Text);     double U22 = Convert.ToDouble(textBoxU22.Text);
+                    double U31 = Convert.ToDouble(textBoxU31.Text);     double U32 = Convert.ToDouble(textBoxU32.Text);
+
                     double x00 = Convert.ToDouble(textBoxX11.Text);
                     double x11 = Convert.ToDouble(textBoxX22.Text);
                     double x22 = Convert.ToDouble(textBoxX33.Text);
+
                     algPerch = new AlgorithmTask2(U11, U12, U21, U22, U31, U32, x00, x11, x22);
                     break;
                 case 2:
                     N_dim = Convert.ToInt32(numericUpDownN3.Value);
-                    double U1_3 = Convert.ToDouble(textBoxU1_3.Text);
-                    double U2_3 = Convert.ToDouble(textBoxU2_3.Text);
+                    double U1_3 = Convert.ToDouble(textBoxU1_3.Text);   double U2_3 = Convert.ToDouble(textBoxU2_3.Text);
+
                     double x0_3 = Convert.ToDouble(textBoxX0_3.Text);
+
                     algPerch = new AlgorithmTask3(U1_3, U2_3, x0_3);
+                    break;
+                case 3:
+                    N_dim = Convert.ToInt32(numericUpDownN4.Value);
+                    double U1_4 = Convert.ToDouble(textBoxU1_4.Text);   double U2_4 = Convert.ToDouble(textBoxU2_4.Text);
+
+                    double x0_4 = Convert.ToDouble(textBoxX0_4.Text);
+
+                    algPerch = new AlgorithmTask4(U1_4, U2_4, x0_4);
+
+                    break;
+                case 4:
+                    N_dim = 2 * Convert.ToInt32(numericUpDownN5.Value);
+                    double U1_5 = Convert.ToDouble(textBoxU1_5.Text);   double U2_5 = Convert.ToDouble(textBoxU2_5.Text);
+                
+                    double x01_5 = Convert.ToDouble(textBoxX01_5.Text); double x02_5 = Convert.ToDouble(textBoxX02_5.Text);
+
+                    algPerch = new AlgorithmTask5(U1_5, U2_5, x01_5, x02_5);
+                
+                    break;
+                case 5:
+                    N_dim = 2 * Convert.ToInt32(numericUpDownN6.Value);
+                    double U1_6 = Convert.ToDouble(textBoxU1_6.Text);   double U2_6 = Convert.ToDouble(textBoxU2_6.Text);
+
+                    double x01_6 = Convert.ToDouble(textBoxX01_6.Text); double x02_6 = Convert.ToDouble(textBoxX02_6.Text);
+
+                    algPerch = new AlgorithmTask6(U1_6, U2_6, x01_6, x02_6);
+
                     break;
                 default:
                     return;
             }
+            //switch (tabControl2.SelectedIndex)
+            //{
+            //    case 0:
+            //    case 2:
+            //    case 3:
+            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
+            //        break;
+            //    case 1:
+            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim / 3);
+            //        break;
+            //    case 4:
+            //    case 5:
+            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim / 2);
+            //        break;
+            //}
             resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
 
             Result result = Result.GetInstance();
@@ -159,8 +202,7 @@ namespace N_dimensionalPerchOptimizer
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
+                                            ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
             FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
             StreamWriter r = new StreamWriter(fs);
@@ -173,7 +215,7 @@ namespace N_dimensionalPerchOptimizer
     Решаемая задача: Пример 1.
     Количество точек разбиения (шагов): {0, 5}
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1.Text), Convert.ToDouble(textBoxU2.Text), Convert.ToDouble(textBoxX1.Text)));
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_1.Text), Convert.ToDouble(textBoxU2_1.Text), Convert.ToDouble(textBoxX0_1.Text)));
                     break;
                 case 1:
                     r.Write(String.Format(
@@ -210,7 +252,7 @@ namespace N_dimensionalPerchOptimizer
                         движения:       {0,5}
     Максимальное количество итераций:   {1,5}
     Количество стай:                    {2,5}
-    Колиество окуней в стае:            {3,5}
+    Количество окуней в стае:           {3,5}
     Число перекоммутаций:               {4,5}
     Число шагов в перекоммутации:       {5,5}
     Параметр распределения Леви:        {6,5:f1}
@@ -219,8 +261,9 @@ namespace N_dimensionalPerchOptimizer
 
             switch (tabControl2.SelectedIndex) // занесение в таблицу результатов
             {
-                case 0:
-                case 2:
+                case 0:     // одномерный случай
+                case 2:     // одномерный случай
+                case 3:     // одномерный случай
                     X = new object[N_dim+1];
                     U = new object[N_dim];
                     for (int i = 0; i < N_dim; i++)
@@ -249,7 +292,47 @@ namespace N_dimensionalPerchOptimizer
     Оптимальная траектория x*:"));
                     for (int i = 0; i < N_dim+1; i++)   r.Write(String.Format(@" {0, 10:f5}", X[i]));    r.Write(String.Format("\r\n"));
                     break;
-                case 1:
+                case 4:     // двумерный случай
+                case 5:
+                    X   = new object[N_dim / 2 + 1];
+                    X2  = new object[N_dim / 2 + 1];
+                    U   = new object[N_dim / 2];
+                    for (int i = 0; i < N_dim / 2 ; i++)
+                    {
+                        U[i] = result.U[i];
+                    }
+                    for (int i = 0; i < N_dim / 2 + 1; i++)
+                    {
+                        X[i] = result.X[i];
+                        X2[i] = result.X2[i];
+                    }
+                    dataGridViewX_separate.Rows.Clear();
+                    dataGridViewX_separate.RowCount = 2;
+                    dataGridViewX_separate.ColumnCount = N_dim / 2 + 1;
+
+                    dataGridViewX_separate.Rows[0].SetValues(X);
+                    dataGridViewX_separate.Rows[1].SetValues(X2);
+
+                    dataGridViewU_separate.Rows.Clear();
+                    dataGridViewU_separate.RowCount = 1;
+                    dataGridViewU_separate.ColumnCount = N_dim / 2;
+                    dataGridViewU_separate.Rows[0].SetValues(U);
+
+                    dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    dataGridViewX_separate.Rows[1].DefaultCellStyle.Format = "n5";
+                    dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    r.Write(String.Format(@"
+3. РЕЗЛЬУТАТЫ РАБОТЫ"));
+                    r.Write(String.Format(@"
+    Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 2; i++) r.Write(String.Format(@" {0, 10:f5}", U[i])); r.Write(String.Format("\r\n"));
+                    r.Write(String.Format(@"
+    Оптимальная траектория x*:")); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i])); r.Write(String.Format("\r\n"));
+                    break;
+
+                case 1:     // трехмерный случай
                     X = new object[N_dim + 3];
                     X2 = new object[N_dim + 3];
                     X3 = new object[N_dim + 3];
@@ -326,10 +409,15 @@ namespace N_dimensionalPerchOptimizer
                 {
                     case 0:
                     case 2:
+                    case 3:
                         graphics = new Graphics(1);
                         break;
                     case 1:
                         graphics = new Graphics(3);
+                        break;
+                    case 4:
+                    case 5:
+                        graphics = new Graphics(2);
                         break;
                     default:
                         break;
@@ -339,10 +427,15 @@ namespace N_dimensionalPerchOptimizer
                 {
                     case 0:
                     case 2:
+                    case 3:
                         graphics = new Graphics(1);
                         break;
                     case 1:
                         graphics = new Graphics(3);
+                        break;
+                    case 4:
+                    case 5:
+                        graphics = new Graphics(2);
                         break;
                     default:
                         break;
@@ -351,10 +444,15 @@ namespace N_dimensionalPerchOptimizer
                 {
                     case 0:
                     case 2:
+                    case 3:
                         graphics.UpdateGraph(1);
                         break;
                     case 1:
                         graphics.UpdateGraph(3);
+                        break;
+                    case 4:
+                    case 5:
+                        graphics.UpdateGraph(2);
                         break;
                     default:
                         break;
@@ -386,6 +484,20 @@ namespace N_dimensionalPerchOptimizer
 ");
             r.Close();
             fs.Close();
+        }
+
+        private void CleanAll(object sender, EventArgs e)
+        {
+            dataGridViewX_separate.Rows.Clear();    dataGridViewU_separate.Rows.Clear();
+
+            dataGridViewX_separate.RowCount     = 1;
+            dataGridViewX_separate.ColumnCount  = 1;
+            
+            dataGridViewU_separate.RowCount     = 1;
+            dataGridViewU_separate.ColumnCount  = 1;
+
+            labelMinI.Text = "---";
+
         }
     }
 }

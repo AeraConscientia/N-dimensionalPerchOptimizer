@@ -47,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm Task4.cs" />
     <Compile Include="AlgorithmPerch.cs" />
     <Compile Include="AlgorithmTask1.cs" />
     <Compile Include="AlgorithmTask2.cs" />
     <Compile Include="AlgorithmTask3.cs" />
+    <Compile Include="AlgorithmTask5.cs" />
+    <Compile Include="AlgorithmTask6.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +138,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\x3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Ex4_Large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Ex5_Large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Ex6_Large.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,11 @@
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Release\N-dimensionalPerchOptimizer.exe.config
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Release\N-dimensionalPerchOptimizer.exe
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Release\N-dimensionalPerchOptimizer.pdb
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.csprojAssemblyReference.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N_dimensionalPerchOptimizer.FormMain.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N_dimensionalPerchOptimizer.Graphics.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N_dimensionalPerchOptimizer.Properties.Resources.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.csproj.GenerateResource.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.csproj.CoreCompileInputs.cache
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.exe
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.pdb

@@ -180,27 +180,37 @@ namespace N_dimensionalPerchOptimizer
             this.NumPerchInFlock = NumPerchInFlock;
             population = NumFlocks * NumPerchInFlock;
 
-            this.NStep = NStep;
-            this.lambda = lambda;
-            this.alfa = alfa;
-            this.PRmax = PRmax;
+            this.NStep   = NStep;
+            this.lambda  = lambda;
+            this.alfa    = alfa;
+            this.PRmax   = PRmax;
             this.deltapr = deltapr;
-            this.N_dim = N_dim;
+            this.N_dim   = N_dim;
 
-            perch = new Perch(N_dim);
-            best = new Perch(N_dim);
-            result = new Perch(N_dim);
+            perch   = new Perch(N_dim);
+            best    = new Perch(N_dim);
+            result  = new Perch(N_dim);
 
             FormingPopulation();
-
+            
             for (int currentIteration = 1; currentIteration < MaxCount; currentIteration++)
             {
                 MakeFlocks();
+                //WrongCoord();
+
                 MoveEPerchEFlock();
+                //WrongCoord();
+
                 FlocksSwim();
+                //WrongCoord();
+
                 this.currentIteration++;
             }
+
+            
             Recommutation();
+            //WrongCoord();
+
             perch = Pool[0];
             I(perch, true);
             return perch;
@@ -209,8 +219,13 @@ namespace N_dimensionalPerchOptimizer
         public void FlocksSwim() // +
         {
             BestFlockSwim();
+            //WrongCoord();
+
             PoorFlockSwim();
+            //WrongCoord();
+
             AverFlockSwim();
+            //WrongCoord();
 
             individuals = new List<Perch>();
 
@@ -252,7 +267,7 @@ namespace N_dimensionalPerchOptimizer
                     Perch perch = new Perch(N_dim);
                     for (int j = 0; j < N_dim; j++)
                     {
-                        double tmp = Xq_pool.coords[j] + i * (Xq_pool.coords[j] - Xq_pool.coords[j]) / deltapr; // TODO: а это что за бред?
+                        double tmp = Xp_pool.coords[j] + i * (Xq_pool.coords[j] - Xq_pool.coords[j]) / deltapr; // TODO: а это что за бред?
                         perch.coords[j] = tmp;
                     }
                     I(perch);
@@ -272,6 +287,10 @@ namespace N_dimensionalPerchOptimizer
                     for (int j = 0; j < N_dim; j++)
                     {
                         double tmp = perchResult.coords[j] + i * (Xr_pool.coords[j] - perchResult.coords[j]) / deltapr;
+                        //for (int k = 0; k < U.Count; k++)
+                        //{
+                        //    if(tmp U[k].Item1)
+                        //}
                         perch.coords[j] = tmp;
                     }
                     I(perch);
@@ -289,5 +308,20 @@ namespace N_dimensionalPerchOptimizer
             Pool = Pool.OrderBy(s => s.fitness).ToList();
             result = Pool[0];
         }
+
+        //private void WrongCoord()
+        //{
+        //    for (int i = 0; i < NumFlocks; i++)
+        //    {
+        //        for (int j = 0; j < NumPerchInFlock; j++)
+        //        {
+        //            if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1)
+        //            {
+        //                throw new Exception();
+        //            }
+        //                
+        //        }
+        //    }
+        //}
     }
 }
