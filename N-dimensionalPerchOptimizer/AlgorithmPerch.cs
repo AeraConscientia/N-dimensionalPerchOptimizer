@@ -208,7 +208,7 @@ namespace N_dimensionalPerchOptimizer
             }
 
             
-            Recommutation();
+            Recommutation(); // эта штука мне все портит.
             //WrongCoord();
 
             perch = Pool[0];
@@ -265,7 +265,8 @@ namespace N_dimensionalPerchOptimizer
                 for (int i = 0; i < deltapr - 1; i++)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int j = 0; j < N_dim; j++)
+                    for (int j = 0; j < N_dim; j++) // Очень логично, здесь начинаются проблемы с выходом за границы.
+                                                    // идея правки... я пока не знаю.
                     {
                         double tmp = Xp_pool.coords[j] + i * (Xq_pool.coords[j] - Xq_pool.coords[j]) / deltapr; // TODO: а это что за бред?
                         perch.coords[j] = tmp;
@@ -284,7 +285,8 @@ namespace N_dimensionalPerchOptimizer
                 for (int i = 0; i < deltapr - 1; i++)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int j = 0; j < N_dim; j++)
+                    for (int j = 0; j < N_dim; j++) // Очень логично, здесь начинаются проблемы с выходом за границы.
+                        // идея правки... я пока не знаю.
                     {
                         double tmp = perchResult.coords[j] + i * (Xr_pool.coords[j] - perchResult.coords[j]) / deltapr;
                         //for (int k = 0; k < U.Count; k++)
