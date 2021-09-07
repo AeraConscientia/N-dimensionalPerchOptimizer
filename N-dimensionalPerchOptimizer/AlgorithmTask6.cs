@@ -174,13 +174,13 @@ namespace N_dimensionalPerchOptimizer
                 move = move.OrderBy(s => s.fitness).ToList();
                 flock[i, j] = move[0];
             }
-            WrongCoord();
+            //WrongCoord();
             Sort(flock, i);
         }
 
         protected override void AverFlockSwim() // +
         {
-            WrongCoord();
+            //WrongCoord();
             sigma = rand.NextDouble() / 20 + 0.6; // sigma [0.6,  0.8]
 
             for (int l = 1; l < NumFlocks - 1; l++) // если не изменяет память, передвижение лидеров средних стай
@@ -241,7 +241,7 @@ namespace N_dimensionalPerchOptimizer
                     move1 = move1.OrderBy(s => s.fitness).ToList();
                     flock[l, j] = move1[0];
                 }
-                WrongCoord();
+                //WrongCoord();
                 Sort(flock, l);
             }
             SortFlocks();
@@ -249,11 +249,11 @@ namespace N_dimensionalPerchOptimizer
 
         protected override void PoorFlockSwim() // +
         {
-            WrongCoord();
+            //WrongCoord();
             double PoorLeaderCoord0 = flock[NumFlocks - 1, 0].coords[0];
             double PoorLeaderCoord1 = flock[NumFlocks - 1, 0].coords[1];
             PoorLeaderSwim();
-            while ((flock[NumFlocks - 1, 0].coords[0] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[1] > U[0].Item2))
+            while ((flock[NumFlocks - 1, 0].coords[0] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[1] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[0] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[1] < U[0].Item1))
             {
 
                 flock[NumFlocks - 1, 0].coords[0] = PoorLeaderCoord0;
@@ -261,7 +261,7 @@ namespace N_dimensionalPerchOptimizer
                 PoorLeaderSwim();
             }
                 
-            WrongCoord();
+            //WrongCoord();
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
@@ -294,7 +294,7 @@ namespace N_dimensionalPerchOptimizer
                 I(perch);
                 flock[NumFlocks - 1, j] = perch; //*
             }
-            WrongCoord();
+            //WrongCoord();
             int i = 1;
 
             for (int j = 0; j < NumPerchInFlock; j++) // всех окуней из худших двигаем к лидеру худшей стаи
@@ -326,23 +326,23 @@ namespace N_dimensionalPerchOptimizer
                 move = move.OrderBy(s => s.fitness).ToList();
                 flock[i, j] = move[0];
             }
-            WrongCoord();
+            //WrongCoord();
             Sort(flock, i);
         }
 
-        private void WrongCoord()
-        {
-            for (int i = 0; i < NumFlocks; i++)
-            {
-                for (int j = 0; j < NumPerchInFlock; j++)
-                {
-                    if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1)
-                    {
-                        throw new Exception();
-                    }
-                        
-                }
-            }
-        }
+        //private void WrongCoord()
+        //{
+        //    for (int i = 0; i < NumFlocks; i++)
+        //    {
+        //        for (int j = 0; j < NumPerchInFlock; j++)
+        //        {
+        //            if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1)
+        //            {
+        //                throw new Exception();
+        //            }
+        //                
+        //        }
+        //    }
+        //}
     }
 }

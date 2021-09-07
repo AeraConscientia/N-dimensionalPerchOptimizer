@@ -255,7 +255,16 @@ namespace N_dimensionalPerchOptimizer
 
         protected override void PoorFlockSwim() // +
         {
+            double PoorLeaderCoord0 = flock[NumFlocks - 1, 0].coords[0];
+            double PoorLeaderCoord1 = flock[NumFlocks - 1, 0].coords[1];
             PoorLeaderSwim();
+            while ((flock[NumFlocks - 1, 0].coords[0] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[1] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[0] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[1] < U[0].Item1))
+            {
+
+                flock[NumFlocks - 1, 0].coords[0] = PoorLeaderCoord0;
+                flock[NumFlocks - 1, 0].coords[1] = PoorLeaderCoord1;
+                PoorLeaderSwim();
+            }
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
