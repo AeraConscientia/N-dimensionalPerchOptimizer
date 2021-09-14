@@ -177,6 +177,15 @@ namespace N_dimensionalPerchOptimizer
                     algPerch = new AlgorithmTask6(U1_6, U2_6, x01_6, x02_6);
 
                     break;
+                case 6:
+                    N_dim = 2 * Convert.ToInt32(numericUpDownN7.Value);
+                    double U1_7 = Convert.ToDouble(textBoxU1_7.Text); double U2_7 = Convert.ToDouble(textBoxU2_7.Text);
+
+                    double x01_7 = Convert.ToDouble(textBoxX01_7.Text); double x02_7 = Convert.ToDouble(textBoxX02_7.Text);
+
+                    algPerch = new AlgorithmTask7(U1_7, U2_7, x01_7, x02_7);
+
+                    break;
                 default:
                     return;
             }
@@ -294,6 +303,7 @@ namespace N_dimensionalPerchOptimizer
                     break;
                 case 4:     // двумерный случай
                 case 5:
+                case 6:
                     X   = new object[N_dim / 2 + 1];
                     X2  = new object[N_dim / 2 + 1];
                     U   = new object[N_dim / 2];
@@ -322,7 +332,7 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewX_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     r.Write(String.Format(@"
-3. РЕЗЛЬУТАТЫ РАБОТЫ"));
+3. РЕЗУЛЬТАТЫ РАБОТЫ"));
                     r.Write(String.Format(@"
     Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 2; i++) r.Write(String.Format(@" {0, 10:f5}", U[i])); r.Write(String.Format("\r\n"));
@@ -374,7 +384,7 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[2].DefaultCellStyle.Format = "n5";
                     r.Write(String.Format(@"
-3. РЕЗЛЬУТАТЫ РАБОТЫ"));
+3. РЕЗУЛЬТАТЫ РАБОТЫ"));
                     r.Write(String.Format(@"
     Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_0[i])); r.Write(String.Format("\r\n"));
@@ -417,6 +427,7 @@ namespace N_dimensionalPerchOptimizer
                         break;
                     case 4:
                     case 5:
+                    case 6:
                         graphics = new Graphics(2);
                         break;
                     default:
@@ -435,6 +446,7 @@ namespace N_dimensionalPerchOptimizer
                         break;
                     case 4:
                     case 5:
+                    case 6:
                         graphics = new Graphics(2);
                         break;
                     default:
@@ -452,6 +464,7 @@ namespace N_dimensionalPerchOptimizer
                         break;
                     case 4:
                     case 5:
+                    case 6:
                         graphics.UpdateGraph(2);
                         break;
                     default:

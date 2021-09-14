@@ -54,6 +54,7 @@
     <Compile Include="AlgorithmTask3.cs" />
     <Compile Include="AlgorithmTask5.cs" />
     <Compile Include="AlgorithmTask6.cs" />
+    <Compile Include="AlgorithmTask7.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Ex6_Large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Ex7_Large.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
