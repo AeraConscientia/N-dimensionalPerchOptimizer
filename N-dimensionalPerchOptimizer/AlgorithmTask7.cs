@@ -86,7 +86,7 @@ namespace N_dimensionalPerchOptimizer
 
             // значение функционала какое-то не такое
             double res = 0;
-            res = -x1[N_dim / 2 - 1];
+            res = -x1[N_dim / 2];
             double res2 = 0;
             for (int t = 0; t < N_dim / 2; t++) // N_dim или N_dim-1 ?
             {
