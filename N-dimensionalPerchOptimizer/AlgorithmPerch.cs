@@ -192,24 +192,26 @@ namespace N_dimensionalPerchOptimizer
             result  = new Perch(N_dim);
 
             FormingPopulation();
-            
+
+            Console.WriteLine("Выполняемые итерации:");
             for (int currentIteration = 1; currentIteration < MaxCount; currentIteration++)
             {
+                Console.WriteLine(currentIteration);
                 MakeFlocks();
-                //WrongCoord();
+                WrongCoord();
 
                 MoveEPerchEFlock();
-                //WrongCoord();
+                WrongCoord();
 
                 FlocksSwim();
-                //WrongCoord();
+                WrongCoord();
 
                 this.currentIteration++;
             }
 
-            
+            WrongCoord();
             Recommutation(); // эта штука мне все портит.
-            //WrongCoord();
+            WrongCoord();
 
             perch = Pool[0];
             I(perch, true);
@@ -219,13 +221,13 @@ namespace N_dimensionalPerchOptimizer
         public void FlocksSwim() // +
         {
             BestFlockSwim();
-            //WrongCoord();
+            WrongCoord();
 
             PoorFlockSwim();
-            //WrongCoord();
+            WrongCoord();
 
             AverFlockSwim();
-            //WrongCoord();
+            WrongCoord();
 
             individuals = new List<Perch>();
 
@@ -311,19 +313,20 @@ namespace N_dimensionalPerchOptimizer
             result = Pool[0];
         }
 
-        //private void WrongCoord()
-        //{
-        //    for (int i = 0; i < NumFlocks; i++)
-        //    {
-        //        for (int j = 0; j < NumPerchInFlock; j++)
-        //        {
-        //            if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1)
-        //            {
-        //                throw new Exception();
-        //            }
-        //                
-        //        }
-        //    }
-        //}
+        private void WrongCoord()
+        {
+            for (int i = 0; i < NumFlocks; i++)
+            {
+                for (int j = 0; j < NumPerchInFlock; j++)
+                {
+                    if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1 || flock[i, j].coords[0] > 1 || flock[i, j].coords[1] < -1)
+                    {
+                        //int yyy = 0;
+                        throw new Exception();
+                    }
+                        
+                }
+            }
+        }
     }
 }

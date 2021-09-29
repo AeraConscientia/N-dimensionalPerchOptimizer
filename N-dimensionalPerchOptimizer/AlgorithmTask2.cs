@@ -326,29 +326,63 @@ namespace N_dimensionalPerchOptimizer
             }
             PoorLeaderSwim();
 
+            int NumTries = 0;
             for (int p = 0; p < N_dim / 3; p++)
-                while ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+            {
+                NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2)) && (NumTries < 10))
                 {
-                    for (int w = 0; w < N_dim/3; w++)
+                    for (int w = 0; w < N_dim / 3; w++)
                         flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
                     PoorLeaderSwim();
+                    NumTries += 1;
                 }
+                if ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+                {
+                    for (int pL = 0; pL < N_dim / 3; pL++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
+                    }
+                }
+            }
 
-            for (int p = N_dim / 3; p < 2*N_dim / 3; p++)
-                while ((flock[NumFlocks - 1, 0].coords[p] < U[1].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[1].Item2))
+            for (int p = N_dim / 3; p < 2 * N_dim / 3; p++)
+            {
+                NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < U[1].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[1].Item2)) && (NumTries < 10))
                 {
                     for (int w = N_dim / 3; w < 2 * N_dim / 3; w++)
                         flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
                     PoorLeaderSwim();
+                    NumTries += 1;
                 }
+                if ((flock[NumFlocks - 1, 0].coords[p] < U[1].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[1].Item2))
+                {
+                    for (int pL = N_dim / 3; pL < 2 * N_dim / 3; pL++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[pL] = U[1].Item1 + rand.NextDouble() * (U[1].Item2 - U[1].Item1);
+                    }
+                }
+            }
 
             for (int p = 2 * N_dim / 3; p < N_dim; p++)
-                while ((flock[NumFlocks - 1, 0].coords[p] < U[2].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[2].Item2))
+            {
+                NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < U[2].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[2].Item2)) && (NumTries < 10))
                 {
                     for (int w = 2 * N_dim / 3; w < N_dim; w++)
                         flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
                     PoorLeaderSwim();
+                    NumTries += 1;
                 }
+                if ((flock[NumFlocks - 1, 0].coords[p] < U[2].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[2].Item2))
+                {
+                    for (int pL = 2 * N_dim / 3; pL < 3 * N_dim / 3; pL++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[pL] = U[2].Item1 + rand.NextDouble() * (U[2].Item2 - U[2].Item1);
+                    }
+                }
+            }
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 

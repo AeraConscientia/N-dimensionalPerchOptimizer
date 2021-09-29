@@ -4,6 +4,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace N_dimensionalPerchOptimizer
 {
@@ -106,7 +107,7 @@ namespace N_dimensionalPerchOptimizer
             alfa    = Convert.ToDouble(dataGridView4.Rows[1].Cells[1].Value);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -189,22 +190,9 @@ namespace N_dimensionalPerchOptimizer
                 default:
                     return;
             }
-            //switch (tabControl2.SelectedIndex)
-            //{
-            //    case 0:
-            //    case 2:
-            //    case 3:
-            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
-            //        break;
-            //    case 1:
-            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim / 3);
-            //        break;
-            //    case 4:
-            //    case 5:
-            //        resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim / 2);
-            //        break;
-            //}
-            resultBest = algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim);
+           // resultBest = 
+           
+            await Task.Run(() => algPerch.StartAlg(MaxIteration, NumFlocks, NumPerchInFlock, NStep, lambda, alfa, PRmax, deltapr, N_dim)); 
 
             Result result = Result.GetInstance();
             
@@ -215,22 +203,40 @@ namespace N_dimensionalPerchOptimizer
 
             FileStream fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write);
             StreamWriter r = new StreamWriter(fs);
+            r.Write(String.Format(
+                @"
+1. ПОСТАНОВКА ЗАДАЧИ
+    Решаемая задача: Пример {0,3}", tabControl2.SelectedIndex + 1));
             switch (tabControl2.SelectedIndex) // первая часть записей протокола
             {
                 case 0:
-                    r.Write(String.Format(
-                @"
-1. ПОСТАНОВКА ЗАДАЧИ
-    Решаемая задача: Пример 1.
-    Количество точек разбиения (шагов): {0, 5}
+                case 2:
+                case 3:
+                    r.Write(String.Format(@"
+    Количество точек разбиения (шагов): {0, 5}", N_dim));
+                    switch (tabControl2.SelectedIndex)
+                    {
+                        case 0:
+                            r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
     Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_1.Text), Convert.ToDouble(textBoxU2_1.Text), Convert.ToDouble(textBoxX0_1.Text)));
+                            break;
+                        case 2:
+                            r.Write(String.Format(@"
+    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_3.Text), Convert.ToDouble(textBoxU2_3.Text), Convert.ToDouble(textBoxX0_3.Text)));
+                            break;
+                        case 3:
+                            r.Write(String.Format(@"
+    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_4.Text), Convert.ToDouble(textBoxU2_4.Text), Convert.ToDouble(textBoxX0_4.Text)));
+                            break;
+                    }
+                    
                     break;
                 case 1:
                     r.Write(String.Format(
                                     @"
-1. ПОСТАНОВКА ЗАДАЧИ
-    Решаемая задача: Пример 2.
     Количество точек разбиения (шагов): {0, 5}
                                         {1, 5:f1} <= u1 <= {2, 5:f1}
     Ограничения на управление:          {3, 5:f1} <= u2 <= {4, 5:f1}
@@ -245,14 +251,43 @@ namespace N_dimensionalPerchOptimizer
                                     Convert.ToDouble(textBoxU31.Text), Convert.ToDouble(textBoxU32.Text), 
                                     Convert.ToDouble(textBoxX11.Text), Convert.ToDouble(textBoxX22.Text), Convert.ToDouble(textBoxX33.Text)));
                     break;
-                case 2:
-                    r.Write(String.Format(
-                @"
-1. ПОСТАНОВКА ЗАДАЧИ
-    Решаемая задача: Пример 1.
-    Количество точек разбиения (шагов): {0, 5}
-    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_3.Text), Convert.ToDouble(textBoxU2_3.Text), Convert.ToDouble(textBoxX0_3.Text)));
+                case 4:
+                    r.Write(String.Format(@"
+    Количество точек разбиения (шагов): {0, 5}", N_dim / 2));
+                    switch (tabControl2.SelectedIndex)
+                    {
+                        case 4:
+                            r.Write(String.Format(
+                                    @"
+                                        {0, 5:f1} <= u <= {1, 5:f1}
+
+    Начальные условия:                  x1 ={2, 5:f1}
+                                        x2 ={3, 5:f1}",
+                                    Convert.ToDouble(textBoxU1_5.Text), Convert.ToDouble(textBoxU1_5.Text),
+                                    Convert.ToDouble(textBoxX01_5.Text), Convert.ToDouble(textBoxX02_5.Text)));
+                            break;
+                        case 5:
+                            r.Write(String.Format(
+                                    @"
+                                        {0, 5:f1} <= u <= {1, 5:f1}
+
+    Начальные условия:                  x1 ={2, 5:f1}
+                                        x2 ={3, 5:f1}",
+                                    Convert.ToDouble(textBoxU1_6.Text), Convert.ToDouble(textBoxU1_6.Text),
+                                    Convert.ToDouble(textBoxX01_6.Text), Convert.ToDouble(textBoxX02_6.Text)));
+                            break;
+                        case 6:
+                            r.Write(String.Format(
+                                    @"
+                                        {0, 5:f1} <= u <= {1, 5:f1}
+
+    Начальные условия:                  x1 ={2, 5:f1}
+                                        x2 ={3, 5:f1}",
+                                    Convert.ToDouble(textBoxU1_7.Text), Convert.ToDouble(textBoxU1_7.Text),
+                                    Convert.ToDouble(textBoxX01_7.Text), Convert.ToDouble(textBoxX02_7.Text)));
+                            break;
+                    }
+                    
                     break;
             }
             r.Write(String.Format(@"

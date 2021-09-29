@@ -262,13 +262,22 @@ namespace N_dimensionalPerchOptimizer
             PoorLeaderSwim();
             for (int p = 0; p < PoorLeaderCoord.Count; p++)
             {
-                while ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+                int NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2)) && (NumTries < 10))
                 {
                     for (int w = 0; w < N_dim; w++)
                     {
                         flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
                     }
                     PoorLeaderSwim();
+                    NumTries += 1;
+                }
+                if ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+                {
+                    for (int pL = 0; pL < N_dim; pL++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
+                    }
                 }
             }
 

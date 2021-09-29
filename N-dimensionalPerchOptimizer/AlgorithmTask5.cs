@@ -255,17 +255,42 @@ namespace N_dimensionalPerchOptimizer
 
         protected override void PoorFlockSwim() // +
         {
-            double PoorLeaderCoord0 = flock[NumFlocks - 1, 0].coords[0];
-            double PoorLeaderCoord1 = flock[NumFlocks - 1, 0].coords[1];
-            PoorLeaderSwim();
-            while ((flock[NumFlocks - 1, 0].coords[0] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[1] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[0] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[1] < U[0].Item1))
+            //double PoorLeaderCoord0 = flock[NumFlocks - 1, 0].coords[0];
+            //double PoorLeaderCoord1 = flock[NumFlocks - 1, 0].coords[1];
+            //PoorLeaderSwim();
+            //while ((flock[NumFlocks - 1, 0].coords[0] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[1] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[0] > U[0].Item2) || (flock[NumFlocks - 1, 0].coords[1] < U[0].Item1))
+            //{
+            //
+            //    flock[NumFlocks - 1, 0].coords[0] = PoorLeaderCoord0;
+            //    flock[NumFlocks - 1, 0].coords[1] = PoorLeaderCoord1;
+            //    PoorLeaderSwim();
+            //}
+            List<double> PoorLeaderCoord = new List<double>();
+            for (int p = 0; p < N_dim; p++)
             {
-
-                flock[NumFlocks - 1, 0].coords[0] = PoorLeaderCoord0;
-                flock[NumFlocks - 1, 0].coords[1] = PoorLeaderCoord1;
-                PoorLeaderSwim();
+                PoorLeaderCoord.Add(flock[NumFlocks - 1, 0].coords[p]);
             }
-
+            PoorLeaderSwim();
+            for (int p = 0; p < PoorLeaderCoord.Count; p++)
+            {
+                int NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2)) && (NumTries < 10))
+                {
+                    for (int w = 0; w < N_dim; w++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
+                    }
+                    PoorLeaderSwim();
+                    NumTries += 1;
+                }
+                if ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+                {
+                    for (int pL = 0; pL < N_dim; pL++)
+                    {
+                        flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
+                    }
+                }
+            }
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
 
             List<double> Min = new List<double>(N_dim);
