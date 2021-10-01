@@ -110,14 +110,6 @@ namespace N_dimensionalPerchOptimizer
                 x3.Add((double)x3[i] / (1f + 0.01 * perch.coords[N_dim / 3 + i] * (1 + perch.coords[2 * N_dim / 3 + i])));
             }
 
-            //for (int i = 1; i < N_dim/3; i++)
-            //{
-            //    x1.Add((double)x1[x1.Count - 1] / (1f + 0.01* perch.coords[i] * (3 + perch.coords[N_dim / 3 + i])) );
-            //    x2.Add(((double)x2[x2.Count - 1] + perch.coords[i] * x1[x1.Count - 1]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));
-            //    x3.Add((double)x3[x3.Count - 1] / (1f + 0.01 * perch.coords[N_dim / 3 + i] * (1 + perch.coords[2 * N_dim / 3 + i])));
-            //}
-                //x.Add(x[x.Count - 1] + perch.coords[i - 1]);
-
             double res1 = 0;
             double res2 = 0;
             for (int t = 0; t < N_dim/3; t++) // N_dim или N_dim-1 ?
@@ -353,13 +345,6 @@ namespace N_dimensionalPerchOptimizer
                     {
                         flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
                     }
-                //if ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
-                //{
-                //    for (int pL = 0; pL < N_dim / 3; pL++)
-                //    {
-                //        flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
-                //    }
-                //}
             }
 
             for (int p = N_dim / 3; p < 2 * N_dim / 3; p++)
@@ -388,13 +373,6 @@ namespace N_dimensionalPerchOptimizer
                     {
                         flock[NumFlocks - 1, 0].coords[pL] = U[1].Item1 + rand.NextDouble() * (U[1].Item2 - U[1].Item1);
                     }
-                //if ((flock[NumFlocks - 1, 0].coords[p] < U[1].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[1].Item2))
-                //{
-                //    for (int pL = N_dim / 3; pL < 2 * N_dim / 3; pL++)
-                //    {
-                //        flock[NumFlocks - 1, 0].coords[pL] = U[1].Item1 + rand.NextDouble() * (U[1].Item2 - U[1].Item1);
-                //    }
-                //}
             }
 
             for (int p = 2 * N_dim / 3; p < N_dim; p++)
@@ -424,14 +402,6 @@ namespace N_dimensionalPerchOptimizer
                     {
                         flock[NumFlocks - 1, 0].coords[pL] = U[2].Item1 + rand.NextDouble() * (U[2].Item2 - U[2].Item1);
                     }
-
-                //if ((flock[NumFlocks - 1, 0].coords[p] < U[2].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[2].Item2))
-                //{
-                //    for (int pL = 2 * N_dim / 3; pL < 3 * N_dim / 3; pL++)
-                //    {
-                //        flock[NumFlocks - 1, 0].coords[pL] = U[2].Item1 + rand.NextDouble() * (U[2].Item2 - U[2].Item1);
-                //    }
-                //}
             }
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]
