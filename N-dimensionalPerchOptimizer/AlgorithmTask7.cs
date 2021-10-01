@@ -50,24 +50,6 @@ namespace N_dimensionalPerchOptimizer
                     koefLevy.Add(L2 * Math.Cos(thetta2));
                 }
             }
-
-            //for (int i = N_dim / 2; i < N_dim; i++)
-            //{
-            //    if (i % 2 == 0)
-            //    {
-            //        R1 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[0].Item2 - U[0].Item1) * 100)) / 100f; // (0, b1-a1)
-            //        thetta1 = R1 * 2 * Math.PI;
-            //        L1 = Math.Pow(R1 + 0.0001f, -1 / lambda);
-            //        koefLevy.Add(L1 * Math.Sin(thetta1));
-            //    }
-            //    else
-            //    {
-            //        R2 = rand.Next(Convert.ToInt32(0), Convert.ToInt32((U[0].Item2 - U[0].Item1) * 100)) / 100f; // (0, b2-a2)
-            //        thetta2 = R2 * 2 * Math.PI;
-            //        L2 = Math.Pow(R2 + 0.0001f, -1 / lambda);
-            //        koefLevy.Add(L2 * Math.Cos(thetta2));
-            //    }
-            //}
             return koefLevy;
         }
 
@@ -271,14 +253,23 @@ namespace N_dimensionalPerchOptimizer
                     }
                     PoorLeaderSwim();
                     NumTries += 1;
+                    if (NumTries == 10)
+                        break;
                 }
-                if ((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2))
+                bool ok = false;
+                for (int d = 0; d < N_dim; ++d)
                 {
+                    if (flock[NumFlocks - 1, 0].coords[d] < U[0].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[0].Item2)
+                    {
+                        ok = true;
+                        break;
+                    }
+                }
+                if (ok)
                     for (int pL = 0; pL < N_dim; pL++)
                     {
                         flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
                     }
-                }
             }
 
             sigma = rand.NextDouble() * 0.4 + 0.1; // sigma [0.1,  0.5]

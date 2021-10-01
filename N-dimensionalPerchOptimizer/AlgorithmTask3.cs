@@ -193,6 +193,7 @@ namespace N_dimensionalPerchOptimizer
 
         protected override void PoorFlockSwim() // +
         {
+
             double PoorLeaderCoord0 = flock[NumFlocks - 1, 0].coords[0];
             double PoorLeaderCoord1 = flock[NumFlocks - 1, 0].coords[1];
             PoorLeaderSwim();
@@ -212,22 +213,7 @@ namespace N_dimensionalPerchOptimizer
             for (int j = 0; j < N_dim; j++)
                 Min.Add(Math.Min((flock[NumFlocks - 1, 0].coords[j] - U[0].Item1), (U[0].Item2 - flock[NumFlocks - 1, 0].coords[j])));
 
-            //for (int j = 1; j < NumPerchInFlock; j++)
-            //{
-            //    Perch perch = new Perch(N_dim);
-            //    for (int k = 0; k < N_dim; k++)
-            //    {
-            //        double tmp;
-            //        //do
-            //        //{
-            //            tmp = ((rand.NextDouble()) * 2 - 1) * (flock[NumFlocks - 1, 0].coords[k] - Min[k]);
-            //        //} while (tmp < U[0].Item1 || tmp > U[0].Item2);
-            //        perch.coords[k] = tmp;
-            //    }
-            //
-            //    I(perch);
-            //    flock[NumFlocks - 1, j] = perch;
-            //}
+            
 
             for (int j = 1; j < NumPerchInFlock; j++)
             {

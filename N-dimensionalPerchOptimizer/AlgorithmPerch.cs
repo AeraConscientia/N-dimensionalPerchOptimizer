@@ -198,20 +198,20 @@ namespace N_dimensionalPerchOptimizer
             {
                 Console.WriteLine(currentIteration);
                 MakeFlocks();
-                WrongCoord();
+                //WrongCoord();
 
                 MoveEPerchEFlock();
-                WrongCoord();
+                //WrongCoord();
 
                 FlocksSwim();
-                WrongCoord();
+                //WrongCoord();
 
                 this.currentIteration++;
             }
 
-            WrongCoord();
+            //WrongCoord();
             Recommutation(); // эта штука мне все портит.
-            WrongCoord();
+            //WrongCoord();
 
             perch = Pool[0];
             I(perch, true);
@@ -221,13 +221,13 @@ namespace N_dimensionalPerchOptimizer
         public void FlocksSwim() // +
         {
             BestFlockSwim();
-            WrongCoord();
+            //WrongCoord();
 
             PoorFlockSwim();
-            WrongCoord();
+            //WrongCoord();
 
             AverFlockSwim();
-            WrongCoord();
+            //WrongCoord();
 
             individuals = new List<Perch>();
 
