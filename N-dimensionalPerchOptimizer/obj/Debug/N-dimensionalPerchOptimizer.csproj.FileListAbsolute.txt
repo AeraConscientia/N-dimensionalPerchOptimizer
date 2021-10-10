@@ -19,3 +19,4 @@ C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimi
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.exe
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.pdb
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.Graphics.resources
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.ErrorGraph.resources

@@ -12,6 +12,7 @@ namespace N_dimensionalPerchOptimizer
 {
     public partial class Graphics : Form
     {
+        
         public Graphics(int dim)
         {
             InitializeComponent();
@@ -153,6 +154,44 @@ namespace N_dimensionalPerchOptimizer
                 default:
                     break;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonError_Click(object sender, EventArgs e)
+        {
+           // if (errorGraph == null)
+           //     switch (tabControl2.SelectedIndex)
+           //     {
+           //         case 6:
+           //             errorGraph = new ErrorGraph(6, N_dim);
+           //             break;
+           //         default:
+           //             break;
+           //     }
+           // if (errorGraph.IsDisposed)
+           //     switch (tabControl2.SelectedIndex)
+           //     {
+           //         case 6:
+           //             errorGraph = new ErrorGraph(6, N_dim);
+           //             break;
+           //         default:
+           //             break;
+           //     }
+           // switch (tabControl2.SelectedIndex)
+           // {
+           //     case 6:
+           //         errorGraph.UpdateErrorGraph(6, N_dim);
+           //         break;
+           //     default:
+           //         break;
+           // }
+           //
+           // if (errorGraph != null)
+           //     errorGraph.Show();
         }
     }
 }

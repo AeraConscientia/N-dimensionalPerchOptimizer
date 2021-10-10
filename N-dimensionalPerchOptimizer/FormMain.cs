@@ -14,6 +14,8 @@ namespace N_dimensionalPerchOptimizer
         public int N_dim = 0;
 
         Graphics graphics = null;
+        ErrorGraph errorGraph = null;
+
 
         private int MaxIteration = 0;
         private Perch resultBest;
@@ -44,6 +46,13 @@ namespace N_dimensionalPerchOptimizer
         {
             InitializeComponent();
             InitDataGridView();
+
+            ToolStripMenuItem rereshProtocol = new ToolStripMenuItem("Очистить протокол");
+            contextMenuStripProtocol.Items.AddRange(new[] { rereshProtocol});
+            rereshProtocol.Click += buttonRefresh_Click;
+            buttonProtocol.ContextMenuStrip = contextMenuStripProtocol;
+
+
             FileStream fs = new FileStream("protocol.txt", FileMode.Create, FileAccess.Write);
             fs.Close();
             fs = new FileStream("protocol.txt", FileMode.Append, FileAccess.Write); // деваааачки, какие костыли, я не могу T_T
@@ -449,6 +458,17 @@ namespace N_dimensionalPerchOptimizer
             r.Close();
             fs.Close();
 
+            if (errorGraph == null && tabControl2.SelectedIndex == 6)
+            {
+                errorGraph = new ErrorGraph(6, N_dim);
+            }
+            if (tabControl2.SelectedIndex == 6 && errorGraph.IsDisposed)
+            {
+                errorGraph = new ErrorGraph(6, N_dim);
+            }
+            if (tabControl2.SelectedIndex == 6)
+                errorGraph.UpdateErrorGraph(6, N_dim);
+
             if (graphics == null)
                 switch (tabControl2.SelectedIndex)
                 {
@@ -483,6 +503,8 @@ namespace N_dimensionalPerchOptimizer
                     case 5:
                     case 6:
                         graphics = new Graphics(2);
+                        if (tabControl2.SelectedIndex == 6)
+                            errorGraph = new ErrorGraph(6, N_dim);
                         break;
                     default:
                         break;
@@ -501,12 +523,17 @@ namespace N_dimensionalPerchOptimizer
                     case 5:
                     case 6:
                         graphics.UpdateGraph(2);
-                        break;
+                        //if (tabControl2.SelectedIndex == 6)
+                    break;
                     default:
                         break;
                 }
             
             graphics.Show();
+
+            if (tabControl2.SelectedIndex == 6)
+                if (errorGraph.IsDisposed == false && errorGraph != null)
+                    errorGraph.Show();
 
         }
 
@@ -546,6 +573,12 @@ namespace N_dimensionalPerchOptimizer
 
             labelMinI.Text = "---";
 
+        }
+
+        private void FormMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                buttonStartAlg.PerformClick();
         }
     }
 }

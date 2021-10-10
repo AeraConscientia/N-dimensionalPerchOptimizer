@@ -82,10 +82,10 @@
             this.tabControlX.Controls.Add(this.tabPage1);
             this.tabControlX.Controls.Add(this.tabPage2);
             this.tabControlX.Controls.Add(this.tabPage5);
-            this.tabControlX.Location = new System.Drawing.Point(12, 6);
+            this.tabControlX.Location = new System.Drawing.Point(12, 14);
             this.tabControlX.Name = "tabControlX";
             this.tabControlX.SelectedIndex = 0;
-            this.tabControlX.Size = new System.Drawing.Size(576, 332);
+            this.tabControlX.Size = new System.Drawing.Size(572, 323);
             this.tabControlX.TabIndex = 0;
             // 
             // tabPage1
@@ -94,7 +94,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(568, 306);
+            this.tabPage1.Size = new System.Drawing.Size(564, 297);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "X1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chartX_1.Legends.Add(legend1);
-            this.chartX_1.Location = new System.Drawing.Point(-4, 14);
+            this.chartX_1.Location = new System.Drawing.Point(3, 5);
             this.chartX_1.Name = "chartX_1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -116,7 +116,7 @@
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Series1";
             this.chartX_1.Series.Add(series1);
-            this.chartX_1.Size = new System.Drawing.Size(560, 277);
+            this.chartX_1.Size = new System.Drawing.Size(560, 291);
             this.chartX_1.TabIndex = 0;
             this.chartX_1.Text = "chart1";
             // 
@@ -126,7 +126,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(568, 306);
+            this.tabPage2.Size = new System.Drawing.Size(564, 297);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "X2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@
             legend2.Enabled = false;
             legend2.Name = "Legend1";
             this.chartX_2.Legends.Add(legend2);
-            this.chartX_2.Location = new System.Drawing.Point(-4, 14);
+            this.chartX_2.Location = new System.Drawing.Point(3, 5);
             this.chartX_2.Name = "chartX_2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -148,7 +148,7 @@
             series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series2.Name = "Series1";
             this.chartX_2.Series.Add(series2);
-            this.chartX_2.Size = new System.Drawing.Size(560, 300);
+            this.chartX_2.Size = new System.Drawing.Size(560, 291);
             this.chartX_2.TabIndex = 1;
             this.chartX_2.Text = "chart1";
             // 
@@ -157,7 +157,7 @@
             this.tabPage5.Controls.Add(this.chartX_3);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(568, 306);
+            this.tabPage5.Size = new System.Drawing.Size(564, 297);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "X3";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             legend3.Enabled = false;
             legend3.Name = "Legend1";
             this.chartX_3.Legends.Add(legend3);
-            this.chartX_3.Location = new System.Drawing.Point(-4, 14);
+            this.chartX_3.Location = new System.Drawing.Point(3, 5);
             this.chartX_3.Name = "chartX_3";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -179,7 +179,7 @@
             series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series3.Name = "Series1";
             this.chartX_3.Series.Add(series3);
-            this.chartX_3.Size = new System.Drawing.Size(560, 300);
+            this.chartX_3.Size = new System.Drawing.Size(560, 291);
             this.chartX_3.TabIndex = 2;
             this.chartX_3.Text = "chart1";
             // 
@@ -213,7 +213,7 @@
             legend4.Enabled = false;
             legend4.Name = "Legend2";
             this.chartU_1.Legends.Add(legend4);
-            this.chartU_1.Location = new System.Drawing.Point(-8, 3);
+            this.chartU_1.Location = new System.Drawing.Point(3, 5);
             this.chartU_1.Name = "chartU_1";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -222,7 +222,7 @@
             series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series4.Name = "Series1";
             this.chartU_1.Series.Add(series4);
-            this.chartU_1.Size = new System.Drawing.Size(564, 300);
+            this.chartU_1.Size = new System.Drawing.Size(560, 291);
             this.chartU_1.TabIndex = 1;
             this.chartU_1.Text = "chart1";
             // 
@@ -245,7 +245,7 @@
             legend5.Enabled = false;
             legend5.Name = "Legend2";
             this.chartU_2.Legends.Add(legend5);
-            this.chartU_2.Location = new System.Drawing.Point(-8, 3);
+            this.chartU_2.Location = new System.Drawing.Point(3, 5);
             this.chartU_2.Name = "chartU_2";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -254,7 +254,7 @@
             series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series5.Name = "Series1";
             this.chartU_2.Series.Add(series5);
-            this.chartU_2.Size = new System.Drawing.Size(564, 300);
+            this.chartU_2.Size = new System.Drawing.Size(560, 291);
             this.chartU_2.TabIndex = 2;
             this.chartU_2.Text = "chart1";
             // 
@@ -276,7 +276,7 @@
             legend6.Enabled = false;
             legend6.Name = "Legend2";
             this.chartU_3.Legends.Add(legend6);
-            this.chartU_3.Location = new System.Drawing.Point(-8, 3);
+            this.chartU_3.Location = new System.Drawing.Point(3, 5);
             this.chartU_3.Name = "chartU_3";
             series6.ChartArea = "ChartArea1";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -285,7 +285,7 @@
             series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series6.Name = "Series1";
             this.chartU_3.Series.Add(series6);
-            this.chartU_3.Size = new System.Drawing.Size(564, 300);
+            this.chartU_3.Size = new System.Drawing.Size(560, 291);
             this.chartU_3.TabIndex = 3;
             this.chartU_3.Text = "chart1";
             // 
@@ -294,7 +294,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(600, 676);
+            this.ClientSize = new System.Drawing.Size(595, 682);
             this.Controls.Add(this.tabControlU);
             this.Controls.Add(this.tabControlX);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -58,6 +58,12 @@
     <Compile Include="AlgorithmTask5.cs" />
     <Compile Include="AlgorithmTask6.cs" />
     <Compile Include="AlgorithmTask7.cs" />
+    <Compile Include="ErrorGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorGraph.Designer.cs">
+      <DependentUpon>ErrorGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Result.cs" />
     <Compile Include="Vector.cs" />
+    <EmbeddedResource Include="ErrorGraph.resx">
+      <DependentUpon>ErrorGraph.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

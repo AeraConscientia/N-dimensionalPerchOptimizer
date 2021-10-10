@@ -9,3 +9,4 @@ K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalP
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.csproj.CoreCompileInputs.cache
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.exe
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N-dimensionalPerchOptimizer.pdb
+K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Release\N_dimensionalPerchOptimizer.ErrorGraph.resources

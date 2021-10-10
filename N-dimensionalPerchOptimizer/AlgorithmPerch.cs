@@ -313,20 +313,38 @@ namespace N_dimensionalPerchOptimizer
             result = Pool[0];
         }
 
-        private void WrongCoord()
-        {
-            for (int i = 0; i < NumFlocks; i++)
-            {
-                for (int j = 0; j < NumPerchInFlock; j++)
-                {
-                    if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1 || flock[i, j].coords[0] > 1 || flock[i, j].coords[1] < -1)
-                    {
-                        //int yyy = 0;
-                        throw new Exception();
-                    }
-                        
-                }
-            }
-        }
+        //private void WrongCoord()
+        //{
+        //    for (int i = 0; i < NumFlocks; i++)
+        //    {
+        //        for (int j = 0; j < NumPerchInFlock; j++)
+        //        {
+        //            for (int k = 0; k < N_dim / 3; k++)
+        //            {
+        //                if (flock[i, j].coords[k] < 0 || flock[i, j].coords[k] > 4)
+        //                {
+        //                    //int yyy = 0;
+        //                    throw new Exception();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void WrongCoord()
+        //{
+        //    for (int i = 0; i < NumFlocks; i++)
+        //    {
+        //        for (int j = 0; j < NumPerchInFlock; j++)
+        //        {
+        //            if (flock[i, j].coords[0] < -1 || flock[i, j].coords[1] > 1 || flock[i, j].coords[0] > 1 || flock[i, j].coords[1] < -1)
+        //            {
+        //                //int yyy = 0;
+        //                throw new Exception();
+        //            }
+        //
+        //        }
+        //    }
+        //}
     }
 }
