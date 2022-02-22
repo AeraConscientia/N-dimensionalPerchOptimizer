@@ -196,6 +196,15 @@ namespace N_dimensionalPerchOptimizer
                     algPerch = new AlgorithmTask7(U1_7, U2_7, x01_7, x02_7);
 
                     break;
+                case 7:
+                    N_dim = 2 * Convert.ToInt32(numericUpDownN8.Value);
+                    double U1_8 = Convert.ToDouble(textBoxU1_8.Text); double U2_8 = Convert.ToDouble(textBoxU2_8.Text);
+
+                    double x01_8 = Convert.ToDouble(textBoxX01_8.Text); double x02_8 = Convert.ToDouble(textBoxX02_8.Text);
+
+                    algPerch = new AlgorithmTask8(U1_8, U2_8, x01_8, x02_8);
+
+                    break;
                 default:
                     return;
             }
@@ -218,9 +227,9 @@ namespace N_dimensionalPerchOptimizer
     Решаемая задача: Пример {0,3}", tabControl2.SelectedIndex + 1));
             switch (tabControl2.SelectedIndex) // первая часть записей протокола
             {
-                case 0:
-                case 2:
-                case 3:
+                case 0: // Пример 1
+                case 2: // Пример 3
+                case 3: // Пример 4
                     r.Write(String.Format(@"
     Количество точек разбиения (шагов): {0, 5}", N_dim));
                     switch (tabControl2.SelectedIndex)
@@ -243,7 +252,7 @@ namespace N_dimensionalPerchOptimizer
                     }
                     
                     break;
-                case 1:
+                case 1: // Пример 2
                     r.Write(String.Format(
                                     @"
     Количество точек разбиения (шагов): {0, 5}
@@ -260,15 +269,17 @@ namespace N_dimensionalPerchOptimizer
                                     Convert.ToDouble(textBoxU31.Text), Convert.ToDouble(textBoxU32.Text), 
                                     Convert.ToDouble(textBoxX11.Text), Convert.ToDouble(textBoxX22.Text), Convert.ToDouble(textBoxX33.Text)));
                     break;
-                case 4:
+                case 4: // Пример 5
+                case 5: // Пример 6
+                case 6: // Пример 7
+                case 7: // Пример 8
                     r.Write(String.Format(@"
     Количество точек разбиения (шагов): {0, 5}", N_dim / 2));
                     switch (tabControl2.SelectedIndex)
                     {
                         case 4:
                             r.Write(String.Format(
-                                    @"
-                                        {0, 5:f1} <= u <= {1, 5:f1}
+                                    @"\n{0, 5:f1} <= u <= {1, 5:f1}
 
     Начальные условия:                  x1 ={2, 5:f1}
                                         x2 ={3, 5:f1}",
@@ -294,6 +305,16 @@ namespace N_dimensionalPerchOptimizer
                                         x2 ={3, 5:f1}",
                                     Convert.ToDouble(textBoxU1_7.Text), Convert.ToDouble(textBoxU1_7.Text),
                                     Convert.ToDouble(textBoxX01_7.Text), Convert.ToDouble(textBoxX02_7.Text)));
+                            break;
+                        case 7:
+                            r.Write(String.Format(
+                                    @"
+                                        {0, 5:f1} <= u <= {1, 5:f1}
+
+    Начальные условия:                  x1 ={2, 5:f1}
+                                        x2 ={3, 5:f1}",
+                                    Convert.ToDouble(textBoxU1_8.Text), Convert.ToDouble(textBoxU1_8.Text),
+                                    Convert.ToDouble(textBoxX01_8.Text), Convert.ToDouble(textBoxX02_8.Text)));
                             break;
                     }
                     
@@ -348,6 +369,7 @@ namespace N_dimensionalPerchOptimizer
                 case 4:     // двумерный случай
                 case 5:
                 case 6:
+                case 7:
                     X   = new object[N_dim / 2 + 1];
                     X2  = new object[N_dim / 2 + 1];
                     U   = new object[N_dim / 2];
@@ -483,6 +505,7 @@ namespace N_dimensionalPerchOptimizer
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                         graphics = new Graphics(2);
                         break;
                     default:
@@ -502,6 +525,7 @@ namespace N_dimensionalPerchOptimizer
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                         graphics = new Graphics(2);
                         if (tabControl2.SelectedIndex == 6)
                             errorGraph = new ErrorGraph(6, N_dim);
@@ -522,6 +546,7 @@ namespace N_dimensionalPerchOptimizer
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                         graphics.UpdateGraph(2);
                         //if (tabControl2.SelectedIndex == 6)
                     break;

@@ -106,7 +106,7 @@ namespace N_dimensionalPerchOptimizer
             for (int i = 0; i < N_dim / 3; i++) // тут решилась проблема с количеством x
             {
                 x1.Add((double)x1[i] / (1f + 0.01 * perch.coords[i] * (3 + perch.coords[N_dim / 3 + i])));
-                x2.Add(((double)x2[i] + perch.coords[i] * x1[i]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));
+                x2.Add(((double)x2[i] + perch.coords[i] * x1[i+1]) / (1f + perch.coords[i] * (1f + perch.coords[N_dim / 3 + i])));
                 x3.Add((double)x3[i] / (1f + 0.01 * perch.coords[N_dim / 3 + i] * (1 + perch.coords[2 * N_dim / 3 + i])));
             }
 
@@ -138,6 +138,7 @@ namespace N_dimensionalPerchOptimizer
                 }
             }
         }
+
 
         public override void MoveEPerchEFlock() // +
         {
@@ -240,6 +241,7 @@ namespace N_dimensionalPerchOptimizer
                 for (int k = 0; k < moveCount; ++k)
                 {
                     Perch perch = new Perch(N_dim);
+
                     for (int m = 0; m < N_dim/3; m++)
                     {
                         double tmp = flock[l, 0].coords[m] + k * ((flock[0, 0].coords[m] - flock[l, 0].coords[m]) / (NStep));
@@ -309,12 +311,65 @@ namespace N_dimensionalPerchOptimizer
             SortFlocks();
         }
 
-        //private void PoorLeaderSwimTask2(int N_dimStart)
-        //{
-        //    List<double> koefLevy = Levy();
-        //    for (int i = 0; i < N_dim / 3; i++)
-        //        flock[NumFlocks - 1, 0].coords[i] = flock[NumFlocks - 1, 0].coords[i] + (alfa / currentIteration) * koefLevy[i];
-        //}
+        /// <summary>Леви специально для задачи с 3 управлениями.</summary>
+        private void PoorLeaderSwimTask2(int N_dimStart, int N_dimEnd)
+        {
+            List<double> koefLevy = Levy();
+            for (int i = N_dimStart; i < N_dimEnd; i++)
+                flock[NumFlocks - 1, 0].coords[i] = flock[NumFlocks - 1, 0].coords[i] + (alfa / currentIteration) * koefLevy[i];
+        }
+
+        private void CheckCoords(int i, int j, int N_dimStart, int N_dimStop, double ULeft, double URight, int moveCount)
+        {
+            for (int p = N_dimStart; p < N_dimStop; p++)
+            {
+                double tmp = flock[i, j].coords[p] + moveCount * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
+                if (tmp < ULeft || tmp > URight)
+                    tmp = flock[i, j].coords[p];
+                perch.coords[p] = tmp;
+            }
+        }
+
+
+        /// <summary>Проверка, есть ли выход за границы после Леви. Если есть - применяется равномерное распределение</summary>
+        private void PoorFlockSwimCheckCoords(int N_dimStart, int N_dimStop, double ULeft, double URight)
+        {
+            bool ok = false;
+            for (int d = N_dimStart; d < N_dimStop; ++d)
+            {
+                if (flock[NumFlocks - 1, 0].coords[d] < ULeft || flock[NumFlocks - 1, 0].coords[d] > URight)// ||flock[NumFlocks - 1, 0].coords[d]  U[0].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[0].Item2)
+                {
+                    ok = true;
+                    break;
+                }
+            }
+
+            if (ok == true)
+                for (int pL = N_dimStart; pL < N_dimStop; pL++)
+                {
+                    flock[NumFlocks - 1, 0].coords[pL] = ULeft + rand.NextDouble() * (URight - U[0].Item1);
+                }
+        }
+
+        /// <summary>Попытка сделать через распределение Леви</summary>
+        private void PoorFlockSwimLevy(int N_dimStart, int N_dimStop, double ULeft, double URight, List<double> PoorLeaderCoord)
+        {
+            for (int p = N_dimStart; p < N_dimStop; p++)
+            {
+                int NumTries = 0;
+                while (((flock[NumFlocks - 1, 0].coords[p] < ULeft) || (flock[NumFlocks - 1, 0].coords[p] > URight)))// && (NumTries < 10))
+                {
+                    for (int w = N_dimStart; w < N_dimStop; w++)
+                        flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
+
+                    PoorLeaderSwimTask2(N_dimStart, N_dimStop);
+
+                    NumTries += 1;
+                    if (NumTries == 10)
+                        break;
+                }
+            }
+        }
 
         protected override void PoorFlockSwim() // +
         {
@@ -324,112 +379,18 @@ namespace N_dimensionalPerchOptimizer
                 PoorLeaderCoord.Add(flock[NumFlocks - 1, 0].coords[p]);
             }
 
-            int NumTries = 0;
-            for (int p = 0; p < N_dim / 3; p++)
-            {
-                NumTries = 0;
-                while (((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2)))// && (NumTries < 10))
-                {
-                    for (int w = 0; w < N_dim / 3; w++)
-                        flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
-
-                    List<double> koefLevy = Levy();
-                    for (int q = 0; q < N_dim / 3; q++)
-                        flock[NumFlocks - 1, 0].coords[q] = flock[NumFlocks - 1, 0].coords[q] + (alfa / currentIteration) * koefLevy[q];
-
-
-                    NumTries += 1;
-                    if (NumTries == 10)
-                        break;
-                }
-                
-            }
-            bool ok = false;
-            for (int d = 0; d < N_dim / 3; ++d)
-            {
-                if (flock[NumFlocks - 1, 0].coords[d] < U[0].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[0].Item2)// ||flock[NumFlocks - 1, 0].coords[d]  U[0].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[0].Item2)
-                {
-                    ok = true;
-                    break;
-                }
-            }
-
-            if (ok == true)
-                for (int pL = 0; pL < N_dim / 3; pL++)
-                {
-                    flock[NumFlocks - 1, 0].coords[pL] = U[0].Item1 + rand.NextDouble() * (U[0].Item2 - U[0].Item1);
-                }
+            PoorFlockSwimLevy(          0,          N_dim / 3,      U[0].Item1,     U[0].Item2, PoorLeaderCoord);
+            PoorFlockSwimCheckCoords(   0,          N_dim / 3,      U[0].Item1,     U[0].Item2);
             //WrongLeader();
             //WrongCoord();
+            PoorFlockSwimLevy(          N_dim / 3, 2 * N_dim / 3,   U[1].Item1,     U[1].Item2, PoorLeaderCoord);
+            PoorFlockSwimCheckCoords(   N_dim / 3, 2 * N_dim / 3,   U[1].Item1,     U[1].Item2);
 
-            for (int p = N_dim / 3; p < 2 * N_dim / 3; p++)
-            {
-                NumTries = 0;
-                while (((flock[NumFlocks - 1, 0].coords[p] < U[1].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[1].Item2)))// && (NumTries < 10))
-                {
-                    for (int w = N_dim / 3; w < 2 * N_dim / 3; w++)
-                        flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
-
-                    List<double> koefLevy = Levy();
-                    for (int q = N_dim / 3; q < 2 * N_dim / 3; q++)
-                        flock[NumFlocks - 1, 0].coords[q] = flock[NumFlocks - 1, 0].coords[q] + (alfa / currentIteration) * koefLevy[q];
-
-                    NumTries += 1;
-                    if (NumTries == 10)
-                        break;
-                }
-                
-            }
-
-            ok = false;
-            for (int d = N_dim / 3; d < 2 * N_dim / 3; ++d)
-            {
-                if (flock[NumFlocks - 1, 0].coords[d] < U[1].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[1].Item2)
-                {
-                    ok = true;
-                    break;
-                }
-            }
-            if (ok == true)
-                for (int pL = N_dim / 3; pL < 2 * N_dim / 3; pL++)
-                {
-                    flock[NumFlocks - 1, 0].coords[pL] = U[1].Item1 + rand.NextDouble() * (U[1].Item2 - U[1].Item1);
-                }
             //WrongLeader();
             //WrongCoord();
-            for (int p = 2 * N_dim / 3; p < N_dim; p++)
-            {
-                NumTries = 0;
-                while (((flock[NumFlocks - 1, 0].coords[p] < U[2].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[2].Item2)))// && (NumTries < 10))
-                {
-                    for (int w = 2 * N_dim / 3; w < N_dim; w++)
-                        flock[NumFlocks - 1, 0].coords[w] = PoorLeaderCoord[w];
+            PoorFlockSwimLevy(       2 * N_dim / 3,         N_dim,  U[2].Item1,     U[2].Item2, PoorLeaderCoord);
+            PoorFlockSwimCheckCoords(2 * N_dim / 3,         N_dim,  U[2].Item1,     U[2].Item2);
 
-                    List<double> koefLevy = Levy();
-                    for (int q = 2 * N_dim / 3; q < N_dim; q++)
-                        flock[NumFlocks - 1, 0].coords[q] = flock[NumFlocks - 1, 0].coords[q] + (alfa / currentIteration) * koefLevy[q];
-
-                    NumTries += 1;
-                    if (NumTries == 10)
-                        break;
-                }
-
-                
-            }
-            ok = false;
-            for (int d = 2 * N_dim / 3; d < N_dim; ++d)
-            {
-                if (flock[NumFlocks - 1, 0].coords[d] < U[2].Item1 || flock[NumFlocks - 1, 0].coords[d] > U[2].Item2)
-                {
-                    ok = true;
-                    break;
-                }
-            }
-            if (ok == true)
-                for (int pL = 2 * N_dim / 3; pL < N_dim; pL++)
-                {
-                    flock[NumFlocks - 1, 0].coords[pL] = U[2].Item1 + rand.NextDouble() * (U[2].Item2 - U[2].Item1);
-                }
 
             //WrongLeader();
             //WrongCoord();
@@ -477,27 +438,11 @@ namespace N_dimensionalPerchOptimizer
                 for (int k = 0; k < moveCount; ++k)
                 {
                     Perch perch = new Perch(N_dim);
-                    for (int p = 0; p < N_dim/3; p++)
-                    {
-                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
-                        if (tmp < U[0].Item1 || tmp > U[0].Item2)
-                            tmp = flock[i, j].coords[p];
-                        perch.coords[p] = tmp;
-                    }
-                    for (int p = N_dim/3; p < 2*N_dim/3; p++)
-                    {
-                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
-                        if (tmp < U[1].Item1 || tmp > U[1].Item2)
-                            tmp = flock[i, j].coords[p];
-                        perch.coords[p] = tmp;
-                    }
-                    for (int p = 2*N_dim/3; p < N_dim; p++)
-                    {
-                        double tmp = flock[i, j].coords[p] + k * ((flock[i, 0].coords[p] - flock[i, j].coords[p]) / (NStep));
-                        if (tmp < U[2].Item1 || tmp > U[2].Item2)
-                            tmp = flock[i, j].coords[p];
-                        perch.coords[p] = tmp;
-                    }
+
+                    CheckCoords(i, j,               0,      N_dim / 3, U[0].Item1, U[0].Item2, k);
+                    CheckCoords(i, j,       N_dim / 3,  2 * N_dim / 3, U[1].Item1, U[1].Item2, k);
+                    CheckCoords(i, j,   2 * N_dim / 3,          N_dim, U[2].Item1, U[2].Item2, k);
+
                     I(perch);
                     move.Add(perch);
                 }
@@ -508,6 +453,10 @@ namespace N_dimensionalPerchOptimizer
             //WrongCoord();
             Sort(flock, i);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // часть для проверки результатов
+
         //private void WrongCoord()
         //{
         //    for (int i = 0; i < NumFlocks; i++)

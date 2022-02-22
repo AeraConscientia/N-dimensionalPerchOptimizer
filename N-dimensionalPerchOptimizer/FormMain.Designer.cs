@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.textBoxU1_1 = new System.Windows.Forms.TextBox();
             this.textBoxU2_1 = new System.Windows.Forms.TextBox();
@@ -145,7 +145,6 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.textBoxU1_7 = new System.Windows.Forms.TextBox();
             this.textBoxU2_7 = new System.Windows.Forms.TextBox();
-            this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numericUpDownN7 = new System.Windows.Forms.NumericUpDown();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
@@ -154,10 +153,25 @@
             this.pictureBox27 = new System.Windows.Forms.PictureBox();
             this.textBoxX02_7 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.labelMinI = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStripProtocol = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.pictureBox28 = new System.Windows.Forms.PictureBox();
+            this.textBoxU1_8 = new System.Windows.Forms.TextBox();
+            this.textBoxU2_8 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numericUpDownN8 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.pictureBox29 = new System.Windows.Forms.PictureBox();
+            this.textBoxX01_8 = new System.Windows.Forms.TextBox();
+            this.pictureBox30 = new System.Windows.Forms.PictureBox();
+            this.textBoxX02_8 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.pictureBox31 = new System.Windows.Forms.PictureBox();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN1)).BeginInit();
@@ -220,11 +234,19 @@
             this.tabPage8.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN7)).BeginInit();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            this.tabPage9.SuspendLayout();
+            this.groupBox17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN8)).BeginInit();
+            this.groupBox18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxU1_1
@@ -350,14 +372,14 @@
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView4.Location = new System.Drawing.Point(16, 211);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -367,8 +389,8 @@
             // 
             // Column6
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle19;
             this.Column6.Frozen = true;
             this.Column6.HeaderText = "Характеристика";
             this.Column6.Name = "Column6";
@@ -379,8 +401,8 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle20;
             this.Column7.HeaderText = "Значения";
             this.Column7.Name = "Column7";
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -396,15 +418,15 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.NullValue = null;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.NullValue = null;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView2.Location = new System.Drawing.Point(16, 23);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -415,8 +437,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle22;
             this.Column4.Frozen = true;
             this.Column4.HeaderText = "Характеристика";
             this.Column4.Name = "Column4";
@@ -427,10 +449,10 @@
             // 
             // Column5
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "N0";
-            dataGridViewCellStyle17.NullValue = null;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle23.Format = "N0";
+            dataGridViewCellStyle23.NullValue = null;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle23;
             this.Column5.HeaderText = "Значения";
             this.Column5.Name = "Column5";
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -544,6 +566,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
+            this.tabControl2.Controls.Add(this.tabPage9);
             this.tabControl2.Location = new System.Drawing.Point(14, -1);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -810,7 +833,7 @@
             this.numericUpDownN2.Size = new System.Drawing.Size(71, 20);
             this.numericUpDownN2.TabIndex = 55;
             this.numericUpDownN2.Value = new decimal(new int[] {
-            100,
+            20,
             0,
             0,
             0});
@@ -1429,11 +1452,11 @@
             // 
             this.tabPage8.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage8.Controls.Add(this.groupBox15);
-            this.tabPage8.Controls.Add(this.pictureBox25);
             this.tabPage8.Controls.Add(this.label14);
             this.tabPage8.Controls.Add(this.numericUpDownN7);
             this.tabPage8.Controls.Add(this.groupBox16);
             this.tabPage8.Controls.Add(this.label10);
+            this.tabPage8.Controls.Add(this.pictureBox25);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(723, 358);
@@ -1479,17 +1502,6 @@
             this.textBoxU2_7.Size = new System.Drawing.Size(64, 21);
             this.textBoxU2_7.TabIndex = 48;
             this.textBoxU2_7.Text = "100";
-            // 
-            // pictureBox25
-            // 
-            this.pictureBox25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox25.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.Ex7_Large;
-            this.pictureBox25.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox25.InitialImage")));
-            this.pictureBox25.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(723, 230);
-            this.pictureBox25.TabIndex = 69;
-            this.pictureBox25.TabStop = false;
             // 
             // label14
             // 
@@ -1581,6 +1593,17 @@
             this.label10.TabIndex = 71;
             this.label10.Text = "N = ";
             // 
+            // pictureBox25
+            // 
+            this.pictureBox25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox25.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.Ex7_Large;
+            this.pictureBox25.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox25.InitialImage")));
+            this.pictureBox25.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(723, 230);
+            this.pictureBox25.TabIndex = 69;
+            this.pictureBox25.TabStop = false;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -1605,6 +1628,163 @@
             // 
             this.contextMenuStripProtocol.Name = "contextMenuStripProtocol";
             this.contextMenuStripProtocol.Size = new System.Drawing.Size(61, 4);
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage9.Controls.Add(this.groupBox17);
+            this.tabPage9.Controls.Add(this.label15);
+            this.tabPage9.Controls.Add(this.numericUpDownN8);
+            this.tabPage9.Controls.Add(this.groupBox18);
+            this.tabPage9.Controls.Add(this.label16);
+            this.tabPage9.Controls.Add(this.pictureBox31);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(723, 358);
+            this.tabPage9.TabIndex = 7;
+            this.tabPage9.Text = "Пример 8";
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.pictureBox28);
+            this.groupBox17.Controls.Add(this.textBoxU1_8);
+            this.groupBox17.Controls.Add(this.textBoxU2_8);
+            this.groupBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox17.Location = new System.Drawing.Point(6, 291);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(512, 65);
+            this.groupBox17.TabIndex = 80;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Ограничения на управление";
+            // 
+            // pictureBox28
+            // 
+            this.pictureBox28.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.u;
+            this.pictureBox28.Location = new System.Drawing.Point(78, 30);
+            this.pictureBox28.Name = "pictureBox28";
+            this.pictureBox28.Size = new System.Drawing.Size(43, 17);
+            this.pictureBox28.TabIndex = 57;
+            this.pictureBox28.TabStop = false;
+            // 
+            // textBoxU1_8
+            // 
+            this.textBoxU1_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxU1_8.Location = new System.Drawing.Point(12, 28);
+            this.textBoxU1_8.Name = "textBoxU1_8";
+            this.textBoxU1_8.Size = new System.Drawing.Size(64, 21);
+            this.textBoxU1_8.TabIndex = 49;
+            this.textBoxU1_8.Text = "-5";
+            // 
+            // textBoxU2_8
+            // 
+            this.textBoxU2_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxU2_8.Location = new System.Drawing.Point(124, 28);
+            this.textBoxU2_8.Name = "textBoxU2_8";
+            this.textBoxU2_8.Size = new System.Drawing.Size(64, 21);
+            this.textBoxU2_8.TabIndex = 48;
+            this.textBoxU2_8.Text = "5";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(556, 243);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(167, 17);
+            this.label15.TabIndex = 78;
+            this.label15.Text = "Число шагов разбиения";
+            // 
+            // numericUpDownN8
+            // 
+            this.numericUpDownN8.Enabled = false;
+            this.numericUpDownN8.Location = new System.Drawing.Point(649, 263);
+            this.numericUpDownN8.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDownN8.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDownN8.Name = "numericUpDownN8";
+            this.numericUpDownN8.Size = new System.Drawing.Size(71, 20);
+            this.numericUpDownN8.TabIndex = 79;
+            this.numericUpDownN8.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.pictureBox29);
+            this.groupBox18.Controls.Add(this.textBoxX01_8);
+            this.groupBox18.Controls.Add(this.pictureBox30);
+            this.groupBox18.Controls.Add(this.textBoxX02_8);
+            this.groupBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox18.Location = new System.Drawing.Point(6, 231);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(512, 57);
+            this.groupBox18.TabIndex = 76;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Начальное положение";
+            // 
+            // pictureBox29
+            // 
+            this.pictureBox29.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.x2;
+            this.pictureBox29.Location = new System.Drawing.Point(199, 25);
+            this.pictureBox29.Name = "pictureBox29";
+            this.pictureBox29.Size = new System.Drawing.Size(51, 17);
+            this.pictureBox29.TabIndex = 58;
+            this.pictureBox29.TabStop = false;
+            // 
+            // textBoxX01_8
+            // 
+            this.textBoxX01_8.Location = new System.Drawing.Point(86, 24);
+            this.textBoxX01_8.Name = "textBoxX01_8";
+            this.textBoxX01_8.Size = new System.Drawing.Size(47, 23);
+            this.textBoxX01_8.TabIndex = 40;
+            this.textBoxX01_8.Text = "3";
+            // 
+            // pictureBox30
+            // 
+            this.pictureBox30.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.x1;
+            this.pictureBox30.Location = new System.Drawing.Point(34, 27);
+            this.pictureBox30.Name = "pictureBox30";
+            this.pictureBox30.Size = new System.Drawing.Size(51, 17);
+            this.pictureBox30.TabIndex = 57;
+            this.pictureBox30.TabStop = false;
+            // 
+            // textBoxX02_8
+            // 
+            this.textBoxX02_8.Location = new System.Drawing.Point(251, 23);
+            this.textBoxX02_8.Name = "textBoxX02_8";
+            this.textBoxX02_8.Size = new System.Drawing.Size(47, 23);
+            this.textBoxX02_8.TabIndex = 47;
+            this.textBoxX02_8.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.label16.Location = new System.Drawing.Point(606, 264);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 19);
+            this.label16.TabIndex = 77;
+            this.label16.Text = "N = ";
+            // 
+            // pictureBox31
+            // 
+            this.pictureBox31.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox31.Image = global::N_dimensionalPerchOptimizer.Properties.Resources.Ex8_Large;
+            this.pictureBox31.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox31.InitialImage")));
+            this.pictureBox31.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox31.Name = "pictureBox31";
+            this.pictureBox31.Size = new System.Drawing.Size(723, 230);
+            this.pictureBox31.TabIndex = 75;
+            this.pictureBox31.TabStop = false;
             // 
             // FormMain
             // 
@@ -1706,12 +1886,23 @@
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN7)).EndInit();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN8)).EndInit();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1840,6 +2031,20 @@
         private System.Windows.Forms.TextBox textBoxX02_7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripProtocol;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.PictureBox pictureBox28;
+        private System.Windows.Forms.TextBox textBoxU1_8;
+        private System.Windows.Forms.TextBox textBoxU2_8;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.NumericUpDown numericUpDownN8;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.PictureBox pictureBox29;
+        private System.Windows.Forms.TextBox textBoxX01_8;
+        private System.Windows.Forms.PictureBox pictureBox30;
+        private System.Windows.Forms.TextBox textBoxX02_8;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.PictureBox pictureBox31;
     }
 }
 
