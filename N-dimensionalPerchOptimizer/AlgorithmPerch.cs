@@ -20,6 +20,8 @@ namespace N_dimensionalPerchOptimizer
         public int N_dim = 0;
         public List<Tuple<double, double>> U;
         public List<double> x0;
+        /// <summary>Дополнительные параметры системы</summary>
+        public List<double> additionalParams;
         /// <summary>Номер выбранной задачи</summary>
         public int ExampleNum = 0;
 
@@ -270,7 +272,7 @@ namespace N_dimensionalPerchOptimizer
                     for (int j = 0; j < N_dim; j++) // Очень логично, здесь начинаются проблемы с выходом за границы.
                                                     // идея правки... я пока не знаю.
                     {
-                        double tmp = Xp_pool.coords[j] + i * (Xq_pool.coords[j] - Xq_pool.coords[j]) / deltapr; // TODO: а это что за бред?
+                        double tmp = Xp_pool.coords[j] + i * (Xq_pool.coords[j] - Xp_pool.coords[j]) / deltapr; // TODO: а это что за бред?
                         perch.coords[j] = tmp;
                     }
                     I(perch);

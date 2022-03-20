@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FDD10EB6-F04E-44FF-A011-09F21215C5E4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>N_dimensionalPerchOptimizer</RootNamespace>
     <AssemblyName>N-dimensionalPerchOptimizer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -59,6 +59,7 @@
     <Compile Include="AlgorithmTask6.cs" />
     <Compile Include="AlgorithmTask7.cs" />
     <Compile Include="AlgorithmTask8.cs" />
+    <Compile Include="AlgorithmTask9.cs" />
     <Compile Include="ErrorGraph.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Ex9_Large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Ex10_Large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\gamma.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

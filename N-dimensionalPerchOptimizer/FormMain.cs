@@ -118,6 +118,9 @@ namespace N_dimensionalPerchOptimizer
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            this.buttonStartAlg.Enabled = false;
+            labelTimeStart.Text = (System.DateTime.Now.ToLongTimeString());
+
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             LoadParams();
@@ -205,6 +208,17 @@ namespace N_dimensionalPerchOptimizer
                     algPerch = new AlgorithmTask8(U1_8, U2_8, x01_8, x02_8);
 
                     break;
+                case 8:
+                    N_dim = Convert.ToInt32(numericUpDownN9.Value);
+                    double U1_9 = Convert.ToDouble(textBoxU1_9.Text); double U2_9 = Convert.ToDouble(textBoxU2_9.Text);
+
+                    double x0_9 = Convert.ToDouble(textBoxX0_9.Text);
+
+                    double gamma_9 = Convert.ToDouble(textBoxGamma_9.Text);
+
+                    algPerch = new AlgorithmTask9(U1_9, U2_9, x0_9, gamma_9);
+
+                    break;
                 default:
                     return;
             }
@@ -230,6 +244,7 @@ namespace N_dimensionalPerchOptimizer
                 case 0: // Пример 1
                 case 2: // Пример 3
                 case 3: // Пример 4
+                case 8: // Пример 9
                     r.Write(String.Format(@"
     Количество точек разбиения (шагов): {0, 5}", N_dim));
                     switch (tabControl2.SelectedIndex)
@@ -248,6 +263,11 @@ namespace N_dimensionalPerchOptimizer
                             r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
     Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_4.Text), Convert.ToDouble(textBoxU2_4.Text), Convert.ToDouble(textBoxX0_4.Text)));
+                            break;
+                        case 8:
+                            r.Write(String.Format(@"
+    Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
+    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_9.Text), Convert.ToDouble(textBoxU2_9.Text), Convert.ToDouble(textBoxX0_9.Text)));
                             break;
                     }
                     
@@ -338,6 +358,7 @@ namespace N_dimensionalPerchOptimizer
                 case 0:     // одномерный случай
                 case 2:     // одномерный случай
                 case 3:     // одномерный случай
+                case 8:
                     X = new object[N_dim+1];
                     U = new object[N_dim];
                     for (int i = 0; i < N_dim; i++)
@@ -497,6 +518,7 @@ namespace N_dimensionalPerchOptimizer
                     case 0:
                     case 2:
                     case 3:
+                    case 8:
                         graphics = new Graphics(1);
                         break;
                     case 1:
@@ -517,6 +539,7 @@ namespace N_dimensionalPerchOptimizer
                     case 0:
                     case 2:
                     case 3:
+                    case 8:
                         graphics = new Graphics(1);
                         break;
                     case 1:
@@ -538,6 +561,7 @@ namespace N_dimensionalPerchOptimizer
                     case 0:
                     case 2:
                     case 3:
+                    case 8:
                         graphics.UpdateGraph(1);
                         break;
                     case 1:
@@ -559,6 +583,7 @@ namespace N_dimensionalPerchOptimizer
             if (tabControl2.SelectedIndex == 6)
                 if (errorGraph.IsDisposed == false && errorGraph != null)
                     errorGraph.Show();
+            this.buttonStartAlg.Enabled = true;
 
         }
 
@@ -597,6 +622,7 @@ namespace N_dimensionalPerchOptimizer
             dataGridViewU_separate.ColumnCount  = 1;
 
             labelMinI.Text = "---";
+            labelTimeStart.Text = "---";
 
         }
 
