@@ -140,16 +140,16 @@ namespace N_dimensionalPerchOptimizer
             switch (dim)
             {
                 case 1:
-                    tabControlX.TabPages[1].Text = "----------"; tabControlX.TabPages[2].Text = "----------";
-                    tabControlU.TabPages[1].Text = "----------"; tabControlU.TabPages[2].Text = "----------";
+                    tabControlX.TabPages[0].Text = "X"; tabControlX.TabPages[1].Text = "----------"; tabControlX.TabPages[2].Text = "----------";
+                    tabControlU.TabPages[0].Text = "U"; tabControlU.TabPages[1].Text = "----------"; tabControlU.TabPages[2].Text = "----------";
                     break;
                 case 2:
-                    tabControlX.TabPages[1].Text = "X2"; tabControlX.TabPages[2].Text = "----------";
-                    tabControlU.TabPages[1].Text = "----------"; tabControlU.TabPages[2].Text = "----------";
+                    tabControlX.TabPages[0].Text = "X1"; tabControlX.TabPages[1].Text = "X2"; tabControlX.TabPages[2].Text = "----------";
+                    tabControlU.TabPages[0].Text = "U"; tabControlU.TabPages[1].Text = "----------"; tabControlU.TabPages[2].Text = "----------";
                     break;
                 case 3:
-                    tabControlX.TabPages[1].Text = "X2"; tabControlX.TabPages[2].Text = "X3";
-                    tabControlU.TabPages[1].Text = "U2"; tabControlU.TabPages[2].Text = "U3";
+                    tabControlX.TabPages[0].Text = "X1"; tabControlX.TabPages[1].Text = "X2"; tabControlX.TabPages[2].Text = "X3";
+                    tabControlU.TabPages[0].Text = "U1"; tabControlU.TabPages[1].Text = "U2"; tabControlU.TabPages[2].Text = "U3";
                     break;
                 default:
                     break;

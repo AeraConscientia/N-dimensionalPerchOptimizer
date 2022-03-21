@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Drawing.Design;
 
 namespace N_dimensionalPerchOptimizer
 {
@@ -118,7 +119,8 @@ namespace N_dimensionalPerchOptimizer
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            this.buttonStartAlg.Enabled = false;
+            buttonStartAlg.Enabled = false;
+            buttonStartAlg.BackColor = System.Drawing.Color.Gainsboro;
             labelTimeStart.Text = (System.DateTime.Now.ToLongTimeString());
 
             Stopwatch stopWatch = new Stopwatch();
@@ -583,7 +585,9 @@ namespace N_dimensionalPerchOptimizer
             if (tabControl2.SelectedIndex == 6)
                 if (errorGraph.IsDisposed == false && errorGraph != null)
                     errorGraph.Show();
-            this.buttonStartAlg.Enabled = true;
+            buttonStartAlg.BackColor = System.Drawing.Color.DarkSeaGreen;
+            buttonStartAlg.Enabled = true;
+            labelTimeStart.Text = "---";
 
         }
 
