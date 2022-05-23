@@ -16,6 +16,7 @@ namespace N_dimensionalPerchOptimizer
 
         Graphics graphics = null;
         ErrorGraph errorGraph = null;
+        public int task;
 
 
         private int MaxIteration = 0;
@@ -119,6 +120,8 @@ namespace N_dimensionalPerchOptimizer
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            task = tabControl2.SelectedIndex;
+
             buttonStartAlg.Enabled = false;
             buttonStartAlg.BackColor = System.Drawing.Color.Gainsboro;
             labelTimeStart.Text = (System.DateTime.Now.ToLongTimeString());
@@ -132,7 +135,6 @@ namespace N_dimensionalPerchOptimizer
             object[] X2;
             object[] X3;
             object[] U, U_2, U_3;
-
 
             switch (tabControl2.SelectedIndex) // Считывание параметров для задачи
             {
@@ -254,22 +256,22 @@ namespace N_dimensionalPerchOptimizer
                         case 0:
                             r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_1.Text), Convert.ToDouble(textBoxU2_1.Text), Convert.ToDouble(textBoxX0_1.Text)));
+    Начальные условия:                           x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_1.Text), Convert.ToDouble(textBoxU2_1.Text), Convert.ToDouble(textBoxX0_1.Text)));
                             break;
                         case 2:
                             r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_3.Text), Convert.ToDouble(textBoxU2_3.Text), Convert.ToDouble(textBoxX0_3.Text)));
+    Начальные условия:                           x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_3.Text), Convert.ToDouble(textBoxU2_3.Text), Convert.ToDouble(textBoxX0_3.Text)));
                             break;
                         case 3:
                             r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_4.Text), Convert.ToDouble(textBoxU2_4.Text), Convert.ToDouble(textBoxX0_4.Text)));
+    Начальные условия:                           x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_4.Text), Convert.ToDouble(textBoxU2_4.Text), Convert.ToDouble(textBoxX0_4.Text)));
                             break;
                         case 8:
                             r.Write(String.Format(@"
     Ограничения на управление:          {1, 5:f1} <= u <= {2, 5:f1}
-    Начальные условия:                  x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_9.Text), Convert.ToDouble(textBoxU2_9.Text), Convert.ToDouble(textBoxX0_9.Text)));
+    Начальные условия:                           x ={3, 5:f1}", N_dim, Convert.ToDouble(textBoxU1_9.Text), Convert.ToDouble(textBoxU2_9.Text), Convert.ToDouble(textBoxX0_9.Text)));
                             break;
                     }
                     
@@ -282,10 +284,10 @@ namespace N_dimensionalPerchOptimizer
     Ограничения на управление:          {3, 5:f1} <= u2 <= {4, 5:f1}
                                         {5, 5:f1} <= u3 <= {6, 5:f1}
 
-    Начальные условия:                  x1 ={7, 5:f1}
-                                        x2 ={8, 5:f1}
-                                        x3 ={9, 5:f1}", 
-                                    N_dim, 
+    Начальные условия:                           x1 ={7, 5:f1}
+                                                 x2 ={8, 5:f1}
+                                                 x3 ={9, 5:f1}", 
+                                    N_dim / 3, 
                                     Convert.ToDouble(textBoxU11.Text), Convert.ToDouble(textBoxU12.Text),
                                     Convert.ToDouble(textBoxU21.Text), Convert.ToDouble(textBoxU22.Text),
                                     Convert.ToDouble(textBoxU31.Text), Convert.ToDouble(textBoxU32.Text), 
@@ -301,40 +303,41 @@ namespace N_dimensionalPerchOptimizer
                     {
                         case 4:
                             r.Write(String.Format(
-                                    @"\n{0, 5:f1} <= u <= {1, 5:f1}
+                                    @"
+    Ограничения на управление:          {0, 5:f1} <= u <= {1, 5:f1}
 
-    Начальные условия:                  x1 ={2, 5:f1}
-                                        x2 ={3, 5:f1}",
+    Начальные условия:                           x1 ={2, 5:f1}
+                                                 x2 ={3, 5:f1}",
                                     Convert.ToDouble(textBoxU1_5.Text), Convert.ToDouble(textBoxU1_5.Text),
                                     Convert.ToDouble(textBoxX01_5.Text), Convert.ToDouble(textBoxX02_5.Text)));
                             break;
                         case 5:
                             r.Write(String.Format(
                                     @"
-                                        {0, 5:f1} <= u <= {1, 5:f1}
+    Ограничения на управление:          {0, 5:f1} <= u <= {1, 5:f1}
 
-    Начальные условия:                  x1 ={2, 5:f1}
-                                        x2 ={3, 5:f1}",
+    Начальные условия:                           x1 ={2, 5:f1}
+                                                 x2 ={3, 5:f1}",
                                     Convert.ToDouble(textBoxU1_6.Text), Convert.ToDouble(textBoxU1_6.Text),
                                     Convert.ToDouble(textBoxX01_6.Text), Convert.ToDouble(textBoxX02_6.Text)));
                             break;
                         case 6:
                             r.Write(String.Format(
                                     @"
-                                        {0, 5:f1} <= u <= {1, 5:f1}
+    Ограничения на управление:          {0, 5:f1} <= u <= {1, 5:f1}
 
-    Начальные условия:                  x1 ={2, 5:f1}
-                                        x2 ={3, 5:f1}",
-                                    Convert.ToDouble(textBoxU1_7.Text), Convert.ToDouble(textBoxU1_7.Text),
+    Начальные условия:                           x1 ={2, 5:f1}
+                                                 x2 ={3, 5:f1}",
+                                    Convert.ToDouble(textBoxU1_7.Text), Convert.ToDouble(textBoxU2_7.Text),
                                     Convert.ToDouble(textBoxX01_7.Text), Convert.ToDouble(textBoxX02_7.Text)));
                             break;
                         case 7:
                             r.Write(String.Format(
                                     @"
-                                        {0, 5:f1} <= u <= {1, 5:f1}
+    Ограничения на управление:          {0, 5:f1} <= u <= {1, 5:f1}
 
-    Начальные условия:                  x1 ={2, 5:f1}
-                                        x2 ={3, 5:f1}",
+    Начальные условия:                           x1 ={2, 5:f1}
+                                                 x2 ={3, 5:f1}",
                                     Convert.ToDouble(textBoxU1_8.Text), Convert.ToDouble(textBoxU1_8.Text),
                                     Convert.ToDouble(textBoxX01_8.Text), Convert.ToDouble(textBoxX02_8.Text)));
                             break;
@@ -351,10 +354,11 @@ namespace N_dimensionalPerchOptimizer
     Количество окуней в стае:           {3,5}
     Число перекоммутаций:               {4,5}
     Число шагов в перекоммутации:       {5,5}
-    Параметр распределения Леви:        {6,5:f1}
-    Величина шага:                      {7,5:f1}", NStep, MaxIteration, NumFlocks, NumPerchInFlock, PRmax, deltapr, lambda, alfa));
+    Параметр распределения Леви:        {6,5:f3}
+    Величина шага:                      {7,5:f3}", NStep, MaxIteration, NumFlocks, NumPerchInFlock, PRmax, deltapr, lambda, alfa));
 
-
+            r.Write(String.Format(@"
+3. РЕЗУЛЬТАТЫ РАБОТЫ"));
             switch (tabControl2.SelectedIndex) // занесение в таблицу результатов
             {
                 case 0:     // одномерный случай
@@ -380,13 +384,14 @@ namespace N_dimensionalPerchOptimizer
                     
                     dataGridViewU_separate.Rows[0].SetValues(U);
 
+                    
                     r.Write(String.Format(@"
-3. РЕЗУЛЬТАТЫ РАБОТЫ"));
-                    r.Write(String.Format(@"
-    Оптимальное управление u*:"));
+    Оптимальное управление u*:
+"));
                     for (int i = 0; i < N_dim; i++)     r.Write(String.Format(@" {0, 10:f5}", U[i]));    r.Write(String.Format("\r\n"));
                     r.Write(String.Format(@"
-    Оптимальная траектория x*:"));
+    Оптимальная траектория x*:
+"));
                     for (int i = 0; i < N_dim+1; i++)   r.Write(String.Format(@" {0, 10:f5}", X[i]));    r.Write(String.Format("\r\n"));
                     break;
                 case 4:     // двумерный случай
@@ -420,13 +425,14 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
                     dataGridViewX_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[0].DefaultCellStyle.Format = "n5";
+                    
                     r.Write(String.Format(@"
-3. РЕЗУЛЬТАТЫ РАБОТЫ"));
-                    r.Write(String.Format(@"
-    Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
+    Оптимальное управление u*:
+")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 2; i++) r.Write(String.Format(@" {0, 10:f5}", U[i])); r.Write(String.Format("\r\n"));
                     r.Write(String.Format(@"
-    Оптимальная траектория x*:")); r.Write(String.Format("\r\n"));
+    Оптимальная траектория x*:
+")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i])); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i])); r.Write(String.Format("\r\n"));
                     break;
@@ -472,15 +478,16 @@ namespace N_dimensionalPerchOptimizer
                     dataGridViewX_separate.Rows[2].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[1].DefaultCellStyle.Format = "n5";
                     dataGridViewU_separate.Rows[2].DefaultCellStyle.Format = "n5";
+                    
                     r.Write(String.Format(@"
-3. РЕЗУЛЬТАТЫ РАБОТЫ"));
-                    r.Write(String.Format(@"
-    Оптимальное управление u*:")); r.Write(String.Format("\r\n"));
+    Оптимальное управление u*:
+")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_0[i])); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_2[i])); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3; i++)     r.Write(String.Format(@" {0, 10:f5}", U_3[i])); r.Write(String.Format("\r\n"));
                     r.Write(String.Format(@"
-    Оптимальная траектория x*:")); r.Write(String.Format("\r\n"));
+    Оптимальная траектория x*:
+")); r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i]));   r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i]));  r.Write(String.Format("\r\n"));
                     for (int i = 0; i < N_dim / 3 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X3[i]));  r.Write(String.Format("\r\n"));
@@ -513,7 +520,7 @@ namespace N_dimensionalPerchOptimizer
             }
             if (tabControl2.SelectedIndex == 6)
                 errorGraph.UpdateErrorGraph(6, N_dim);
-
+            //task = tabControl2.SelectedIndex;
             if (graphics == null)
                 switch (tabControl2.SelectedIndex)
                 {
@@ -521,16 +528,16 @@ namespace N_dimensionalPerchOptimizer
                     case 2:
                     case 3:
                     case 8:
-                        graphics = new Graphics(1);
+                        graphics = new Graphics(1, tabControl2.SelectedIndex);
                         break;
                     case 1:
-                        graphics = new Graphics(3);
+                        graphics = new Graphics(3, tabControl2.SelectedIndex);
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        graphics = new Graphics(2);
+                        graphics = new Graphics(2, tabControl2.SelectedIndex);
                         break;
                     default:
                         break;
@@ -542,16 +549,16 @@ namespace N_dimensionalPerchOptimizer
                     case 2:
                     case 3:
                     case 8:
-                        graphics = new Graphics(1);
+                        graphics = new Graphics(1, tabControl2.SelectedIndex);
                         break;
                     case 1:
-                        graphics = new Graphics(3);
+                        graphics = new Graphics(3, tabControl2.SelectedIndex);
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        graphics = new Graphics(2);
+                        graphics = new Graphics(2, tabControl2.SelectedIndex);
                         if (tabControl2.SelectedIndex == 6)
                             errorGraph = new ErrorGraph(6, N_dim);
                         break;
@@ -564,16 +571,16 @@ namespace N_dimensionalPerchOptimizer
                     case 2:
                     case 3:
                     case 8:
-                        graphics.UpdateGraph(1);
+                        graphics.UpdateGraph(1, tabControl2.SelectedIndex);
                         break;
                     case 1:
-                        graphics.UpdateGraph(3);
+                        graphics.UpdateGraph(3, tabControl2.SelectedIndex);
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        graphics.UpdateGraph(2);
+                        graphics.UpdateGraph(2, tabControl2.SelectedIndex);
                         //if (tabControl2.SelectedIndex == 6)
                     break;
                     default:

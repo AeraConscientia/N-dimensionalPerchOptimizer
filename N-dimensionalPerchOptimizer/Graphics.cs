@@ -7,16 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace N_dimensionalPerchOptimizer
 {
     public partial class Graphics : Form
     {
-        
-        public Graphics(int dim)
+        int TaskNumber;
+        int Dim;
+
+        public Graphics(int dim, int task)
         {
             InitializeComponent();
             Result result = Result.GetInstance();
+
+            TaskNumber = task + 1;
+            Dim = dim;
+
 
             CleanGraphics();
 
@@ -34,7 +41,6 @@ namespace N_dimensionalPerchOptimizer
                     {
                         chartX_1.Series[0].Points.AddXY(i, result.X[i]);
                         chartX_2.Series[0].Points.AddXY(i, result.X2[i]);
-
                     }
 
                     for (int i = 0; i < result.U.Count; i++)
@@ -71,10 +77,17 @@ namespace N_dimensionalPerchOptimizer
             }
         }
 
-        public void UpdateGraph(int dim)
+        public void RoundChart()
+        {
+            //chartX_1.;
+        }
+
+        public void UpdateGraph(int dim, int task)
         {
             Result result = Result.GetInstance();
             CleanGraphics();
+            TaskNumber = task + 1;
+            Dim = dim;
 
             switch (dim)
             {
@@ -83,8 +96,9 @@ namespace N_dimensionalPerchOptimizer
                     for (int i = 0; i < result.X.Count; i++)    chartX_1.Series[0].Points.AddXY(i, result.X[i]);
 
                     for (int i = 0; i < result.U.Count; i++)    chartU_1.Series[0].Points.AddXY(i, result.U[i]);
+                    //chartX_1.ChartAreas[0].AxisX.Interval = 1;
                     //tabControlU.TabPages[1].Dispose();
-                    
+
                     break;
                 case 2: // тут 2 траектории и 1 управление
                     CleanTabControlHeader(2);
@@ -192,6 +206,34 @@ namespace N_dimensionalPerchOptimizer
            //
            // if (errorGraph != null)
            //     errorGraph.Show();
+        }
+
+        /// <summary>Сохранение всех графиков в папку</summary>
+        private void buttonSaveImg_Click(object sender, EventArgs e)
+        {
+
+            switch (Dim)
+            {
+                case 1:
+                    chartX_1.SaveImage($"SavedTask{TaskNumber}_X1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartU_1.SaveImage($"SavedTask{TaskNumber}_U1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    break;
+                case 2:
+                    chartX_1.SaveImage($"SavedTask{TaskNumber}_X1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartX_2.SaveImage($"SavedTask{TaskNumber}_X2.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartU_1.SaveImage($"SavedTask{TaskNumber}_U1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    break;
+                case 3:
+                    chartX_1.SaveImage($"SavedTask{TaskNumber}_X1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartX_2.SaveImage($"SavedTask{TaskNumber}_X2.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartX_3.SaveImage($"SavedTask{TaskNumber}_X3.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartU_1.SaveImage($"SavedTask{TaskNumber}_U1.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartU_2.SaveImage($"SavedTask{TaskNumber}_U2.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    chartU_3.SaveImage($"SavedTask{TaskNumber}_U3.png", System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -175,5 +175,8 @@
   <ItemGroup>
     <None Include="Images\gamma.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
