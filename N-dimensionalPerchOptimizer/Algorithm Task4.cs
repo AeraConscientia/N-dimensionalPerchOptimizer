@@ -201,7 +201,7 @@ namespace N_dimensionalPerchOptimizer
             }
             PoorLeaderSwim();
             //WrongCoord();
-            for (int p = 0; p < N_dim / 2; p++)
+            for (int p = 0; p < N_dim; p++) //N_dim / 2
             {
                 int NumTries = 0;
                 while (((flock[NumFlocks - 1, 0].coords[p] < U[0].Item1) || (flock[NumFlocks - 1, 0].coords[p] > U[0].Item2)))

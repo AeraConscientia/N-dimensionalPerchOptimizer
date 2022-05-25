@@ -177,7 +177,7 @@ namespace N_dimensionalPerchOptimizer
 
                     break;
                 case 4:
-                    N_dim = 2 * Convert.ToInt32(numericUpDownN5.Value);
+                    N_dim = Convert.ToInt32(numericUpDownN5.Value);
                     double U1_5 = Convert.ToDouble(textBoxU1_5.Text);   double U2_5 = Convert.ToDouble(textBoxU2_5.Text);
                 
                     double x01_5 = Convert.ToDouble(textBoxX01_5.Text); double x02_5 = Convert.ToDouble(textBoxX02_5.Text);
@@ -186,7 +186,7 @@ namespace N_dimensionalPerchOptimizer
                 
                     break;
                 case 5:
-                    N_dim = 2 * Convert.ToInt32(numericUpDownN6.Value);
+                    N_dim = Convert.ToInt32(numericUpDownN6.Value);
                     double U1_6 = Convert.ToDouble(textBoxU1_6.Text);   double U2_6 = Convert.ToDouble(textBoxU2_6.Text);
 
                     double x01_6 = Convert.ToDouble(textBoxX01_6.Text); double x02_6 = Convert.ToDouble(textBoxX02_6.Text);
@@ -195,7 +195,7 @@ namespace N_dimensionalPerchOptimizer
 
                     break;
                 case 6:
-                    N_dim = 2 * Convert.ToInt32(numericUpDownN7.Value);
+                    N_dim = Convert.ToInt32(numericUpDownN7.Value);
                     double U1_7 = Convert.ToDouble(textBoxU1_7.Text); double U2_7 = Convert.ToDouble(textBoxU2_7.Text);
 
                     double x01_7 = Convert.ToDouble(textBoxX01_7.Text); double x02_7 = Convert.ToDouble(textBoxX02_7.Text);
@@ -204,7 +204,7 @@ namespace N_dimensionalPerchOptimizer
 
                     break;
                 case 7:
-                    N_dim = 2 * Convert.ToInt32(numericUpDownN8.Value);
+                    N_dim = Convert.ToInt32(numericUpDownN8.Value);
                     double U1_8 = Convert.ToDouble(textBoxU1_8.Text); double U2_8 = Convert.ToDouble(textBoxU2_8.Text);
 
                     double x01_8 = Convert.ToDouble(textBoxX01_8.Text); double x02_8 = Convert.ToDouble(textBoxX02_8.Text);
@@ -298,7 +298,7 @@ namespace N_dimensionalPerchOptimizer
                 case 6: // Пример 7
                 case 7: // Пример 8
                     r.Write(String.Format(@"
-    Количество точек разбиения (шагов): {0, 5}", N_dim / 2));
+    Количество точек разбиения (шагов): {0, 5}", N_dim));
                     switch (tabControl2.SelectedIndex)
                     {
                         case 4:
@@ -398,28 +398,28 @@ namespace N_dimensionalPerchOptimizer
                 case 5:
                 case 6:
                 case 7:
-                    X   = new object[N_dim / 2 + 1];
-                    X2  = new object[N_dim / 2 + 1];
-                    U   = new object[N_dim / 2];
-                    for (int i = 0; i < N_dim / 2 ; i++)
+                    X   = new object[N_dim + 1];
+                    X2  = new object[N_dim + 1];
+                    U   = new object[N_dim];
+                    for (int i = 0; i < N_dim; i++)
                     {
                         U[i] = result.U[i];
                     }
-                    for (int i = 0; i < N_dim / 2 + 1; i++)
+                    for (int i = 0; i < N_dim + 1; i++)
                     {
                         X[i] = result.X[i];
                         X2[i] = result.X2[i];
                     }
                     dataGridViewX_separate.Rows.Clear();
                     dataGridViewX_separate.RowCount = 2;
-                    dataGridViewX_separate.ColumnCount = N_dim / 2 + 1;
+                    dataGridViewX_separate.ColumnCount = N_dim + 1;
 
                     dataGridViewX_separate.Rows[0].SetValues(X);
                     dataGridViewX_separate.Rows[1].SetValues(X2);
 
                     dataGridViewU_separate.Rows.Clear();
                     dataGridViewU_separate.RowCount = 1;
-                    dataGridViewU_separate.ColumnCount = N_dim / 2;
+                    dataGridViewU_separate.ColumnCount = N_dim;
                     dataGridViewU_separate.Rows[0].SetValues(U);
 
                     dataGridViewX_separate.Rows[0].DefaultCellStyle.Format = "n5";
@@ -429,12 +429,12 @@ namespace N_dimensionalPerchOptimizer
                     r.Write(String.Format(@"
     Оптимальное управление u*:
 ")); r.Write(String.Format("\r\n"));
-                    for (int i = 0; i < N_dim / 2; i++) r.Write(String.Format(@" {0, 10:f5}", U[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim; i++) r.Write(String.Format(@" {0, 10:f5}", U[i])); r.Write(String.Format("\r\n"));
                     r.Write(String.Format(@"
     Оптимальная траектория x*:
 ")); r.Write(String.Format("\r\n"));
-                    for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i])); r.Write(String.Format("\r\n"));
-                    for (int i = 0; i < N_dim / 2 + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X[i])); r.Write(String.Format("\r\n"));
+                    for (int i = 0; i < N_dim + 1; i++) r.Write(String.Format(@" {0, 10:f5}", X2[i])); r.Write(String.Format("\r\n"));
                     break;
 
                 case 1:     // трехмерный случай
