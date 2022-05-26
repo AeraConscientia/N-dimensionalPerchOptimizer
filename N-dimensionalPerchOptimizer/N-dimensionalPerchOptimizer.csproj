@@ -178,5 +178,8 @@
   <ItemGroup>
     <None Include="Resources\Save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Perch_ico.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
