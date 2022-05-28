@@ -52,6 +52,8 @@ namespace N_dimensionalPerchOptimizer
 
         public override void I(Perch perch, bool flag = false)
         {
+            base.I(perch, flag);
+
             List<double> x1 = new List<double>();
             List<double> x2 = new List<double>();
             x1.Add(x0[0]); x2.Add(x0[1]);

@@ -11,7 +11,6 @@ K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalP
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.exe.config
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.exe
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\bin\Debug\N-dimensionalPerchOptimizer.pdb
-C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csprojAssemblyReference.cache
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.FormMain.resources
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.Properties.Resources.resources
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csproj.GenerateResource.cache
@@ -20,3 +19,6 @@ C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimi
 C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.pdb
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.Graphics.resources
 K:\МАИ\Научная работа\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.ErrorGraph.resources
+C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N-dimensionalPerchOptimizer.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.ErrorGraph.resources
+C:\Users\Admin\source\repos\N-dimensionalPerchOptimizer\N-dimensionalPerchOptimizer\obj\Debug\N_dimensionalPerchOptimizer.Graphics.resources

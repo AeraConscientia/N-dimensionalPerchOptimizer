@@ -8,6 +8,8 @@ namespace N_dimensionalPerchOptimizer
 {
     public abstract class AlgorithmPerch
     {
+        uint I_CallsCount = 0;
+
         public double R1, R2;
         public double thetta1, thetta2;
         public double L1, L2;
@@ -153,7 +155,13 @@ namespace N_dimensionalPerchOptimizer
 
         protected abstract void PoorFlockSwim();
 
-        public abstract void I(Perch perch, bool flag = false);
+        public virtual void I(Perch perch, bool flag = false)
+        {
+#if DEBUG
+            I_CallsCount++;
+#endif
+        }
+
         /// <summary>Новые координаты лидера худшей стаи</summary>
         public void PoorLeaderSwim() // *
         {
@@ -175,6 +183,7 @@ namespace N_dimensionalPerchOptimizer
             double lambda, double alfa,
             int PRmax, int deltapr, int N_dim)
         {
+            I_CallsCount = 0;       //Обнуляем число подсчетов
 
             this.MaxCount = MaxCount;
 
@@ -217,6 +226,13 @@ namespace N_dimensionalPerchOptimizer
 
             perch = Pool[0];
             I(perch, true);
+
+#if DEBUG
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("Число подсчетов целевой функции: " + I_CallsCount);        //Вывод числа подсчета целевой функции
+            Console.WriteLine("------------------------------------------------");
+#endif
+
             return perch;
         }
 

@@ -96,6 +96,8 @@ namespace N_dimensionalPerchOptimizer
 
         public override void I(Perch perch, bool flag = false)
         {
+            base.I(perch, flag);
+
             //List<double> x = new List<double>(); // убрать х
 
             List<double> x1 = new List<double>();
