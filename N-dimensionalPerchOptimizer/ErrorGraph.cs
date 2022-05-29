@@ -17,15 +17,6 @@ namespace N_dimensionalPerchOptimizer
             InitializeComponent();
             Result result = Result.GetInstance();
 
-            //switch (TaskNumber)
-            //{
-            //    case 6:
-            //        N_dim = N_dim / 2;
-            //        break;
-            //    default:
-            //        break;
-            //}
-
             CleanErrorGraphics();
 
             UpdateErrorGraph(TaskNumber, N_dim);
@@ -41,18 +32,6 @@ namespace N_dimensionalPerchOptimizer
             switch (TaskNumber)
             {
                 case 6:
-                    N_dim = N_dim / 2;
-                    break;
-                default:
-                    break;
-            }
-
-            switch (TaskNumber)
-            {
-                case 6:
-                    //for (int i = 0; i < N_dim; i++)
-                    //    chartI_Error.Series[0].Points.AddXY(i, );
-
                     double[] AnaliticU = new double[N_dim];
                     for (int i = 0; i < N_dim; i++)
                     {
@@ -69,7 +48,6 @@ namespace N_dimensionalPerchOptimizer
 
         private void CleanErrorGraphics()
         {
-            //chartI_Error.Series[0].Points.Clear();
             chartU_Error.Series[0].Points.Clear(); 
         }
             
